@@ -18,6 +18,7 @@ body {
     right: 10px;   /* distance from right */
     width: 170px;   /* size of the image */
     height: auto;  /* maintain aspect ratio */
+    border-radius: 10px;
     z-index: 1000; /* ensure it stays on top */
 }
 
@@ -95,6 +96,7 @@ h3 {
   background: #0d1b3d;
   color: #b3f4ff;
 }
+
 
 
 
