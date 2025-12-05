@@ -91,22 +91,6 @@
     }
 
     /* Neon sticky note container */
-    .sticky-neon {
-      position: relative;
-      display: inline-block;
-      padding: 16px 18px;
-      background: #e3e362; /* sticky yellow */
-      border-radius: 8px;
-      max-width: 280px;
-      transform: rotate(-3deg);
-      border: 1px solid #00e5ff;
-      box-shadow:
-        0 0 10px rgba(0, 229, 255, 0.7),
-        0 0 20px rgba(0, 229, 255, 0.5),
-        0 10px 20px rgba(0,0,0,0.4);
-      color: #0f204e;
-      margin-top: 20px;
-    }
 
     .sticky-neon h4 {
       margin: 0 0 6px 0;
@@ -137,38 +121,72 @@
       backdrop-filter: blur(2px);
     }
 
-    /* Main layout: hero text + image */
-    
 /* Row layout: left column + right image */
 .hero-row {
   display: flex;
-  flex-direction: row;      /* make sure this is row, not column */
-  align-items: flex-start;  /* image top aligns with left stack */
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 30px;
+  gap: 40px;
+  margin-top: 10px;
 }
 
-/* Left column: stack counter, sticky, text */
+/* Left column: counter → sticky → text */
 .hero-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  max-width: 500px;   /* IMPORTANT */
+  flex: 1 1 55%;
 }
 
-/* Right column: keep image on the side */
+/* Visit counter pill stays at the very top-left */
+.visit-counter {
+  background: linear-gradient(to right, #2d5862, #63c8ce);
+  padding: 10px 22px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+  margin-bottom: 10px;
+  margin-left: 5px;
+  width: fit-content;
+}
+
+/* Sticky directly under the counter, left-aligned */
+.sticky-neon {
+  position: relative;
+  display: inline-block;
+  padding: 16px 18px;
+  background: #e3e362;
+  border-radius: 8px;
+  max-width: 320px;
+  transform: rotate(-3deg);
+  border: 1px solid #00e5ff;
+  box-shadow:
+    0 0 10px rgba(0, 229, 255, 0.7),
+    0 0 20px rgba(0, 229, 255, 0.5),
+    0 10px 20px rgba(0,0,0,0.4);
+  color: #0f204e;
+  margin-top: 10px;   /* directly under the counter */
+}
+
+/* Right column: DFIR image */
 .hero-image {
-  flex: 0 0 280px;        /* fixed-ish width so it stays beside */
-  margin-top: 100px/* align top with left stack */
+  flex: 0 0 320px;
+  align-self: flex-start;
+  margin-top: 0;      /* remove big offset */
 }
 
-/* Image styling */
+/* Image styling (keep as you had) */
 .hero-image img {
   max-width: 100%;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0,0,0,0.5);
   display: block;
+}
+
 }
 
 
@@ -800,6 +818,7 @@ window.addEventListener("DOMContentLoaded", () =>
 
 </body>
 </html>
+
 
 
 
