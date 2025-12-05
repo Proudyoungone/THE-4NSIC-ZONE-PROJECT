@@ -776,11 +776,14 @@ async function fetchUserEvents(username) {
 async function loadDfirGithubFeed() {
   const container = document.getElementById("github-events");
 
+  if (!container) return;
+
   try {
     const all = await Promise.all(DFIR_USERS.map(fetchUserEvents));
-    const events = all.flat().sort(
-      (a, b) => new Date(b.created_at) - new Date(a.created_at)
-    ).slice(0, 8);
+    const events = all
+      .flat()
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, 8);
 
     if (!events.length) {
       container.innerHTML = "<p>No recent events found.</p>";
@@ -794,8 +797,8 @@ async function loadDfirGithubFeed() {
       container.innerHTML += `
         <div class="github-event">
           <div>
-            <strong>${ev.__username}</strong> 
-            ${describeEvent(ev)} 
+            <strong>${ev.__username}</strong>
+            ${describeEvent(ev)}
             ${repoUrl ? `– <a href="${repoUrl}" target="_blank">open repo</a>` : ""}
           </div>
           <div class="github-event-time">${formatTime(ev.created_at)}</div>
@@ -809,8 +812,8 @@ async function loadDfirGithubFeed() {
   }
 }
 
-// Run both on page load
-window.addEventListener("DOMContentLoaded", () =>
+// ✅ Correct event listener – this is the part that was broken before
+window.addEventListener("DOMContentLoaded", () => {
   loadDfirGithubFeed();
 });
 </script>
@@ -818,21 +821,3 @@ window.addEventListener("DOMContentLoaded", () =>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
