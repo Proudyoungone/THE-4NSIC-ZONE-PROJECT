@@ -12,14 +12,14 @@ body {
 }
 
 .corner-image {
-    background-image: url("chatGPT Image Nov 24, 2025, 03_31_43 PM.png");
-    position:absolute;
+    position: absolute;
     top: 50px;      /* distance from top */
-    left: 10px;    /* distance from left */
-    right: 10px;   /* distance from right */
+    left: 10px;     /* distance from left – adjust if you want right corner */
     width: 170px;   /* size of the image */
-    height: auto;  /* maintain aspect ratio */
-    z-index: 1000; /* ensure it stays on top */
+    height: auto;   /* maintain aspect ratio for <img> */
+    border-radius: 10px;
+    z-index: 1000;  /* ensure it stays on top */
+    display: block;
 }
 
 #header {
@@ -96,6 +96,7 @@ h3 {
   background: #0d1b3d;
   color: #b3f4ff;
 }
+
 
 
 
