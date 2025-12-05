@@ -12,7 +12,7 @@ body {
 }
 
 .corner-image {
-    background-image: url("images/Chip-ID-Framework/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
+    background-image: url("/Chip-ID-Framework/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
     position:absolute;
     top: 47px;      /* distance from top */
     left: 10px;    /* distance from left */
