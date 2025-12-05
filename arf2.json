@@ -1,0 +1,1729 @@
+{
+  "name": "Resources",
+  "type": "folder",
+  "children": [
+    {
+      "name": "Cloud / Backup",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Account Access",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Amazon Law Enforcement Portal",
+              "type": "url",
+              "url": "https://ler.amazon.com/us"
+            }
+          ]
+        },
+        {
+          "name": "Cloud Export",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Amazon LER Portal",
+              "type": "url",
+              "url": "https://ler.amazon.com/us"
+            },
+            {
+              "name": "Apple Data & Privacy Request Portal",
+              "type": "url",
+              "url": "https://support.apple.com/en-us/HT201391"
+            },
+            {
+              "name": "Apple Privacy Request Documentation",
+              "type": "url",
+              "url": "https://support.apple.com/en-us/HT201391"
+            },
+            {
+              "name": "Google Law Enforcement Request Portal",
+              "type": "url",
+              "url": "https://lers.google.com/signup_v2/landing"
+            },
+            {
+              "name": "Google Takeout Export",
+              "type": "url",
+              "url": "https://takeout.google.com/?pli=1"
+            }
+          ]
+        },
+        {
+          "name": "Cloud Storage",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Google Docs Editor",
+              "type": "url",
+              "url": "https://docs.google.com/document/u/0/?pli=1"
+            },
+            {
+              "name": "Google Drive",
+              "type": "url",
+              "url": "https://drive.google.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cybersecurity / Malware",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Dark Web Intel",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Dark Web Onion Link Directory",
+              "type": "url",
+              "url": "https://www.webhostingsecretrevealed.net/blog/security/dark-web-websites-onion-links/"
+            },
+            {
+              "name": "I2P Anonymity Network",
+              "type": "url",
+              "url": "https://geti2p.net/en/"
+            },
+            {
+              "name": "Tails Secure Operating System",
+              "type": "url",
+              "url": "https://tails.boum.org/"
+            },
+            {
+              "name": "Tor Exonerator Lookup",
+              "type": "url",
+              "url": "https://metrics.torproject.org/exonerator.html"
+            },
+            {
+              "name": "Tor Project Homepage",
+              "type": "url",
+              "url": "https://www.torproject.org/"
+            }
+          ]
+        },
+        {
+          "name": "Exploit/Vuln DBs",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Exploit-DB Official Archive",
+              "type": "url",
+              "url": "https://www.exploit-db.com/"
+            },
+            {
+              "name": "MageReport Vulnerability Scanner",
+              "type": "url",
+              "url": "https://magereport.com"
+            }
+          ]
+        },
+        {
+          "name": "Malware Samples",
+          "type": "folder",
+          "children": [
+            {
+              "name": "EvolvingSysadmin Malware Zoo Collection",
+              "type": "url",
+              "url": "https://github.com/EvolvingSysadmin/Malware-Zoo"
+            },
+            {
+              "name": "theZoo Malware Repository",
+              "type": "url",
+              "url": "https://github.com/ytisf/theZoo"
+            }
+          ]
+        },
+        {
+          "name": "Malware/Threat Intel",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ANY.RUN Malware Sandbox",
+              "type": "url",
+              "url": "https://any.run/"
+            },
+            {
+              "name": "Malware Traffic Analysis Samples",
+              "type": "url",
+              "url": "https://www.malware-traffic-analysis.net/"
+            },
+            {
+              "name": "Malwarebytes Security Suite",
+              "type": "url",
+              "url": "https://www.malwarebytes.com/"
+            },
+            {
+              "name": "MITRE ATT&CK Threat Framework",
+              "type": "url",
+              "url": "https://attack.mitre.org/"
+            },
+            {
+              "name": "No More Ransom Project",
+              "type": "url",
+              "url": "https://www.nomoreransom.org/"
+            },
+            {
+              "name": "VirusTotal Online Scanner",
+              "type": "url",
+              "url": "https://virustotal.com"
+            },
+            {
+              "name": "YARA Malware Rule Repository",
+              "type": "url",
+              "url": "https://virustotal.github.io/yara/"
+            }
+          ]
+        },
+        {
+          "name": "Network/DNS Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Blockchain Explorer",
+              "type": "url",
+              "url": "https://Blockchain.com/explorer"
+            },
+            {
+              "name": "Honeypi Easy Honeypot Guide",
+              "type": "url",
+              "url": "https://trustfoundry.net/honeypi-easy-honeypot-raspberry-pi/"
+            }
+          ]
+        },
+        {
+          "name": "Privacy/VPN",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Epic Privacy Browser",
+              "type": "url",
+              "url": "https://www.epicbrowser.com/about_us.html"
+            },
+            {
+              "name": "ProtonVPN Secure VPN Service",
+              "type": "url",
+              "url": "https://protonvpn.com/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DIFR Resources",
+      "type": "folder",
+      "children": [
+        {
+          "name": "digitalcorpora.com",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Digital Corpora Magnet Scenarios",
+              "type": "url",
+              "url": "https://digitalcorpora.s3.amazonaws.com/s3_browser.html#corpora/scenarios/magnet/"
+            },
+            {
+              "name": "Digital Corpora Mobile Dataset",
+              "type": "url",
+              "url": "https://digitalcorpora.s3.amazonaws.com/s3_browser.html#corpora/mobile/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gaming",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Gaming Profiles",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Roblox Login Page",
+              "type": "url",
+              "url": "https://www.roblox.com/login"
+            },
+            {
+              "name": "Xbox GamerTag Lookup",
+              "type": "url",
+              "url": "https://xboxgamertag.com/"
+            }
+          ]
+        },
+        {
+          "name": "Gaming Status",
+          "type": "folder",
+          "children": [
+            {
+              "name": "PlayStation Network Status",
+              "type": "url",
+              "url": "https://status.playstation.com/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Government / Legal",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Court/Legal",
+          "type": "folder",
+          "children": [
+            {
+              "name": "PACER Federal Court Access",
+              "type": "url",
+              "url": "https://pacer.uscourts.gov/"
+            },
+            {
+              "name": "UK Companies House Filing Search",
+              "type": "url",
+              "url": "https://find-and-update.company-information.service.gov.uk/"
+            }
+          ]
+        },
+        {
+          "name": "Federal LE Systems",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ATF eTrace System",
+              "type": "url",
+              "url": "https://etrace.atf.gov/etrace/"
+            },
+            {
+              "name": "CJIS Enterprise Portal",
+              "type": "url",
+              "url": "https://www.cjis.gov/CJISEAI/EAIController"
+            },
+            {
+              "name": "FBI NICS Appeals & VAF",
+              "type": "url",
+              "url": "https://www.fbi.gov/services/cjis/nics/national-instant-criminal-background-check-system-nics-appeals-vaf"
+            },
+            {
+              "name": "IC3 Complaint Submission",
+              "type": "url",
+              "url": "https://ic3.gov/Home/ComplaintChoice"
+            }
+          ]
+        },
+        {
+          "name": "Firearms/Property",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ATF Form 4473 Information",
+              "type": "url",
+              "url": "https://www.atf.gov/firearms/atf-form-4473-firearms-transaction-record-revisions"
+            },
+            {
+              "name": "GunBusters Firearm Destruction Portal",
+              "type": "url",
+              "url": "https://gunbustersusa.com/"
+            },
+            {
+              "name": "PropertyRoom Online Evidence Auctions",
+              "type": "url",
+              "url": "https://www.propertyroom.com/"
+            }
+          ]
+        },
+        {
+          "name": "Gov Records",
+          "type": "folder",
+          "children": [
+            {
+              "name": "BRB Public Records Index",
+              "type": "url",
+              "url": "https://www.brbpublications.com/"
+            },
+            {
+              "name": "CompanyCheck UK Business Search",
+              "type": "url",
+              "url": "https://companycheck.co.uk/"
+            },
+            {
+              "name": "Dun & Bradstreet Business Lookup",
+              "type": "url",
+              "url": "https://www.dnb.com/en-us/"
+            },
+            {
+              "name": "Guidestar Nonprofit Database",
+              "type": "url",
+              "url": "https://www.guidestar.org/"
+            },
+            {
+              "name": "MoneyHouse Swiss Company Search",
+              "type": "url",
+              "url": "https://www.moneyhouse.ch/en/"
+            },
+            {
+              "name": "OpenCorporates Company Registry",
+              "type": "url",
+              "url": "https://opencorporates.com/"
+            },
+            {
+              "name": "ProPublica Nonprofit Explorer",
+              "type": "url",
+              "url": "https://projects.propublica.org/nonprofits/"
+            },
+            {
+              "name": "SAM.gov Federal Registry",
+              "type": "url",
+              "url": "https://sam.gov/"
+            },
+            {
+              "name": "USASpending Federal Expenditures",
+              "type": "url",
+              "url": "https://www.usaspending.gov/"
+            }
+          ]
+        },
+        {
+          "name": "Missing/Victim",
+          "type": "folder",
+          "children": [
+            {
+              "name": "NamUs Missing Persons Database",
+              "type": "url",
+              "url": "https://namus.nij.ojp.gov/"
+            },
+            {
+              "name": "NCMEC Child Victim ID Program",
+              "type": "url",
+              "url": "https://www.missingkids.org/CVIP"
+            },
+            {
+              "name": "NCMEC CyberTipline",
+              "type": "url",
+              "url": "https://www.missingkids.org/gethelpnow/cybertipline"
+            }
+          ]
+        },
+        {
+          "name": "Reg/Legal Docs",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ABFDE Certification Information",
+              "type": "url",
+              "url": "https://abfde.org/certification/"
+            },
+            {
+              "name": "CSC Registered Agent Address List (PDF)",
+              "type": "url",
+              "url": "https://www.cscglobal.com/cscglobal/pdfs/CSC-registered-agent-addresses.pdf"
+            },
+            {
+              "name": "IANA Technical Authority Homepage",
+              "type": "url",
+              "url": "https://Iana.org"
+            },
+            {
+              "name": "LINE Security Disclosure",
+              "type": "url",
+              "url": "https://linecorp.com/en/security/article/35"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Law Enforcement Information Requests",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Cloud & Big Tech",
+          "type": "folder",
+          "children": [
+            {
+              "name": "amazon.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Amazon Law Enforcement Portal",
+                  "type": "url",
+                  "url": "https://ler.amazon.com/us"
+                }
+              ]
+            },
+            {
+              "name": "apple.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Apple Gov Info Requests",
+                  "type": "url",
+                  "url": "https://www.apple.com/sg/privacy/government-information-requests/"
+                },
+                {
+                  "name": "Apple Government Request Guide (PDF)",
+                  "type": "url",
+                  "url": "https://www.apple.com/legal/privacy/gle-inforequest.pdf"
+                }
+              ]
+            },
+            {
+              "name": "google.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Google LERS Account Portal",
+                  "type": "url",
+                  "url": "https://lers.google.com/signup_v2/landing#/requestaccount"
+                },
+                {
+                  "name": "Google Transparency Report (LE Requests)",
+                  "type": "url",
+                  "url": "https://support.google.com/transparencyreport/answer/7381738?hl=en"
+                }
+              ]
+            },
+            {
+              "name": "microsoft.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Microsoft Data Law Practices",
+                  "type": "url",
+                  "url": "https://blogs.microsoft.com/datalaw/our-practices/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Content & Media",
+          "type": "folder",
+          "children": [
+            {
+              "name": "pinterest.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Pinterest Law Enforcement Guidelines",
+                  "type": "url",
+                  "url": "https://help.pinterest.com/en/article/law-enforcement-guidelines"
+                }
+              ]
+            },
+            {
+              "name": "snap-inc",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Snap Inc. LE Request PDF",
+                  "type": "url",
+                  "url": "https://storage.googleapis.com/snap-inc/privacy/lawenforcement.pdf"
+                }
+              ]
+            },
+            {
+              "name": "twitch.tv",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Twitch User Information Request Policy",
+                  "type": "url",
+                  "url": "https://www.twitch.tv/p/legal/terms-of-service/#17-requests-for-user-information"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Intl Platforms",
+          "type": "folder",
+          "children": [
+            {
+              "name": "linecorp.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "LINE Security Article",
+                  "type": "url",
+                  "url": "https://linecorp.com/en/security/article/35"
+                }
+              ]
+            },
+            {
+              "name": "vk.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "VK Data Protection Requests",
+                  "type": "url",
+                  "url": "https://vk.com/data_protection?section=requests"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Legal Docs",
+          "type": "folder",
+          "children": [
+            {
+              "name": "adobe.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Adobe LE Request Policy",
+                  "type": "url",
+                  "url": "https://www.adobe.com/legal/lawenforcementrequests.html"
+                }
+              ]
+            },
+            {
+              "name": "eff.org",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "EFF Yahoo Law Enforcement Guide",
+                  "type": "url",
+                  "url": "https://www.eff.org/document/yahoo-law-enforcement-guide"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Msg Apps",
+          "type": "folder",
+          "children": [
+            {
+              "name": "signal.org",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Signal Transparency Report",
+                  "type": "url",
+                  "url": "https://signal.org/bigbrother/"
+                }
+              ]
+            },
+            {
+              "name": "tamtam.chat",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "TamTam EU Policy",
+                  "type": "url",
+                  "url": "https://about.tamtam.chat/en/policy-eu/"
+                }
+              ]
+            },
+            {
+              "name": "viber.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Viber Privacy Disclosure Policy",
+                  "type": "url",
+                  "url": "https://www.viber.com/terms/viber-privacy-policy/#disclosure"
+                }
+              ]
+            },
+            {
+              "name": "wechat.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "WeChat Contact Page",
+                  "type": "url",
+                  "url": "https://www.wechat.com/en/contact_us.html"
+                }
+              ]
+            },
+            {
+              "name": "whatsapp.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "WhatsApp LE FAQ",
+                  "type": "url",
+                  "url": "https://faq.whatsapp.com/en/android/26000050/?category=5245250"
+                },
+                {
+                  "name": "WhatsApp Records Portal",
+                  "type": "url",
+                  "url": "https://www.whatsapp.com/records/login/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pro Networks",
+          "type": "folder",
+          "children": [
+            {
+              "name": "linkedin.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "LinkedIn LE Data Request Guidelines",
+                  "type": "url",
+                  "url": "https://www.linkedin.com/help/linkedin/answer/16880/linkedin-law-enforcement-data-request-guidelines?lang=en"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SM Platforms",
+          "type": "folder",
+          "children": [
+            {
+              "name": "facebook.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Facebook Law Enforcement Guidelines",
+                  "type": "url",
+                  "url": "https://www.facebook.com/safety/groups/law/guidelines/"
+                },
+                {
+                  "name": "Facebook Records Portal",
+                  "type": "url",
+                  "url": "https://www.facebook.com/records/login/"
+                }
+              ]
+            },
+            {
+              "name": "instagram.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Instagram Homepage",
+                  "type": "url",
+                  "url": "https://www.instagram.com"
+                }
+              ]
+            },
+            {
+              "name": "reddit.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Reddit Law Enforcement Guidelines",
+                  "type": "url",
+                  "url": "https://www.reddit.com/wiki/law_enforcement_guidelines"
+                }
+              ]
+            },
+            {
+              "name": "snapchat.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Snapchat Homepage",
+                  "type": "url",
+                  "url": "https://www.snapchat.com"
+                },
+                {
+                  "name": "Snapchat Safety Enforcement Policy",
+                  "type": "url",
+                  "url": "https://snap.com/en-US/safety/safety-enforcement"
+                }
+              ]
+            },
+            {
+              "name": "tiktok.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "TikTok Law Enforcement Guidelines (EN)",
+                  "type": "url",
+                  "url": "https://www.tiktok.com/legal/law-enforcement?lang=en"
+                },
+                {
+                  "name": "TikTok Law Enforcement Guidelines (XX)",
+                  "type": "url",
+                  "url": "https://www.tiktok.com/legal/law-enforcement?lang=XX"
+                }
+              ]
+            },
+            {
+              "name": "tumblr.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Tumblr Law Enforcement Guide",
+                  "type": "url",
+                  "url": "https://www.tumblr.com/docs/en/law_enforcement"
+                }
+              ]
+            },
+            {
+              "name": "twitter.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Twitter Law Enforcement Support",
+                  "type": "url",
+                  "url": "https://help.twitter.com/en/rules-and-policies/twitter-law-enforcement-support"
+                },
+                {
+                  "name": "Twitter Legal Requests Landing",
+                  "type": "url",
+                  "url": "https://legalrequests.twitter.com/forms/landing_disclaimer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mapping / Geolocation",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Aviation Tracking",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ADSBexchange Aircraft Tracking Globe",
+              "type": "url",
+              "url": "https://globe.adsbexchange.com/"
+            }
+          ]
+        },
+        {
+          "name": "Crime Maps",
+          "type": "folder",
+          "children": [
+            {
+              "name": "CrimeMapping Law Enforcement Map",
+              "type": "url",
+              "url": "https://www.crimemapping.com/"
+            }
+          ]
+        },
+        {
+          "name": "GeoIP/Geo",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Fing Network Scanner",
+              "type": "url",
+              "url": "https://www.fing.com/"
+            },
+            {
+              "name": "Grabify IP Logger",
+              "type": "url",
+              "url": "https://grabify.link/"
+            },
+            {
+              "name": "IP Location Geolocation Tool",
+              "type": "url",
+              "url": "https://www.iplocation.net/"
+            },
+            {
+              "name": "IPChicken IP Lookup",
+              "type": "url",
+              "url": "https://www.ipchicken.com/"
+            },
+            {
+              "name": "IPLogger Tracking Tool",
+              "type": "url",
+              "url": "https://iplogger.org/"
+            },
+            {
+              "name": "MaxMind Company Homepage",
+              "type": "url",
+              "url": "https://www.maxmind.com/en/home"
+            },
+            {
+              "name": "MaxMind GeoIP Services Demo",
+              "type": "url",
+              "url": "https://www.maxmind.com/en/geoip-web-services-demo"
+            },
+            {
+              "name": "WhatIsMyIPAddress Lookup",
+              "type": "url",
+              "url": "https://whatismyipaddress.com/"
+            }
+          ]
+        },
+        {
+          "name": "GPS/Photo Geo",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Pic2Map EXIF Coordinates Extractor",
+              "type": "url",
+              "url": "https://www.pic2map.com/"
+            }
+          ]
+        },
+        {
+          "name": "Niche Geo",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Armchair Research Mapping Tool",
+              "type": "url",
+              "url": "https://otc.armchairresearch.org/map"
+            },
+            {
+              "name": "DMS to Decimal Degrees Converter",
+              "type": "url",
+              "url": "https://www.latlong.net/degrees-minutes-seconds-to-decimal-degrees"
+            },
+            {
+              "name": "Indoor Geolocation Article (Cake)",
+              "type": "url",
+              "url": "https://gralhix.com/2023/12/04/indoor-geolocation-coordinates-of-a-cake"
+            }
+          ]
+        },
+        {
+          "name": "Property Maps",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Harrison County Property Search",
+              "type": "url",
+              "url": "https://harrisonms.geopowered.com/propertysearch/"
+            }
+          ]
+        },
+        {
+          "name": "Satellite/Maps",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Google Earth Homepage",
+              "type": "url",
+              "url": "https://www.google.com/intl/en_us/earth/"
+            },
+            {
+              "name": "Google Earth Location View",
+              "type": "url",
+              "url": "https://earth.google.com/web/@30.45926978,-88.59615363,-35.45421829a,446436.26533069d,30.00027529y,0h,0t,0r/data=CgRCAggBQgIIAUoNCP___________wEQAA"
+            },
+            {
+              "name": "Google Maps Satellite View",
+              "type": "url",
+              "url": "https://www.google.com.au/maps/@30.4447488,-88.9552896,13z?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+              "name": "Travel With Drone Aerial Videos",
+              "type": "url",
+              "url": "https://travelwithdrone.com/"
+            },
+            {
+              "name": "Zoom Earth Satellite Viewer",
+              "type": "url",
+              "url": "https://zoom.earth/"
+            }
+          ]
+        },
+        {
+          "name": "Street/3D Maps",
+          "type": "folder",
+          "children": [
+            {
+              "name": "DualMaps Street & Satellite Comparison",
+              "type": "url",
+              "url": "https://www.mapchannels.com/dualmaps7/map.htm?lat=48.85837&lng=2.294481&z=18&slat=48.858344&slng=2.294468&sh=19.362&sp=0&sz=1&gm=0&panel=msbi&mi=1&be=0&pv=1&pc=1"
+            },
+            {
+              "name": "GeoHack Coordinate Resolver",
+              "type": "url",
+              "url": "https://geohack.toolforge.org/"
+            },
+            {
+              "name": "Pic2Map EXIF GPS Locator",
+              "type": "url",
+              "url": "https://www.pic2map.com/"
+            },
+            {
+              "name": "WikiMapia Worldwide Mapping",
+              "type": "url",
+              "url": "https://wikimapia.org/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Miscellaneous",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Computer & Software Resources",
+          "type": "folder",
+          "children": [
+            {
+              "name": "AlternativeTo Software Index",
+              "type": "url",
+              "url": "https://alternativeto.net/"
+            },
+            {
+              "name": "WinWorldPC Legacy Software Archive",
+              "type": "url",
+              "url": "https://winworldpc.com/"
+            }
+          ]
+        },
+        {
+          "name": "Genealogy & Archives",
+          "type": "folder",
+          "children": [
+            {
+              "name": "National Archives Catalog",
+              "type": "url",
+              "url": "https://catalog.archives.gov/"
+            }
+          ]
+        },
+        {
+          "name": "Glossaries",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ManualsLib Hardware Manual Repository",
+              "type": "url",
+              "url": "https://www.manualslib.com/"
+            }
+          ]
+        },
+        {
+          "name": "Honeypot & Raspberry Pi Projects",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Honeypi Raspberry Pi Honeypot Guide",
+              "type": "url",
+              "url": "https://trustfoundry.net/honeypi-easy-honeypot-raspberry-pi/"
+            }
+          ]
+        },
+        {
+          "name": "News & Research Articles",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Newsweek Story \u2014 Classified Documents",
+              "type": "url",
+              "url": "https://www.newsweek.com/trump-posted-most-sensitive-info-us-government-classified-document-1836125"
+            },
+            {
+              "name": "Vox \u2014 Keyword Search Tools",
+              "type": "url",
+              "url": "https://www.vox.com/recode/2021/3/2/22309774/keyword-search-accused-crime-law-enforcement-google-data-tips"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Podcasts / Videos",
+      "type": "folder",
+      "children": [
+        {
+          "name": "DFIR Science YouTube Channel",
+          "type": "url",
+          "url": "https://www.youtube.com/@DFIRScience"
+        },
+        {
+          "name": "Cellebrite UFED YouTube Channel",
+          "type": "url",
+          "url": "https://www.youtube.com/@CellebriteUFED"
+        },
+        {
+          "name": "OSINT Investigation Walkthrough 1",
+          "type": "url",
+          "url": "https://www.youtube.com/watch?v=vJvXcJBZRmw"
+        },
+        {
+          "name": "OSINT Investigation Walkthrough 2",
+          "type": "url",
+          "url": "https://www.youtube.com/watch?v=bIAdx3CAjtM"
+        },
+        {
+          "name": "Cybersecurity Training Channel",
+          "type": "url",
+          "url": "https://www.youtube.com/channel/UCZUyPT9DkJWmS_DzdOi7RIA"
+        },
+        {
+          "name": "IACIS Podcast Video Library",
+          "type": "url",
+          "url": "https://www.youtube.com/@iacispodcast/videos"
+        },
+        {
+          "name": "General Cybersecurity Channel",
+          "type": "url",
+          "url": "https://m.youtube.com/channel/UCJQJ4GjTiq5lmn8czf8oo0Q"
+        },
+        {
+          "name": "Magnet Forensics Summit Replays",
+          "type": "url",
+          "url": "https://www.magnetforensics.com/magnet-virtual-summit-2025-replays/"
+        },
+        {
+          "name": "Sitescape Wistia Technical Demo",
+          "type": "url",
+          "url": "https://sitescape.wistia.com/medias/906g4sw8jz?wvideo=906g4sw8jz&wkey=Zm1henpvbGEzQG91dGxvb2suY29t&foreign_data=mailchimp_campaign_id%3A9c6f4e9ffa"
+        }
+      ]
+    },
+    {
+      "name": "Social Media",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Facebook Tools & Info",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Facebook Transparency Center",
+              "type": "url",
+              "url": "https://transparency.fb.com/"
+            }
+          ]
+        },
+        {
+          "name": "Instagram OSINT & Analysis",
+          "type": "folder",
+          "children": [
+            {
+              "name": "GIJN Instagram OSINT Guide",
+              "type": "url",
+              "url": "https://gijn.org/2019/11/15/all-you-need-to-know-to-search-like-a-pro-on-instagram/"
+            },
+            {
+              "name": "OSINTCurio Instagram Search Guide",
+              "type": "url",
+              "url": "https://osintcurio.us/2019/07/16/searching-instagram/"
+            }
+          ]
+        },
+        {
+          "name": "LinkedIn OSINT & Search",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ExpressTricks Anonymous LinkedIn Viewing",
+              "type": "url",
+              "url": "http://expresstricks.com/how-to-view-someones-linkedin-profile-anonymously-without-account/"
+            },
+            {
+              "name": "OSINTCombine LinkedIn Advanced Searching",
+              "type": "url",
+              "url": "https://www.osintcombine.com/post/corporate-profiling-advanced-linkedin-searching-more"
+            }
+          ]
+        },
+        {
+          "name": "Reddit OSINT Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "SecJuice Reddit OSINT Techniques",
+              "type": "url",
+              "url": "https://www.secjuice.com/reddit-osint-techniques/"
+            }
+          ]
+        },
+        {
+          "name": "TikTok Tools & Investigations",
+          "type": "folder",
+          "children": [
+            {
+              "name": "IntelTechniques TikTok Investigation Guide",
+              "type": "url",
+              "url": "https://inteltechniques.com/blog/2019/10/27/investigating-tiktok-accounts/"
+            },
+            {
+              "name": "SecJuice TikTok OSINT Guide",
+              "type": "url",
+              "url": "https://www.secjuice.com/osint-investigations-on-tiktok/"
+            },
+            {
+              "name": "TikTok Slang Database",
+              "type": "url",
+              "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang"
+            }
+          ]
+        },
+        {
+          "name": "Twitter Search Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "G2 Learn Twitter Search Guide",
+              "type": "url",
+              "url": "https://learn.g2crowd.com/how-to-search-twitter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tools",
+      "type": "folder",
+      "children": [
+        {
+          "name": "3D/Photo",
+          "type": "folder",
+          "children": [
+            {
+              "name": "3DF Zephyr Photogrammetry Suite",
+              "type": "url",
+              "url": "https://www.3dflow.net/3df-zephyr-photogrammetry-software/"
+            },
+            {
+              "name": "CloudCompare Point Cloud Tool",
+              "type": "url",
+              "url": "https://www.danielgm.net/cc/"
+            }
+          ]
+        },
+        {
+          "name": "AI Tools & Background Removal",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Cutout Pro Background Remover",
+              "type": "url",
+              "url": "https://www.cutout.pro/remove-background"
+            }
+          ]
+        },
+        {
+          "name": "Browser/Security",
+          "type": "folder",
+          "children": [
+            {
+              "name": "CopyFish OCR Browser Tool",
+              "type": "url",
+              "url": "https://chrome.google.com/webstore/detail/copyfish-%F0%9F%90%9F-free-ocr-soft/eenjdnjldapjajjofmldgmkjaienebbj?hl=en"
+            },
+            {
+              "name": "DumpItBlue Screenshot Tool",
+              "type": "url",
+              "url": "https://chrome.google.com/webstore/detail/dumpitblue%2B/igmgknoioooacbcpcfgjigbaajpelbfe?hl=en"
+            },
+            {
+              "name": "Nimbus Screenshot Chrome Extension",
+              "type": "url",
+              "url": "https://chrome.google.com/webstore/detail/nimbus-screenshot-screen/bpconcjcammlapcogcnnelfmaeghhagj?hl=en"
+            }
+          ]
+        },
+        {
+          "name": "Data/Encoding",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ASCII Converter",
+              "type": "url",
+              "url": "https://www.branah.com/ascii-converter"
+            },
+            {
+              "name": "Dcode Forensic Decoding Suite",
+              "type": "url",
+              "url": "https://www.digital-detective.net/dcode/"
+            }
+          ]
+        },
+        {
+          "name": "Database/File Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "LinangData EXIF Reader",
+              "type": "url",
+              "url": "https://linangdata.com/exif-reader/"
+            },
+            {
+              "name": "SQLite Database Browser",
+              "type": "url",
+              "url": "https://sqlitebrowser.org/"
+            }
+          ]
+        },
+        {
+          "name": "Design/Templates",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Canva Templates Library",
+              "type": "url",
+              "url": "https://www.canva.com/templates/?msockid=3715299d7161631629463c8870b762c6"
+            },
+            {
+              "name": "Flourish Data Visualization",
+              "type": "url",
+              "url": "https://flourish.studio/"
+            }
+          ]
+        },
+        {
+          "name": "Email/Header Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "MXToolbox Email Header Analyzer",
+              "type": "url",
+              "url": "https://mxtoolbox.com/EmailHeaders.aspx"
+            },
+            {
+              "name": "Verifalia Email Validator",
+              "type": "url",
+              "url": "https://verifalia.com/validate-email"
+            }
+          ]
+        },
+        {
+          "name": "Extraction/Parsing Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "FTK Imager Download Page",
+              "type": "url",
+              "url": "https://accessdata.com/product-download/ftk-imager-version-4-7-1"
+            },
+            {
+              "name": "Arsenal Recon Downloads",
+              "type": "url",
+              "url": "https://arsenalrecon.com/downloads/"
+            },
+            {
+              "name": "Autopsy/Sleuthkit",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Autopsy Digital Forensics Tool",
+                  "type": "url",
+                  "url": "https://www.sleuthkit.org/autopsy/"
+                },
+                {
+                  "name": "OSDFCon Autopsy Plugins Presentation",
+                  "type": "url",
+                  "url": "https://www.osdfcon.org/presentations/2019/Mark-McKinnon_Plug-Me-In-Renzik,-Autopsy-Plugins-Now-And-in-the-Future.pdf"
+                },
+                {
+                  "name": "Sleuthkit Documentation",
+                  "type": "url",
+                  "url": "https://www.sleuthkit.org/index.php"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Image/Document",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Cleanup Pictures Editor",
+              "type": "url",
+              "url": "https://cleanup.pictures/"
+            },
+            {
+              "name": "PDFEscape Online PDF Editor",
+              "type": "url",
+              "url": "https://www.pdfescape.com"
+            }
+          ]
+        },
+        {
+          "name": "IR/DFIR Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Breakpoint Forensics Tools",
+              "type": "url",
+              "url": "https://breakpointforensics.com/tools/"
+            },
+            {
+              "name": "CyberTriage Forensic Suite (Eval)",
+              "type": "url",
+              "url": "https://www.cybertriage.com/download-eval/"
+            },
+            {
+              "name": "CyberTriage Main Product Page",
+              "type": "url",
+              "url": "https://www.cybertriage.com/"
+            },
+            {
+              "name": "Technitium MAC Address Changer",
+              "type": "url",
+              "url": "https://technitium.com/tmac/"
+            },
+            {
+              "name": "FireEye Redline Download",
+              "type": "url",
+              "url": "https://www.fireeye.com/services/freeware/redline-download-confirmation.html"
+            },
+            {
+              "name": "INV Network Free DFIR Tools",
+              "type": "url",
+              "url": "https://inv-network.org/free-forensic-tools"
+            }
+          ]
+        },
+        {
+          "name": "Metadata/File Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "exiftool.org",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "EXIFTool Metadata Utility",
+                  "type": "url",
+                  "url": "https://exiftool.org/"
+                }
+              ]
+            },
+            {
+              "name": "linangdata.com",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "LinangData EXIF Reader",
+                  "type": "url",
+                  "url": "https://linangdata.com/exif-reader/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Misc Utilities",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Blockchain Explorer",
+              "type": "url",
+              "url": "https://Blockchain.com/explorer"
+            },
+            {
+              "name": "Speed Distance Time Calculator",
+              "type": "url",
+              "url": "https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php"
+            },
+            {
+              "name": "TextEm SMS Sender",
+              "type": "url",
+              "url": "http://www.textem.net/"
+            }
+          ]
+        },
+        {
+          "name": "Network/Port Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "NetworkMiner Forensic Analyzer",
+              "type": "url",
+              "url": "https://www.netresec.com/?page=NetworkMiner"
+            },
+            {
+              "name": "SpeedGuide Port Lookup",
+              "type": "url",
+              "url": "https://www.speedguide.net/ports.php"
+            },
+            {
+              "name": "TCPDump Packet Analyzer",
+              "type": "url",
+              "url": "https://www.tcpdump.org/"
+            },
+            {
+              "name": "Tshark Command Reference",
+              "type": "url",
+              "url": "https://www.wireshark.org/docs/man-pages/tshark.html"
+            },
+            {
+              "name": "Wireshark Download Page",
+              "type": "url",
+              "url": "https://www.wireshark.org/download.html"
+            }
+          ]
+        },
+        {
+          "name": "Password & Security Resources",
+          "type": "folder",
+          "children": [
+            {
+              "name": "CrackStation Hash Lookup",
+              "type": "url",
+              "url": "https://crackstation.net/"
+            }
+          ]
+        },
+        {
+          "name": "Password/Hash",
+          "type": "folder",
+          "children": [
+            {
+              "name": "CrackStation Hash Lookup",
+              "type": "url",
+              "url": "https://crackstation.net/"
+            },
+            {
+              "name": "Hashcat Password Recovery Tool",
+              "type": "url",
+              "url": "https://hashcat.net/hashcat/"
+            }
+          ]
+        },
+        {
+          "name": "Phone/Device",
+          "type": "folder",
+          "children": [
+            {
+              "name": "GSM Arena Device Database",
+              "type": "url",
+              "url": "https://m.gsmarena.com/"
+            },
+            {
+              "name": "IMEI Check Lookup",
+              "type": "url",
+              "url": "https://imeicheck.com/imei-check"
+            },
+            {
+              "name": "IMEI.info Device Checker",
+              "type": "url",
+              "url": "https://www.imei.info/"
+            },
+            {
+              "name": "PhoneScoop Device Lookup",
+              "type": "url",
+              "url": "https://www.phonescoop.com/"
+            }
+          ]
+        },
+        {
+          "name": "Photography Tools & Photo Utilities",
+          "type": "folder",
+          "children": [
+            {
+              "name": "CameraFRASE Tool",
+              "type": "url",
+              "url": "https://cameraforensics.com/toolbox/camerafrase/"
+            },
+            {
+              "name": "CameraSim DSLR Simulator",
+              "type": "url",
+              "url": "https://camerasim.com/apps/dslr-simulator/"
+            }
+          ]
+        },
+        {
+          "name": "Pornography Investigation Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "OneHUB PornBios Database",
+              "type": "url",
+              "url": "https://onehublive.pornbios.com/"
+            }
+          ]
+        },
+        {
+          "name": "Scraping/Download",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Greenshot Screenshot Tool",
+              "type": "url",
+              "url": "https://getgreenshot.org/"
+            },
+            {
+              "name": "HTTrack Website Copier",
+              "type": "url",
+              "url": "https://www.httrack.com/"
+            },
+            {
+              "name": "OBS Studio Screen Recorder",
+              "type": "url",
+              "url": "https://obsproject.com/"
+            },
+            {
+              "name": "Online Video Downloader",
+              "type": "url",
+              "url": "https://odownloader.com/en/youtube-to-mp4"
+            },
+            {
+              "name": "Web to PDF Converter",
+              "type": "url",
+              "url": "https://www.web2pdfconvert.com/"
+            },
+            {
+              "name": "Windows Screen Recorder Pro",
+              "type": "url",
+              "url": "https://www.microsoft.com/en-us/p/screen-recorder-pro-for-win10/9n27gq6mls5s?activetab=pivot:overviewtab"
+            }
+          ]
+        },
+        {
+          "name": "Software/Utility",
+          "type": "folder",
+          "children": [
+            {
+              "name": "AlternativeTo Software Directory",
+              "type": "url",
+              "url": "https://alternativeto.net/"
+            },
+            {
+              "name": "TinyWow Online Utility Tools",
+              "type": "url",
+              "url": "https://tinywow.com/"
+            }
+          ]
+        },
+        {
+          "name": "System/Forensics",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Kali Linux Tools List",
+              "type": "url",
+              "url": "https://www.kali.org/tools/all-tools/"
+            },
+            {
+              "name": "Monolith Forensics Free Tools",
+              "type": "url",
+              "url": "https://monolithforensics.com/free-tools"
+            }
+          ]
+        },
+        {
+          "name": "Time/Date Tools",
+          "type": "folder",
+          "children": [
+            {
+              "name": "SavvyTime UTC Converter",
+              "type": "url",
+              "url": "https://savvytime.com/converter/utc"
+            },
+            {
+              "name": "WhatTimeIsIt Clock",
+              "type": "url",
+              "url": "https://whattimeisit.com"
+            },
+            {
+              "name": "World Clock Time Zone Converter",
+              "type": "url",
+              "url": "https://www.timeanddate.com/worldclock/converter.html?iso=20220120T090000&p1=4358"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Training/Knowledge",
+      "type": "folder",
+      "children": [
+        {
+          "name": "Training Organizations",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Cyber5W Academy",
+              "type": "url",
+              "url": "https://academy.cyber5w.com/collections"
+            },
+            {
+              "name": "DFIR Diva Training Resource Index",
+              "type": "url",
+              "url": "https://dfirdiva.com/"
+            },
+            {
+              "name": "Hexordia Training Resources",
+              "type": "url",
+              "url": "https://learn.hexordia.com/"
+            },
+            {
+              "name": "INV Network Investigator Resources",
+              "type": "url",
+              "url": "https://inv-network.org/investigator-resources"
+            },
+            {
+              "name": "ROCIC Training Resources",
+              "type": "url",
+              "url": "https://rocic.com/"
+            },
+            {
+              "name": "SWGDE Digital Evidence Resources",
+              "type": "url",
+              "url": "https://www.swgde.org/"
+            },
+            {
+              "name": "SWGSTAIN Terminology Guide",
+              "type": "url",
+              "url": "https://theiai.org/docs/SWGSTAIN_Terminology.pdf"
+            },
+            {
+              "name": "USSS NCFI Courses Portal",
+              "type": "url",
+              "url": "https://www.ncfi.usss.gov/ncfi/pages/courses.xhtml?dswid=7722"
+            },
+            {
+              "name": "Velociraptor Documentation",
+              "type": "url",
+              "url": "https://docs.velociraptor.app/"
+            },
+            {
+              "name": "Velociraptor Training Portal",
+              "type": "url",
+              "url": "https://docs.velociraptor.app/training/"
+            }
+          ]
+        },
+        {
+          "name": "IACP Resources",
+          "type": "folder",
+          "children": [
+            {
+              "name": "IACP Cyber Center Resources",
+              "type": "url",
+              "url": "https://www.iacpcybercenter.org/resources-2/"
+            },
+            {
+              "name": "IACP Cyber Glossary",
+              "type": "url",
+              "url": "https://www.iacpcybercenter.org/resources-2/glossary/"
+            }
+          ]
+        },
+        {
+          "name": "Vendor Training Resources",
+          "type": "folder",
+          "children": [
+            {
+              "name": "SUMURI Forensic Training",
+              "type": "url",
+              "url": "https://sumuri.com/"
+            },
+            {
+              "name": "Magnet Forensics Free Courses",
+              "type": "url",
+              "url": "https://training.magnetforensics.com/w/courses/cat-45-free-courses/"
+            },
+            {
+              "name": "Magnet Forensics Training Portal",
+              "type": "url",
+              "url": "https://training.magnetforensics.com/w/"
+            },
+            {
+              "name": "Oxygen Forensic Training",
+              "type": "url",
+              "url": "https://www.oxygen-forensic.com/en/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

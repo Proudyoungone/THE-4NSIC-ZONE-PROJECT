@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>4nsic Zone</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <!-- reuse your existing CSS if you like -->
+  <link type="text/css" rel="stylesheet" href="css/arf2.css"/>
+  <link href="https://fonts.cdnfonts.com/css/cooper-hewitt" rel="stylesheet">
+
+
+
+  <style>
+    body {
+      background: #8b8a8a;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    #body {
+      padding: 40px;
+      position: relative;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    #header {
+      font-size: 2.4rem;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+      text-shadow: 0 0 8px #00e5ff;
+    }
+
+    #subtitle {
+      font-size: 1rem;
+      margin-top: 4px;
+      color: #d9f5ff;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #00d4ff;
+      margin: 10px 0 20px 0;
+    }
+
+    /* Top navigation buttons */
+    .nav-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+
+    .nav-btn {
+      background: linear-gradient(to right, #007BFF, #00D4FF);
+      padding: 10px 20px;
+      color: black;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+      display: inline-block;
+    }
+
+    .nav-btn2 {
+      background: linear-gradient(to right, #2d5862, #63c8ce);
+      padding: 10px 20px;
+      color: black;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+      display: inline-block;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.7);
+      opacity: 0.95;
+    }
+
+    /* Neon sticky note container */
+    .sticky-neon {
+      position: relative;
+      display: inline-block;
+      padding: 16px 18px;
+      background: #e3e362; /* sticky yellow */
+      border-radius: 8px;
+      max-width: 280px;
+      transform: rotate(-3deg);
+      border: 1px solid #00e5ff;
+      box-shadow:
+        0 0 10px rgba(0, 229, 255, 0.7),
+        0 0 20px rgba(0, 229, 255, 0.5),
+        0 10px 20px rgba(0,0,0,0.4);
+      color: #0f204e;
+      margin-top: 20px;
+    }
+
+    .sticky-neon h4 {
+      margin: 0 0 6px 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #0f204e;
+      text-shadow: 0 0 6px #00e5ff;
+    }
+
+    .sticky-neon p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.35em;
+    }
+
+    .sticky-neon .tape {
+      position: absolute;
+      top: -12px;
+      left: 18px;
+      width: 70px;
+      height: 22px;
+      background: rgba(0, 229, 255, 0.3);
+      border-radius: 3px;
+      transform: rotate(-8deg);
+      box-shadow:
+        0 0 8px rgba(0, 229, 255, 0.7),
+        inset 0 0 4px rgba(255,255,255,0.5);
+      backdrop-filter: blur(2px);
+    }
+
+    /* Main layout: hero text + image */
+    
+/* Row layout: left column + right image */
+.hero-row {
+  display: flex;
+  flex-direction: row;      /* make sure this is row, not column */
+  align-items: flex-start;  /* image top aligns with left stack */
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* Left column: stack counter, sticky, text */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1 1 55%;            /* take most of the width */
+}
+
+/* Right column: keep image on the side */
+.hero-image {
+  flex: 0 0 280px;        /* fixed-ish width so it stays beside */
+  margin-top: 100px/* align top with left stack */
+}
+
+/* Image styling */
+.hero-image img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  display: block;
+}
+
+
+    .hero-text {
+      max-width: 550px;
+    }
+
+    .hero-text h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .hero-text p {
+      font-size: 0.95rem;
+      line-height: 1.5em;
+      color: #f0f7fa;
+    }
+
+    .hero-badges {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-badge {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      white-space: nowrap;
+    }
+
+#homepage-image-wrapper {
+  text-align: center;
+  margin-top: 0px;   /* ← CHANGE THIS VALUE TO MOVE THE IMAGE */
+  margin-bottom: 20px;
+}
+
+#homepage-image-wrapper img {
+  max-width: 350px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.45);
+}
+    /* Quick links section */
+    .quick-links {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .ql-card {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 14px;
+      padding: 16px 18px;
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .ql-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      color: #ffffff;
+    }
+
+    .ql-card p {
+      font-size: 0.9rem;
+      color: #e1f6ff;
+      margin-bottom: 10px;
+    }
+
+    .ql-card a {
+      font-size: 0.9rem;
+      color: #80deea;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .ql-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 50px;
+      font-size: 0.85rem;
+      color: #e0f4ff;
+      border-top: 1px solid rgba(0, 229, 255, 0.4);
+      padding-top: 15px;
+    }
+
+    footer a {
+      color: #80deea;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ----------------------- */
+/* DFIR Hall of Fame */
+/* ----------------------- */
+.dfir-hof {
+  margin-top: 60px;
+}
+
+.dfir-hof-title {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  text-shadow: 0 0 8px #00e5ff;
+}
+
+.dfir-hof-subtitle {
+  font-size: 0.95rem;
+  color: #e1f6ff;
+  margin-bottom: 20px;
+}
+
+.dfir-hof-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.dfir-card {
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+.dfir-card h3 {
+  margin-top: 0;
+  font-size: 1.15rem;
+  color: #fff;
+}
+
+.dfir-role {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #80deea;
+  margin-bottom: 8px;
+}
+
+.dfir-desc {
+  color: #e1f6ff;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.dfir-btn {
+  background: linear-gradient(to right, #2d5862, #63c8ce);
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+.dfir-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.7);
+}
+
+/* ----------------------- */
+/* Live GitHub Feed */
+/* ----------------------- */
+.github-live {
+  margin-top: 60px;
+}
+
+.github-live-title {
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+  text-shadow: 0 0 8px #00e5ff;
+}
+
+.github-live-subtitle {
+  font-size: 0.9rem;
+  color: #e1f6ff;
+  margin-bottom: 15px;
+}
+
+#github-events {
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.github-event {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.github-event:last-child {
+  border-bottom: none;
+}
+
+.github-event strong {
+  color: #ffee58;
+}
+
+.github-event a {
+  color: #80deea;
+  text-decoration: none;
+}
+
+.github-event a:hover {
+  text-decoration: underline;
+}
+
+.github-event-time {
+  font-size: 0.8rem;
+  color: #b0cdd9;
+}
+
+.visit-counter {
+  background: linear-gradient(to right, #2d5862, #63c8ce);
+  padding: 10px 22px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+  margin-bottom: 15px;
+  margin-left: 5px;
+}
+
+/* EXACT MATCH to your header font rules (scaled down only) */
+.visit-label {
+  font-size: 1.2rem;          /* scaled from 2.4rem so it fits */
+  font-weight: bold;          /* same */
+  letter-spacing: 0.06em;     /* same */
+  text-transform: uppercase;  /* same */
+  color: #f5f5f5;             /* same */
+  text-shadow: 0 0 8px #00e5ff;  /* same glow */
+  margin: 0;
+  padding: 0;
+}
+
+/* Number badge (counter image) aligned visually */
+.visit-img {
+  height: 22px;
+  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.6));
+}
+
+  </style>
+</head>
+<body>
+  <div id="body">
+    <!-- Header -->
+    <div id="header">
+      4nsic Zone
+      <div id="subtitle">Digital Forensics • Incident Response • OSINT Resources</div>
+      <hr />
+    </div>
+
+    <!-- Top navigation buttons -->
+    <div class="nav-row">
+      <a href="index2.html" class="nav-btn">Chip ID Framework</a>
+      <a href="index3.html" class="nav-btn2">Resources</a>
+      <a href="index4.html" class="nav-btn2">Tools</a>
+    </div>
+    <br>
+
+  <section class="hero-row">
+
+  <!-- LEFT COLUMN -->
+  <div class="hero-left">
+    <!-- Visits pill -->
+    <div class="visit-counter">
+      <span class="visit-label">Total Website Visits : </span>
+      <img class="visit-img"
+           src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F4nsic-zone-homepage&count_bg=%232D5862&title_bg=%2363C8CE&icon=&title=&edge_flat=false">
+    </div>
+
+    <!-- Sticky Note -->
+    <div class="sticky-neon">
+      <div class="tape"></div>
+      <h4>WELCOME</h4>
+      <p>
+        You’ve reached 4nsic Zone — a curated hub for DFIR and OSINT work.  
+        Start with the Chip ID Framework, browse OSINT resources, or dive into
+        hands-on tools.
+      </p>
+    </div>
+
+    <!-- Launchpad text -->
+    <div class="hero-text">
+      <h2>Your launchpad for digital investigations</h2>
+      <p>
+        4nsic Zone brings together chip identification, open-source intelligence
+        resources, and forensic tooling in one place. It’s designed for analysts,
+        investigators, and anyone who lives in hex dumps, logs, timelines, and
+        memory captures.
+      </p>
+      <p>
+        Use the navigation above to jump into:
+      </p>
+      <div class="hero-badges">
+        <div class="hero-badge">Flash memory chip ID</div>
+        <div class="hero-badge">OSINT / LE resources</div>
+        <div class="hero-badge">DFIR tools & utilities</div>
+        <div class="hero-badge">Training & knowledge</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN: IMAGE -->
+  <div class="hero-image">
+    <img src="images/DFIR Is the Word Design.png"
+         alt="4nsic Zone visual">
+  </div>
+
+</section>
+
+    <!-- Quick links / sections -->
+    <section class="quick-links">
+      <div class="ql-card">
+        <h3>Chip ID Framework</h3>
+        <p>
+          Navigate a structured tree of flash memory packages by notch corner,
+          size, package type, pin count, make, and model — with direct links to datasheets.
+        </p>
+        <a href="index2.html">Open Chip ID Framework →</a>
+      </div>
+
+      <div class="ql-card">
+        <h3>Resources</h3>
+        <p>
+          Law enforcement request portals, OSINT tools, training sites, geolocation resources,
+          and more — organized into a familiar OSINT Framework-style layout.
+        </p>
+        <a href="index3.html">Browse DFIR / OSINT Resources →</a>
+      </div>
+
+      <div class="ql-card">
+        <h3>Tools</h3>
+        <p>
+          Direct links to forensic suites, parsers, EXIF utilities, packet analyzers, password tools,
+          scripting helpers, and supporting utilities for day-to-day investigations.
+        </p>
+        <a href="index4.html">Explore Tools →</a>
+      </div>
+    </section>
+
+    <!-- ======================= -->
+<!-- DFIR GitHub Hall of Fame -->
+<!-- ======================= -->
+<section class="dfir-hof">
+  <h2 class="dfir-hof-title">DFIR GitHub Hall of Fame- TOOLS</h2>
+  <p class="dfir-hof-subtitle">
+    Spotlight on contributors and projects that drive the digital forensics community forward.
+  </p>
+
+  <div class="dfir-hof-grid">
+
+<article class="dfir-card">
+  <h3>Autopsy Add-On Modules</h3>
+  <p class="dfir-role">Digital Forensics Platform Extensions</p>
+  <p class="dfir-desc">
+    A set of modules that extend the capabilities of Autopsy with additional parsers, 
+    automation workflows, artifact extractors, and investigative enhancements.
+  </p>
+  <a class="dfir-btn" href="https://github.com/sleuthkit/autopsy_addon_modules" target="_blank">
+    View Autopsy Modules →
+  </a>
+</article>
+
+ <article class="dfir-card">
+  <h3>CyberChef</h3>
+  <p class="dfir-role">Data Transformation & Analysis</p>
+  <p class="dfir-desc">
+    A universal tool for parsing, decoding, analyzing, and transforming data. Extremely 
+    popular in DFIR, malware analysis, and reverse engineering thanks to its flexible 
+    drag-and-drop workflow.
+  </p>
+  <a class="dfir-btn" href="https://github.com/gchq/CyberChef" target="_blank">
+    View CyberChef on GitHub →
+  </a>
+</article>
+
+<article class="dfir-card">
+  <h3>KAPE (Kroll Artifact Parser & Extractor)</h3>
+  <p class="dfir-role">Windows Artifact Triage & Processing</p>
+  <p class="dfir-desc">
+    A powerful forensic triage tool used worldwide for rapid collection and automated
+    processing of Windows artifacts. Supported by a rich ecosystem of community-developed
+    modules and targets.
+  </p>
+  <a class="dfir-btn" href="https://github.com/EricZimmerman/KapeFiles" target="_blank">
+    View KAPE on GitHub →
+  </a>
+</article>
+
+
+    <!-- OSINT Framework -->
+<article class="dfir-card">
+  <h3>OSINT Framework</h3>
+  <p class="dfir-role">Open Source Intelligence Framework</p>
+  <p class="dfir-desc">
+    One of the most widely used OSINT collections on the web. Its structured, node-based format 
+    has inspired countless investigative frameworks and training programs.
+  </p>
+  <a class="dfir-btn" href="https://github.com/lockfale/osint-framework" target="_blank">
+    View OSINT Framework on GitHub →
+  </a>
+</article>
+
+      <!-- Volatility -->
+    <article class="dfir-card">
+      <h3>Volatility Foundation</h3>
+      <p class="dfir-role">Memory Forensics Framework</p>
+      <p class="dfir-desc">
+        The backbone of memory forensics worldwide. Volatility 3 brings modular analysis and support for modern OS memory formats.
+      </p>
+      <a class="dfir-btn" href="https://github.com/volatilityfoundation/volatility3" target="_blank">
+        View volatility3 on GitHub →
+      </a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ======================= -->
+<!-- DFIR GitHub Hall of Fame -->
+<!-- ======================= -->
+<section class="dfir-hof">
+  <h2 class="dfir-hof-title">DFIR GitHub Hall of Fame- USERS</h2>
+  <p class="dfir-hof-subtitle">
+    Spotlight on contributors and projects that drive the digital forensics community forward.
+  </p>
+
+  <div class="dfir-hof-grid">
+
+<!-- Alexis Brignoni -->
+<article class="dfir-card">
+  <h3>Alexis Brignoni (abrignoni)</h3>
+  <p class="dfir-role">Mobile Device Forensics</p>
+  <p class="dfir-desc">
+    Developer of ALEAPP, iLEAPP, Bisect, and other essential mobile artifact parsers that 
+    transform raw app data into structured forensic evidence for iOS & Android.
+  </p>
+  <a class="dfir-btn" href="https://github.com/abrignoni" target="_blank">
+    View Alexis Brignoni's GitHub →
+  </a>
+</article>
+
+<!-- Christian Peter -->
+<article class="dfir-card">
+  <h3>Christian Peter (prosch88)</h3>
+  <p class="dfir-role">Windows & System Artifact Forensics</p>
+  <p class="dfir-desc">
+    Developer and researcher focused on Windows system artifacts, registry analysis, 
+    and forensic tooling. His work enhances deep system insight and supports forensic 
+    investigations involving low-level OS behavior.
+  </p>
+  <a class="dfir-btn" href="https://github.com/prosch88" target="_blank">
+    View Christian Peter’s GitHub →
+  </a>
+</article>
+
+   <!-- Eric Zimmerman -->
+<article class="dfir-card">
+  <h3>Eric Zimmerman (EricZimmerman)</h3>
+  <p class="dfir-role">Windows Artifact Forensics</p>
+  <p class="dfir-desc">
+    Creator of RECmd, MFTECmd, AmCacheParser, ShellBags Explorer, KAPE parsers, 
+    and many other must-have Windows forensic tools used globally in DFIR investigations.
+  </p>
+  <a class="dfir-btn" href="https://github.com/EricZimmerman" target="_blank">
+    View Eric Zimmerman's GitHub →
+  </a>
+</article>
+
+<!-- NorthLoop Forensics -->
+<article class="dfir-card">
+  <h3>Charlie Rubisoff (NorthLoop Forensics)</h3>
+  <p class="dfir-role">Digital Forensics Research & Artifact Development</p>
+  <p class="dfir-desc">
+    A modern DFIR-focused research and tooling group known for high-quality analysis work,
+    training content, and contributions to the understanding of Windows and application-level artifacts.
+    Their open-source work and documentation push the DFIR community forward.
+  </p>
+  <a class="dfir-btn" href="https://github.com/NorthLoopForensics" target="_blank">
+    Visit NorthLoop Forensics on GitHub →
+  </a>
+</article>
+
+  </div>
+</section>
+
+
+<!-- ===================== -->
+<!-- DFIR GitHub Live Feed -->
+<!-- ===================== -->
+<section class="github-live">
+  <h2 class="github-live-title">DFIR GitHub Live Activity</h2>
+  <p class="github-live-subtitle">
+    Real-time updates from key DFIR developers and forensic tool maintainers.
+  </p>
+
+  <div id="github-events">
+    <p>Loading latest events...</p>
+  </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        Built as part of the <strong>4nsic Zone</strong> project. Connect on LinkedIn:
+        <a href="https://www.linkedin.com/in/katelyn-rogers-DFIRISTHEWORD/" target="_blank">
+          Katelyn Rogers
+        </a>
+      </p>
+      <p>
+        Inspired by the OSINT Framework structure originally created by 
+        <a href="https://osintframework.com/" target="_blank">Justin Nordine</a>.
+      </p>
+      <p>
+        GitHub Repository:
+        <a href="https://github.com/Proudyoungone/Chip-ID-Framework" target="_blank">
+          Chip ID Framework
+        </a>
+      </p>
+      <p>
+       Generated by chatGPT.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+const DFIR_USERS = [
+  "volatilityfoundation",
+  "lockfale",
+  "sleuthkit", 
+  "gchq",
+  "EricZimmerman",
+  "abrignoni",
+  "prosch88",
+  "NorthLoopForensics"
+];
+
+
+function describeEvent(e) {
+  const type = e.type;
+  const repo = e.repo ? e.repo.name : "unknown";
+
+  switch (type) {
+    case "PushEvent":
+      return `pushed code to <strong>${repo}</strong>`;
+    case "CreateEvent":
+      return `created something in <strong>${repo}</strong>`;
+    case "IssuesEvent":
+      return `worked on issues in <strong>${repo}</strong>`;
+    case "PullRequestEvent":
+      return `opened/updated a PR in <strong>${repo}</strong>`;
+    default:
+      return `did <strong>${type}</strong> in <strong>${repo}</strong>`;
+  }
+}
+
+function formatTime(iso) {
+  return new Date(iso).toLocaleString();
+}
+
+async function fetchUserEvents(username) {
+  const url = `https://api.github.com/users/${username}/events/public`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(res.status);
+  const data = await res.json();
+  return data.map(e => ({ ...e, __username: username }));
+}
+
+async function loadDfirGithubFeed() {
+  const container = document.getElementById("github-events");
+
+  try {
+    const all = await Promise.all(DFIR_USERS.map(fetchUserEvents));
+    const events = all.flat().sort(
+      (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    ).slice(0, 8);
+
+    if (!events.length) {
+      container.innerHTML = "<p>No recent events found.</p>";
+      return;
+    }
+
+    container.innerHTML = "";
+    events.forEach(ev => {
+      const repoUrl = ev.repo ? `https://github.com/${ev.repo.name}` : null;
+
+      container.innerHTML += `
+        <div class="github-event">
+          <div>
+            <strong>${ev.__username}</strong> 
+            ${describeEvent(ev)} 
+            ${repoUrl ? `– <a href="${repoUrl}" target="_blank">open repo</a>` : ""}
+          </div>
+          <div class="github-event-time">${formatTime(ev.created_at)}</div>
+        </div>
+      `;
+    });
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "<p>Error loading GitHub feed.</p>";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", loadDfirGithubFeed);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <link type="text/css" rel="stylesheet" href="css/arf.css"/>
+    <script type="text/javascript" src="js/d3.v3.min.js"></script>
+    <title>Chip ID Framework</title>
+
+    <!-- Sticky note + JSON search styles -->
+    <style>
+      body {
+        background: #8b8a8a;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+
+      #body {
+        padding: 40px;
+      }
+
+      /* Neon sticky note container */
+      .sticky-neon {
+        position: relative;
+        display: inline-block;
+        padding: 16px 18px;
+        background: #e3e362;
+        border-radius: 8px;
+        max-width: 260px;
+        transform: rotate(-3deg);
+        border: 1px solid #00e5ff;
+        box-shadow:
+          0 0 10px rgba(0, 229, 255, 0.7),
+          0 0 20px rgba(0, 229, 255, 0.5),
+          0 10px 20px rgba(0,0,0,0.4);
+        color: #1b363b;
+      }
+
+      .sticky-neon h4 {
+        margin: 0 0 6px 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #1b363b;
+        text-shadow: 0 0 6px #00e5ff;
+      }
+
+      .sticky-neon p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.35em;
+      }
+
+      /* Neon blue tape corner */
+      .sticky-neon .tape {
+        position: absolute;
+        top: -12px;
+        left: 18px;
+        width: 70px;
+        height: 22px;
+        background: rgba(0, 229, 255, 0.3);
+        border-radius: 3px;
+        transform: rotate(-8deg);
+        box-shadow:
+          0 0 8px rgba(0, 229, 255, 0.7),
+          inset 0 0 4px rgba(255,255,255,0.5);
+        backdrop-filter: blur(2px);
+      }
+
+      /* Search input */
+      #searchInput {
+        margin-top: 20px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #00e5ff;
+        background: #0d1b3d;
+        color: #b3f4ff;
+        box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+        outline: none;
+        width: 280px;
+      }
+
+      #searchInput::placeholder {
+        color: #66d9ff;
+      }
+
+      /* Results list for JSON search */
+      #json-search-results {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 0.9rem;
+        color:#66d9ff;
+      }
+
+      #json-search-results ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      #json-search-results li {
+        margin-bottom: 6px;
+        line-height: 1.4em;
+      }
+
+      .path-label {
+        font-weight: bold;
+        color: #ffee58;
+      }
+
+      .json-search-heading {
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 8px;
+      }
+
+      #header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="body">
+      <!-- Header -->
+      <div id="header">
+        Chip ID Framework
+        <hr/>
+        <h2>01000010 01100001 01110100 01101101 01100001 01101110</h2>
+        <br>
+      </div>
+
+      <div style="
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 10px;
+">
+    <!-- Home / 4nsic Zone -->
+    <a href="Index.html"
+       style="background: linear-gradient(to right, #2d5862, #63c8ce);
+              padding: 10px 20px;
+              color: black;
+              border-radius: 10px;
+              font-weight: bold;
+              text-decoration: none;
+              box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);">
+        Home
+    </a>
+
+    <!-- Resources -->
+    <a href="index3.html"
+       style="background: linear-gradient(to right, #2d5862, #63c8ce);
+              padding: 10px 20px;
+              color: black;
+              border-radius: 10px;
+              font-weight: bold;
+              text-decoration: none;">
+        Resources
+    </a>
+
+    <!-- Tools -->
+    <a href="index4.html"
+       style="background: linear-gradient(to right, #2d5862, #63c8ce);
+              padding: 10px 20px;
+              color: black;
+              border-radius: 10px;
+              font-weight: bold;
+              text-decoration: none;">
+        Tools
+    </a>
+</div>
+
+      <!-- Sticky Note -->
+      <div style="margin-top:20px;">
+        <div class="sticky-neon">
+          <div class="tape"></div>
+          <h4>NOTES</h4>
+          <p>TOTAL CATALOG OF CHIPS = 2092! 🎉</p>
+        </div>
+      </div>
+
+      <!-- JSON Search Input -->
+      <div style="margin-top:20px;">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search chips, makes, models…"
+          onkeyup="searchJson()"
+        >
+      </div>
+
+      <!-- JSON search results -->
+      <div id="json-search-results">
+        <div class="json-search-heading">Chip Search</div>
+        <p>Type a keyword above to search all names and URLs in the Chip ID Framework.</p>
+      </div>
+
+      <!-- Legend Box -->
+      <div class="legend">
+        <p><br>
+          Legend:<br>
+          (NC) - Notch Corner<br>
+          (S) - Size<br>
+          (PT) - Package Type<br>
+          (PC) - Pin Count<br>
+          (MA) - Make<br>
+          (MO) - Model<br>
+        </p>
+      </div>
+
+      <!-- Corner Image -->
+      <img src="/images/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png"
+           class="corner-image" 
+           alt="corner image"
+           style="border-radius: 10px;">
+
+      <!-- D3 Tree Script (unchanged) -->
+      <script src="js/arf.js"></script>
+
+      <!-- Footer -->
+      <footer id="page-footer">
+        <h3 class="h3-ombre">Notes</h3>
+        <p>
+          We love comic book references and inside jokes here. Chip ID Framework was built to assist anyone that is faced with the difficult task of identifying a flash memory chip that does not have much to go on. No make or model identifiers anywhere to be found? This is the place for you. Filter down to find possible matches to what you are looking for and click on the model to be taken to either the manufacturer website or a website with the corresponding datasheet.
+        </p>
+
+        <p>
+          This project was built by Katelyn Rogers, a Digital Forensics and Incident Response (DFIR) professional. If you would like to connect with me, please find me on LinkedIn:<br>
+          <a href="https://www.linkedin.com/in/katelyn-rogers-DFIRISTHEWORD/" target="_blank">Katelyn Rogers</a>
+        </p>
+
+        <p>
+          I also want to give a huge shoutout to Justin Nordine, who developed OSINT Framework, for letting me use his structure and providing me with some guidance. Visit:
+          <a href="https://osintframework.com/" target="_blank">OSINT Framework</a><br>
+          Justin’s LinkedIn:
+          <a href="https://www.linkedin.com/in/justin-nordine-123456789/" target="_blank">Justin Nordine</a>
+        </p>
+
+        <p>
+          This project is open source and available on GitHub at the following link:
+          <a href="https://github.com/Proudyoungone/Chip-ID-Framework" target="_blank">GitHub Repository</a>
+        </p>
+
+        <h3 class="h3-ombre">Suggestions, Comments, Feedback</h3>
+        <p>
+          I would love to hear from you on any suggestions for improvement or any additional elements that are wanted. Please message me on LinkedIn. Thanks!
+        </p>
+      </footer>
+    </div>
+
+    <!-- 🔍 JSON search logic for arf.json -->
+    <script>
+      let chipData = null;
+
+      // Load arf.json once the page is ready
+      window.addEventListener('DOMContentLoaded', () => {
+        // Cache-buster so Edge/Chrome always pull the latest version
+        fetch('arf.json?v=' + Date.now())
+          .then(res => res.json())
+          .then(data => {
+            chipData = data;
+            const results = document.getElementById('json-search-results');
+            results.innerHTML = `
+              <div class="json-search-heading">Chip Search</div>
+              <p>Type a keyword above (e.g. "Winbond", "WSON", "24AA256").</p>
+            `;
+          })
+          .catch(err => {
+            console.error(err);
+            const results = document.getElementById('json-search-results');
+            results.textContent = 'Error. Check the file name, path, and that you are running a local server.';
+          });
+      });
+
+      // Recursive search through nested JSON structure
+      function searchNodes(node, term, path, results) {
+        const currentName = node.name || '';
+        const currentPath = path ? path + ' > ' + currentName : currentName;
+
+        // Search in name + url + note (if present)
+        const haystack = (
+          (node.name || '') + ' ' +
+          (node.url || '') + ' ' +
+          (node.note || '')
+        ).toLowerCase();
+
+        if (haystack.includes(term)) {
+          results.push({
+            path: currentPath,
+            url: node.url || null,
+            type: node.type || 'folder'
+          });
+        }
+
+        if (node.children && Array.isArray(node.children)) {
+          node.children.forEach(child => {
+            searchNodes(child, term, currentPath, results);
+          });
+        }
+      }
+
+      // Called when user types in the search box
+      function searchJson() {
+        const input = document.getElementById('searchInput');
+        const resultsContainer = document.getElementById('json-search-results');
+        const term = input.value.trim().toLowerCase();
+
+        if (!chipData) {
+          resultsContainer.textContent = 'JSON not loaded yet...';
+          return;
+        }
+
+        if (term === '') {
+          resultsContainer.innerHTML = `
+            <div class="json-search-heading">Chip Search</div>
+            <p>Type a keyword above (e.g. "Winbond", "WSON", "24AA256").</p>
+          `;
+          return;
+        }
+
+        const results = [];
+        // Root of arf.json is a single object ("Chip ID Framework")
+        searchNodes(chipData, term, '', results);
+
+        if (results.length === 0) {
+          resultsContainer.innerHTML = `
+            <div class="json-search-heading">Chip Search</div>
+            <p>No matches found for "<strong>${term}</strong>".</p>
+          `;
+          return;
+        }
+
+        const list = document.createElement('ul');
+
+        results.forEach(r => {
+          const li = document.createElement('li');
+
+          // Show full path like: (NC) Left Upper Corner > (s) 2×3mm > ...
+          const pathSpan = document.createElement('span');
+          pathSpan.className = 'path-label';
+          pathSpan.textContent = r.path + (r.type === 'url' ? ' (URL)' : '');
+          li.appendChild(pathSpan);
+
+          // If it has a URL, add a clickable link
+          if (r.url) {
+            const br = document.createElement('br');
+            li.appendChild(br);
+
+            const link = document.createElement('a');
+            link.href = r.url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.textContent = r.url;
+            li.appendChild(link);
+          }
+
+          list.appendChild(li);
+        });
+
+        resultsContainer.innerHTML = `
+          <div class="json-search-heading">Chip Search</div>
+          <p>Found ${results.length} result(s) for "<strong>${term}</strong>":</p>
+        `;
+        resultsContainer.appendChild(list);
+      }
+    </script>
+  </body>
+</html>

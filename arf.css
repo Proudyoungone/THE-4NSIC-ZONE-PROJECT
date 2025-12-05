@@ -1,0 +1,107 @@
+body {
+  background-color: #8b8a8a; /* Changed from #ffffff (white) to light grey */
+  font-size: 22px;
+  font-family: "Helvetica Neue", Helvetica;
+  font-weight: bold;
+  color:#035aab;
+}
+
+#body {
+  margin: 0 auto;
+  position: relative;
+}
+
+.corner-image {
+    background-image: url("images/Chip-ID-Framework/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
+    position:absolute;
+    top: 47px;      /* distance from top */
+    left: 10px;    /* distance from left */
+    right: 10px;   /* distance from right */
+    width: 170px;   /* size of the image */
+    height: 200px;  /* maintain aspect ratio */
+    z-index: 1000; /* ensure it stays on top */
+}
+
+#header {
+  font-size: 40px;
+  font-weight: bolder;
+  font-style: italic;
+  text-decoration: underline;
+  top: 20px;
+  text-align: center;
+    background: linear-gradient(to right, #007BFF, #00D4FF);
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.legend {
+  position: absolute;
+  top: 54px;
+  right: 10px;
+  width: 330px;
+  font-size: 14px;
+  color: #000;
+  border: 2px solid #000;   /* thickness + color of the frame */
+    padding: 10px;            /* space inside the frame */
+    width: fit-content; 
+    height: fit-content;      /* makes the box hug the content */
+    border-radius: 8px;       /* rounded corners (optional) */
+    background-color: #8a8888; /* optional soft background */
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  cursor: pointer;
+  fill: #5a7793;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font-size: 14px;
+  font-weight: 900;
+  fill: #000000;
+  font-family: Arial Black, Arial, sans-serif !important;
+}
+
+path.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1px;
+}
+
+#page-footer {
+    margin-top: 80px;             /* space above footer */
+    padding: 20px;
+    background: #2a2a2a;          /* footer background */
+    color: white;                 /* footer text */
+    border-top: 3px solid #007BFF; /* optional top border */
+    text-align: center;
+}
+
+h2 {
+    font-size: 22px;
+    text-align: center;
+}
+
+h3 {
+    text-decoration: underline;
+    margin-bottom: auto;
+    position: relative;
+}
+
+.h3-ombre {
+    background: linear-gradient(to right, #007BFF, #00D4FF);
+    color: rgb(1, 1, 1);
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block; /* keeps it neatly wrapped around text */
+}
