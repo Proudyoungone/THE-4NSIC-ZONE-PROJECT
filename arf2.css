@@ -12,6 +12,7 @@ body {
 }
 
 .corner-image {
+    background-image: url("chatGPT Image Nov 24, 2025, 03_31_43 PM.png");
     position:absolute;
     top: 50px;      /* distance from top */
     left: 10px;    /* distance from left */
@@ -95,6 +96,7 @@ h3 {
   background: #0d1b3d;
   color: #b3f4ff;
 }
+
 
 
 
