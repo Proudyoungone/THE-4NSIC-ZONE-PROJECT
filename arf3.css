@@ -12,7 +12,7 @@ body {
 }
 
 .corner-image {
-    position:absolute;
+ position:absolute;
     top: 50px;      /* distance from top */
     left: 10px;    /* distance from left */
     right: 10px;   /* distance from right */
@@ -95,6 +95,7 @@ h3 {
   background: #0d1b3d;
   color: #b3f4ff;
 }
+
 
 
 
