@@ -12,13 +12,14 @@ body {
 }
 
 .corner-image {
-    position:absolute;
-    top: 50px;      /* distance from top */
-    left: 10px;    /* distance from left */
-    right: 10px;   /* distance from right */
-    width: 170px;   /* size of the image */
-    height: auto;  /* maintain aspect ratio */
-    z-index: 1000; /* ensure it stays on top */
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 170px;
+    height: auto;
+    border-radius: 10px;
+    z-index: 1000;
+    display: block;
 }
 
 #header {
@@ -95,6 +96,7 @@ h3 {
   background: #0d1b3d;
   color: #b3f4ff;
 }
+
 
 
 
