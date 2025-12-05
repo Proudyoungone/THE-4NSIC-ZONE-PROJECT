@@ -154,6 +154,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+  max-width: 500px;   /* IMPORTANT */
   flex: 1 1 55%;            /* take most of the width */
 }
 
@@ -401,12 +402,13 @@
   background: linear-gradient(to right, #2d5862, #63c8ce);
   padding: 10px 22px;
   border-radius: 12px;
-  display: inline-flex;
+  display: inline-flex;     /* IMPORTANT */
   align-items: center;
   gap: 10px;
   box-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
   margin-bottom: 15px;
   margin-left: 5px;
+  width: fit-content;       /* IMPORTANT */
 }
 
 /* EXACT MATCH to your header font rules (scaled down only) */
@@ -799,6 +801,7 @@ window.addEventListener("DOMContentLoaded", () =>
 
 </body>
 </html>
+
 
 
 
