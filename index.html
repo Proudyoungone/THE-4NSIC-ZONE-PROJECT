@@ -450,12 +450,10 @@
 
   <!-- LEFT COLUMN -->
   <div class="hero-left">
-    <!-- Visits pill -->
-    <div class="visit-counter">
-      <span class="visit-label">Total Website Visits : </span>
-      <img class="visit-img"
-           src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F4nsic-zone-homepage&count_bg=%232D5862&title_bg=%2363C8CE&icon=&title=&edge_flat=false">
-    </div>
+   <div class="visit-counter">
+  <span class="visit-label">Total Website Visits : </span>
+  <span id="visitCountNumber" class="visit-label"></span>
+</div>
 
     <!-- Sticky Note -->
     <div class="sticky-neon">
@@ -712,7 +710,7 @@
     </footer>
   </div>
 
-  <script>
+<script>
 const DFIR_USERS = [
   "volatilityfoundation",
   "lockfale",
@@ -724,6 +722,27 @@ const DFIR_USERS = [
   "NorthLoopForensics"
 ];
 
+// 🔹 NEW: Global visit counter using CountAPI
+// This will increment & return a shared counter for everyone.
+function loadVisitCounter() {
+  const el = document.getElementById("visitCountNumber");
+  if (!el) return;
+
+  // namespace = 4nsic-zone-homepage, key = visits
+  fetch("https://api.countapi.xyz/hit/4nsic-zone-homepage/visits")
+    .then(response => response.json())
+    .then(data => {
+      if (data && typeof data.value === "number") {
+        el.textContent = data.value.toLocaleString();
+      } else {
+        el.textContent = "—";
+      }
+    })
+    .catch(err => {
+      console.error("Visit counter error:", err);
+      el.textContent = "—";
+    });
+}
 
 function describeEvent(e) {
   const type = e.type;
@@ -791,11 +810,16 @@ async function loadDfirGithubFeed() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", loadDfirGithubFeed);
+// Run both on page load
+window.addEventListener("DOMContentLoaded", () => {
+  loadVisitCounter();
+  loadDfirGithubFeed();
+});
 </script>
 
 </body>
 </html>
+
 
 
 
