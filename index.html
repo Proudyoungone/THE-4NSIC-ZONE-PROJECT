@@ -722,26 +722,27 @@ const DFIR_USERS = [
   "NorthLoopForensics"
 ];
 
-// 🔹 NEW: Global visit counter using CountAPI
-// This will increment & return a shared counter for everyone.
+// 🔹 NEW: Local (per-browser) visit counter
 function loadVisitCounter() {
   const el = document.getElementById("visitCountNumber");
   if (!el) return;
 
-  // namespace = 4nsic-zone-homepage, key = visits
-  fetch("https://api.countapi.xyz/hit/4nsic-zone-homepage/visits")
-    .then(response => response.json())
-    .then(data => {
-      if (data && typeof data.value === "number") {
-        el.textContent = data.value.toLocaleString();
-      } else {
-        el.textContent = "—";
-      }
-    })
-    .catch(err => {
-      console.error("Visit counter error:", err);
-      el.textContent = "—";
-    });
+  try {
+    let visits = localStorage.getItem("visitCount_4nsic_zone");
+    if (!visits) {
+      visits = 0;
+    } else {
+      visits = parseInt(visits, 10) || 0;
+    }
+
+    visits += 1;
+    localStorage.setItem("visitCount_4nsic_zone", visits);
+
+    el.textContent = visits.toLocaleString();
+  } catch (err) {
+    console.error("Visit counter error:", err);
+    el.textContent = "1";
+  }
 }
 
 function describeEvent(e) {
@@ -817,8 +818,10 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+
 </body>
 </html>
+
 
 
 
