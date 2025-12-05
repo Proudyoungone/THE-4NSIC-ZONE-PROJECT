@@ -15,7 +15,7 @@ body {
     position: absolute;
     top: 50px;
     right: 10px;
-    left: Auto;
+    left: auto;
     width: 170px;
     height: auto;
     border-radius: 10px;
@@ -97,6 +97,7 @@ h3 {
   background: #0d1b3d;
   color: #b3f4ff;
 }
+
 
 
 
