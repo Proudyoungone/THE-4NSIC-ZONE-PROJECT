@@ -18,22 +18,7 @@
       margin: 0;
       padding: 0;
     }
-
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-
-    .sidebar {
-      width: 240px;
-      background: #020617;
-      padding: 20px 14px;
-      border-right: 1px solid rgba(148,163,184,0.3);
-      box-shadow: 4px 0 18px rgba(0,0,0,0.6);
-      position: sticky;
-      top: 0;
-    }
-
+    
     .site-logo {
       font-size: 1.1rem;
       font-weight: bold;
@@ -410,6 +395,42 @@
 .github-event-time {
   font-size: 0.8rem;
   color: #b0cdd9;
+}
+
+/* ✅ FIX: Force sidebar + main into true side-by-side layout */
+.layout {
+  display: flex !important;
+  align-items: stretch;
+  width: 100%;
+}
+
+.sidebar {
+  flex: 0 0 240px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ✅ Prevent your content div from forcing full width */
+#body {
+  width: 100%;
+  margin: 0;
+}
+
+/* ✅ Mobile keeps stacked behavior */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
 }
 
   </style>
@@ -799,6 +820,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
