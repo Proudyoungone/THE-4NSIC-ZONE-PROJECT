@@ -176,7 +176,7 @@
 .hero-image {
   flex: 0 0 320px;
   align-self: flex-start;
-  margin-top: 94px;      /* remove big offset */
+  margin-top: 60px;      /* remove big offset */
 }
 
 /* Image styling (keep as you had) */
@@ -412,38 +412,18 @@
   color: #b0cdd9;
 }
 
-.visit-counter {
-  background: linear-gradient(to right, #2d5862, #63c8ce);
-  padding: 10px 22px;
-  border-radius: 12px;
-  display: inline-flex;     /* IMPORTANT */
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
-  margin-bottom: 15px;
-  margin-left: 5px;
-  width: fit-content;       /* IMPORTANT */
-}
-
-/* EXACT MATCH to your header font rules (scaled down only) */
-.visit-label {
-  font-size: 1.2rem;          /* scaled from 2.4rem so it fits */
-  font-weight: bold;          /* same */
-  letter-spacing: 0.06em;     /* same */
-  text-transform: uppercase;  /* same */
-  color: #f5f5f5;             /* same */
-  text-shadow: 0 0 8px #00e5ff;  /* same glow */
-  margin: 0;
-  padding: 0;
-}
-
-/* Number badge (counter image) aligned visually */
-.visit-img {
-  height: 22px;
-  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.6));
-}
-
   </style>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-125DJWSSY3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-125DJWSSY3');
+</script>
+  
 </head>
 <body>
   <div id="body">
@@ -468,14 +448,6 @@
   <div class="hero-left">
     <!-- Visits pill -->
  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-125DJWSSY3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-125DJWSSY3');
-</script>
     
     <!-- Sticky Note -->
     <div class="sticky-neon">
@@ -822,5 +794,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
