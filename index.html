@@ -397,40 +397,62 @@
   color: #b0cdd9;
 }
 
-/* ✅ FIX: Force sidebar + main into true side-by-side layout */
+/* ========================= */
+/* ✅ FORCE VERTICAL SIDEBAR */
+/* ========================= */
+
 .layout {
   display: flex !important;
+  flex-direction: row !important;
   align-items: stretch;
   width: 100%;
+  min-height: 100vh;
 }
 
+/* Lock sidebar to the left */
 .sidebar {
-  flex: 0 0 240px;
+  flex: 0 0 240px !important;
+  width: 240px !important;
+  max-width: 240px;
   height: 100vh;
+  position: sticky;
+  top: 0;
   overflow-y: auto;
 }
 
+/* Force main content to the right */
 .main {
-  flex: 1;
+  flex: 1 1 auto !important;
+  width: calc(100% - 240px) !important;
   min-width: 0;
 }
 
-/* ✅ Prevent your content div from forcing full width */
+/* Prevent your existing #body div from acting like a full screen wrapper */
 #body {
-  width: 100%;
-  margin: 0;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0 0 0 !important;
+  box-sizing: border-box;
 }
 
-/* ✅ Mobile keeps stacked behavior */
+/* ✅ Mobile behavior ONLY stacks on small screens */
 @media (max-width: 900px) {
   .layout {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 
   .sidebar {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     height: auto;
+    position: relative;
   }
+
+  .main {
+    width: 100% !important;
+  }
+
 }
 
   </style>
@@ -820,6 +842,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
