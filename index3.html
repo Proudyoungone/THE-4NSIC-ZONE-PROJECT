@@ -83,8 +83,25 @@
     }
 
     /* ======================= */
-    /* ✅ CONTENT STYLES */
+    /* ✅ CHIP-ID MATCHING SEARCH BAR */
     /* ======================= */
+
+    #searchInput {
+      margin-top: 20px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #00e5ff;
+      background: #0d1b3d;
+      color: #b3f4ff;
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+      outline: none;
+      width: 280px;   /* ✅ EXACT CHIP ID WIDTH */
+      display: block;
+    }
+
+    #searchInput::placeholder {
+      color: #66d9ff;
+    }
 
     .sticky-neon {
       position: relative;
@@ -100,59 +117,17 @@
         0 0 20px rgba(0, 229, 255, 0.5),
         0 10px 20px rgba(0,0,0,0.4);
       color: #0f204e;
+      margin-top: 20px;
     }
 
     .sticky-neon h4 {
       margin: 0 0 6px 0;
       font-size: 1.1rem;
       font-weight: bold;
-      color: #0f204e;
-      text-shadow: 0 0 6px #00e5ff;
-    }
-
-    .sticky-neon p {
-      margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.35em;
-      color: #0f204e;
-    }
-
-    .sticky-neon .tape {
-      position: absolute;
-      top: -12px;
-      left: 18px;
-      width: 70px;
-      height: 22px;
-      background: rgba(0, 229, 255, 0.3);
-      border-radius: 3px;
-      transform: rotate(-8deg);
-      box-shadow:
-        0 0 8px rgba(0, 229, 255, 0.7),
-        inset 0 0 4px rgba(255,255,255,0.5);
-      backdrop-filter: blur(2px);
-    }
-
-    /* ✅ NORMAL FLOW SEARCH BAR (NOT FIXED / NOT ABSOLUTE) */
-    #searchInput {
-      margin-top: 20px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #00e5ff;
-      background: #2d5862;
-      color: #b3f4ff;
-      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-      outline: none;
-      width: 300px;
-      display: block;
-    }
-
-    #searchInput::placeholder {
-      color: #66d9ff;
     }
 
     #json-search-results {
       margin-top: 20px;
-      margin-bottom: 20px;
       font-size: 0.9rem;
       color: #2d5862;
     }
@@ -160,12 +135,6 @@
     .path-label {
       font-weight: bold;
       color: #ffee58;
-    }
-
-    .json-search-heading {
-      font-weight: bold;
-      margin-top: 20px;
-      margin-bottom: 8px;
     }
   </style>
 </head>
@@ -185,7 +154,6 @@
       <a class="nav-link" href="index4.html">Tools</a>
       <a class="nav-link" href="downloads.html">Downloads</a>
       <a class="nav-link" href="cmd.html">CMD Playbook</a>
-      <a class="nav-link" href="powershell_playbook.html">PowerShell</a>
     </nav>
   </aside>
 
@@ -199,7 +167,7 @@
         <hr/>
       </div>
 
-      <!-- ✅ SEARCH BAR — DIRECTLY UNDER HEADER -->
+      <!-- ✅ SEARCH BAR (EXACT CHIP ID POSITION) -->
       <input
         type="text"
         id="searchInput"
@@ -207,13 +175,10 @@
         onkeyup="searchJson()"
       >
 
-      <!-- ✅ STICKY NOTE — UNDER SEARCH -->
-      <div style="margin-top:20px;">
-        <div class="sticky-neon">
-          <div class="tape"></div>
-          <h4>NOTES</h4>
-          <p>Total resource links = 258! 🎉</p>
-        </div>
+      <!-- ✅ STICKY NOTE (NOW BELOW SEARCH LIKE CHIP ID) -->
+      <div class="sticky-neon">
+        <h4>NOTES</h4>
+        <p>Total resource links = 258! 🎉</p>
       </div>
 
       <!-- ✅ SEARCH RESULTS -->
@@ -226,18 +191,16 @@
 
     </div>
   </main>
-
 </div>
 
-<!-- ✅ RESOURCE SEARCH SCRIPT -->
+<!-- ✅ SEARCH LOGIC -->
 <script>
 let arfData = null;
 
 window.addEventListener('DOMContentLoaded', () => {
   fetch('arf2.json?v=' + Date.now())
     .then(res => res.json())
-    .then(data => arfData = data)
-    .catch(err => console.error(err));
+    .then(data => arfData = data);
 });
 
 function searchNodes(node, term, path, results) {
@@ -249,40 +212,22 @@ function searchNodes(node, term, path, results) {
     results.push({ path: currentPath, url: node.url || null });
   }
 
-  if (node.children && Array.isArray(node.children)) {
+  if (node.children) {
     node.children.forEach(child => searchNodes(child, term, currentPath, results));
   }
 }
 
 function searchJson() {
-  const input = document.getElementById('searchInput');
+  const term = searchInput.value.toLowerCase().trim();
   const resultsContainer = document.getElementById('json-search-results');
-  const term = input.value.trim().toLowerCase();
 
-  if (!arfData || !term) {
-    resultsContainer.innerHTML = `
-      <div class="json-search-heading">Search Results</div>
-      <p>Type a keyword to search all names and URLs.</p>
-    `;
-    return;
-  }
+  if (!arfData || !term) return;
 
   const results = [];
   searchNodes(arfData, term, '', results);
 
-  if (!results.length) {
-    resultsContainer.innerHTML = `
-      <div class="json-search-heading">Search Results</div>
-      <p>No matches found.</p>
-    `;
-    return;
-  }
-
   resultsContainer.innerHTML = results.map(r =>
-    `<div style="margin-bottom:8px;">
-      <span class="path-label">${r.path}</span>
-      ${r.url ? `<br><a href="${r.url}" target="_blank">${r.url}</a>` : ''}
-    </div>`
+    `<div><span class="path-label">${r.path}</span>${r.url ? `<br>${r.url}` : ''}</div>`
   ).join('');
 }
 </script>
