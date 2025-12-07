@@ -118,11 +118,76 @@
         margin: 0;
         font-size: 1.2rem;
       }
+
+      .layout {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: stretch;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      flex: 0 0 240px !important;
+      width: 240px !important;
+      max-width: 240px;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+    }
+
+    .main {
+      flex: 1 1 auto !important;
+      width: calc(100% - 240px) !important;
+      min-width: 0;
+    }
+
+    #body {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        flex-direction: column !important;
+      }
+
+      .sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto;
+        position: relative;
+      }
+
+      .main {
+        width: 100% !important;
+      }
+      
     </style>
   </head>
 
   <body>
-    <div id="body">
+
+      <!-- ✅ LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="site-logo">4NSIC ZONE</div>
+    <nav class="nav-list">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index2.html">Chip ID Framework</a>
+      <a class="nav-link" href="index3.html">Resources</a>
+      <a class="nav-link" href="downloads.html">Tools</a>
+      <a class="nav-link" href="cmd.html">CMD Playbook</a>
+    </nav>
+  </aside>
+    <!-- ✅ RIGHT CONTENT COLUMN -->
+  <main class="main">
+    
+     <div id="body">
+      
       <!-- Header -->
       <div id="header">
         Chip ID Framework
@@ -130,47 +195,6 @@
         <h2>01000010 01100001 01110100 01101101 01100001 01101110</h2>
         <br>
       </div>
-
-      <div style="
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    margin-top: 10px;
-">
-    <!-- Home / 4nsic Zone -->
-    <a href="Index.html"
-       style="background: linear-gradient(to right, #2d5862, #63c8ce);
-              padding: 10px 20px;
-              color: black;
-              border-radius: 10px;
-              font-weight: bold;
-              text-decoration: none;
-              box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);">
-        Home
-    </a>
-
-    <!-- Resources -->
-    <a href="index3.html"
-       style="background: linear-gradient(to right, #2d5862, #63c8ce);
-              padding: 10px 20px;
-              color: black;
-              border-radius: 10px;
-              font-weight: bold;
-              text-decoration: none;">
-        Resources
-    </a>
-
-    <!-- Tools -->
-    <a href="index4.html"
-       style="background: linear-gradient(to right, #2d5862, #63c8ce);
-              padding: 10px 20px;
-              color: black;
-              border-radius: 10px;
-              font-weight: bold;
-              text-decoration: none;">
-        Tools
-    </a>
-</div>
 
       <!-- Sticky Note -->
       <div style="margin-top:20px;">
