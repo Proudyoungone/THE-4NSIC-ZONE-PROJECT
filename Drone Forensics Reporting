@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DFIR Reports</title>
+
+  <style>
+    body { margin: 0; background: #000; color: #e8f9ff; font-family: Arial, sans-serif; }
+    .layout { display: flex; min-height: 100vh; }
+
+    .sidebar {
+      width: 240px;
+      background: #020617;
+      padding: 18px;
+      border-right: 1px solid rgba(0,229,255,.3);
+    }
+
+    .nav-link {
+      display: block;
+      margin-bottom: 10px;
+      color: #e5e7eb;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,41,55,.9);
+    }
+
+    .main { flex: 1; padding: 40px; max-width: 1200px; margin: auto; }
+
+    .report-header {
+      font-size: 2.4rem;
+      text-shadow: 0 0 8px #00e5ff;
+    }
+
+    @media (max-width: 850px){
+      .layout { flex-direction: column; }
+      .sidebar { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- ✅ SIDEBAR -->
+  <aside class="sidebar">
+    <h3>4NSIC ZONE</h3>
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="index2.html">Chip ID</a>
+    <a class="nav-link" href="index3.html">Resources</a>
+    <a class="nav-link" href="downloads.html">Downloads</a>
+    <a class="nav-link" href="cmd.html">CMD</a>
+    <a class="nav-link" href="powershell_playbook.html">PowerShell</a>
+  </aside>
+
+  <!-- ✅ MAIN -->
+  <main class="main">
+
+    <section class="report-section">
+      <h2 class="report-header">Drone Forensics Reporting (ECS)</h2>
+      <!-- ✅ KEEP ALL YOUR EXISTING REPORT CARDS HERE -->
