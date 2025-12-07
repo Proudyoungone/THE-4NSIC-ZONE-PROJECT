@@ -82,17 +82,8 @@
       box-sizing: border-box;
     }
 
-    @media (max-width: 900px) {
-      .layout { flex-direction: column; }
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
-    }
-
     /* ======================= */
-    /* ✅ ORIGINAL PAGE STYLES */
+    /* ✅ CONTENT STYLES */
     /* ======================= */
 
     .sticky-neon {
@@ -141,24 +132,19 @@
       backdrop-filter: blur(2px);
     }
 
-#body {
-  position: relative;
-}
-
-#searchInput {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #00e5ff;
-  background: #2d5862;
-  color: #b3f4ff;
-  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-  outline: none;
-  width: 300px;
-}
+    /* ✅ NORMAL FLOW SEARCH BAR (NOT FIXED / NOT ABSOLUTE) */
+    #searchInput {
+      margin-top: 20px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #00e5ff;
+      background: #2d5862;
+      color: #b3f4ff;
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+      outline: none;
+      width: 300px;
+      display: block;
+    }
 
     #searchInput::placeholder {
       color: #66d9ff;
@@ -171,15 +157,6 @@
       color: #2d5862;
     }
 
-    #json-search-results ul { list-style: none; padding-left: 0; }
-    #json-search-results li { margin-bottom: 6px; line-height: 1.4em; }
-
-    #json-search-results a {
-      color: #80deea;
-      text-decoration: none;
-      word-break: break-all;
-    }
-
     .path-label {
       font-weight: bold;
       color: #ffee58;
@@ -187,7 +164,7 @@
 
     .json-search-heading {
       font-weight: bold;
-      margin-top: 30px;
+      margin-top: 20px;
       margin-bottom: 8px;
     }
   </style>
@@ -216,15 +193,21 @@
   <main class="main">
     <div id="body">
 
-      <!-- Header -->
+      <!-- ✅ HEADER -->
       <div id="header">
         Resources
         <hr/>
-        <br>
       </div>
 
+      <!-- ✅ SEARCH BAR — DIRECTLY UNDER HEADER -->
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Resource URLs…"
+        onkeyup="searchJson()"
+      >
 
-      <!-- Sticky Notes -->
+      <!-- ✅ STICKY NOTE — UNDER SEARCH -->
       <div style="margin-top:20px;">
         <div class="sticky-neon">
           <div class="tape"></div>
@@ -233,155 +216,76 @@
         </div>
       </div>
 
-      <div style="margin-top:20px;">
-        <input type="text" id="searchInput" placeholder="Search Resource URLs…" onkeyup="searchJson()">
-      </div>
-
-      <!-- JSON search results -->
+      <!-- ✅ SEARCH RESULTS -->
       <div id="json-search-results">
         <div class="json-search-heading">Search Results</div>
         <p>Type a keyword to search all names and URLs.</p>
       </div>
 
-      <!-- Corner Image -->
-      <img src="ChatGPT Image Nov 24, 2025, 03_31_43 PM.png"
-           class="corner-image"
-           alt="corner image">
-
-      <!-- Your D3 tree / resources JS -->
       <script src="arf2.js"></script>
-
-      <!-- Footer -->
-      <footer id="page-footer">
-        <h3 class="h3-ombre">Notes</h3>
-        <p>
-          This page is dedicated to provide resources for anything digital forensics/ investigation related. 
-          It includes websites such as training for digital forensics software, resources for law enforcement requests, 
-          and social media platforms.
-        </p>
-
-        <h3 class="h3-ombre">References</h3>
-        <p>
-          LinkedIn:
-          <a href="https://www.linkedin.com/in/katelyn-rogers-DFIRISTHEWORD/" target="_blank">Katelyn Rogers</a><br>
-          <a href="https://www.linkedin.com/in/frank-mazzola-0b916714a/" target="_blank">Frank Mazzola</a>
-        </p>
-
-        <p>
-          OSINT Framework:
-          <a href="https://osintframework.com/" target="_blank">https://osintframework.com/</a>
-        </p>
-
-        <p>
-          GitHub:
-          <a href="https://github.com/Proudyoungone/Chip-ID-Framework" target="_blank">
-            https://github.com/Proudyoungone/Chip-ID-Framework
-          </a>
-        </p>
-      </footer>
 
     </div>
   </main>
 
 </div>
 
-  <!-- 🔍 JSON search logic for arf2.json (UNCHANGED) -->
-  <script>
-    let arfData = null;
+<!-- ✅ RESOURCE SEARCH SCRIPT -->
+<script>
+let arfData = null;
 
-    window.addEventListener('DOMContentLoaded', () => {
-      fetch(`arf2.json?v=${Date.now()}`)
-        .then(res => res.json())
-        .then(data => {
-          arfData = data;
-          const results = document.getElementById('json-search-results');
-          results.innerHTML = `
-            <div class="json-search-heading">Search Results</div>
-            <p>Type a keyword to search all names and URLs.</p>
-          `;
-        })
-        .catch(err => {
-          console.error(err);
-          const results = document.getElementById('json-search-results');
-          results.textContent = 'Error loading the json. Check the file name and path.';
-        });
-    });
+window.addEventListener('DOMContentLoaded', () => {
+  fetch('arf2.json?v=' + Date.now())
+    .then(res => res.json())
+    .then(data => arfData = data)
+    .catch(err => console.error(err));
+});
 
-    function searchNodes(node, term, path, results) {
-      const currentName = node.name || '';
-      const currentPath = path ? path + ' > ' + currentName : currentName;
-      const haystack = ((node.name || '') + ' ' + (node.url || '')).toLowerCase();
+function searchNodes(node, term, path, results) {
+  const currentName = node.name || '';
+  const currentPath = path ? path + ' > ' + currentName : currentName;
+  const haystack = ((node.name || '') + ' ' + (node.url || '')).toLowerCase();
 
-      if (haystack.includes(term)) {
-        results.push({
-          path: currentPath,
-          url: node.url || null,
-          type: node.type || 'folder'
-        });
-      }
+  if (haystack.includes(term)) {
+    results.push({ path: currentPath, url: node.url || null });
+  }
 
-      if (node.children && Array.isArray(node.children)) {
-        node.children.forEach(child => {
-          searchNodes(child, term, currentPath, results);
-        });
-      }
-    }
+  if (node.children && Array.isArray(node.children)) {
+    node.children.forEach(child => searchNodes(child, term, currentPath, results));
+  }
+}
 
-    function searchJson() {
-      const input = document.getElementById('searchInput');
-      const resultsContainer = document.getElementById('json-search-results');
-      const term = input.value.trim().toLowerCase();
+function searchJson() {
+  const input = document.getElementById('searchInput');
+  const resultsContainer = document.getElementById('json-search-results');
+  const term = input.value.trim().toLowerCase();
 
-      if (!arfData) {
-        resultsContainer.textContent = 'JSON not loaded yet...';
-        return;
-      }
+  if (!arfData || !term) {
+    resultsContainer.innerHTML = `
+      <div class="json-search-heading">Search Results</div>
+      <p>Type a keyword to search all names and URLs.</p>
+    `;
+    return;
+  }
 
-      if (term === '') {
-        resultsContainer.innerHTML = `
-          <div class="json-search-heading">Search Results</div>
-          <p>Type a keyword to search all names and URLs.</p>
-        `;
-        return;
-      }
+  const results = [];
+  searchNodes(arfData, term, '', results);
 
-      const results = [];
-      if (Array.isArray(arfData)) {
-        arfData.forEach(rootNode => searchNodes(rootNode, term, '', results));
-      } else {
-        searchNodes(arfData, term, '', results);
-      }
+  if (!results.length) {
+    resultsContainer.innerHTML = `
+      <div class="json-search-heading">Search Results</div>
+      <p>No matches found.</p>
+    `;
+    return;
+  }
 
-      const list = document.createElement('ul');
-
-      results.forEach(r => {
-        const li = document.createElement('li');
-        const pathSpan = document.createElement('span');
-        pathSpan.className = 'path-label';
-        pathSpan.textContent = r.path;
-        li.appendChild(pathSpan);
-
-        if (r.url) {
-          const br = document.createElement('br');
-          li.appendChild(br);
-          const link = document.createElement('a');
-          link.href = r.url;
-          link.target = '_blank';
-          link.rel = 'noopener';
-          link.textContent = r.url;
-          li.appendChild(link);
-        }
-
-        list.appendChild(li);
-      });
-
-      resultsContainer.innerHTML = `
-        <div class="json-search-heading">Search Results</div>
-        <p>Found ${results.length} result(s) for "<strong>${term}</strong>":</p>
-      `;
-      resultsContainer.appendChild(list);
-    }
-  </script>
+  resultsContainer.innerHTML = results.map(r =>
+    `<div style="margin-bottom:8px;">
+      <span class="path-label">${r.path}</span>
+      ${r.url ? `<br><a href="${r.url}" target="_blank">${r.url}</a>` : ''}
+    </div>`
+  ).join('');
+}
+</script>
 
 </body>
 </html>
