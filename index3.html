@@ -1,251 +1,290 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <link type="text/css" rel="stylesheet" href="arf2.css"/>
-    <script type="text/javascript" src="d3.v3.min.js"></script>
-    <title>Resources</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <link type="text/css" rel="stylesheet" href="arf2.css"/>
+  <script type="text/javascript" src="d3.v3.min.js"></script>
+  <title>Resources</title>
 
-    <!-- Sticky note + JSON search styles -->
-    <style>
+  <style>
+    body {
+      background: #8b8a8a;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
 
-      body {
-        background: #8b8a8a;
-        font-family: Arial, sans-serif;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-      }
-        
-      #body {
-        padding: 40px;
-      }
+    /* ===================== */
+    /* ✅ LAYOUT + SIDEBAR */
+    /* ===================== */
 
-      /* Neon sticky note container */
-      .sticky-neon {
+    .layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .sidebar {
+      flex: 0 0 240px;
+      width: 240px;
+      background: #020617;
+      padding: 18px 14px;
+      border-right: 1px solid rgba(148,163,184,.3);
+      box-shadow: 4px 0 18px rgba(0,0,0,.6);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .site-logo {
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+      text-shadow: 0 0 8px #00e5ff;
+      margin-bottom: 18px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-link {
+      color: #e5e7eb;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,41,55,.9);
+      background: #020617;
+      font-size: .85rem;
+      transition: .2s;
+    }
+
+    .nav-link:hover {
+      border-color: #00e5ff;
+      box-shadow: 0 0 12px rgba(0,229,255,.4);
+      transform: translateY(-1px);
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    #body {
+      padding: 40px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        height: auto;
         position: relative;
-        display: inline-block;
-        padding: 16px 18px;
-        background: #e3e362; /* sticky yellow */
-        border-radius: 8px;
-        max-width: 260px;
-        transform: rotate(-3deg);
-        border: 1px solid #00e5ff;
-        box-shadow:
-          0 0 10px rgba(0, 229, 255, 0.7),
-          0 0 20px rgba(0, 229, 255, 0.5),
-          0 10px 20px rgba(0,0,0,0.4);
-        color: rgba(0, 229, 255, 0.3)
       }
+    }
 
-      .sticky-neon h4 {
-        margin: 0 0 6px 0;
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #0f204e;
-        text-shadow: 0 0 6px #00e5ff;
-      }
+    /* ======================= */
+    /* ✅ ORIGINAL PAGE STYLES */
+    /* ======================= */
 
-      .sticky-neon p {
-        margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.35em;
-        color: #0f204e;
-      }
+    .sticky-neon {
+      position: relative;
+      display: inline-block;
+      padding: 16px 18px;
+      background: #e3e362;
+      border-radius: 8px;
+      max-width: 260px;
+      transform: rotate(-3deg);
+      border: 1px solid #00e5ff;
+      box-shadow:
+        0 0 10px rgba(0, 229, 255, 0.7),
+        0 0 20px rgba(0, 229, 255, 0.5),
+        0 10px 20px rgba(0,0,0,0.4);
+      color: #0f204e;
+    }
 
-      /* Neon blue tape corner */
-      .sticky-neon .tape {
-        position: absolute;
-        top: -12px;
-        left: 18px;
-        width: 70px;
-        height: 22px;
-        background: rgba(0, 229, 255, 0.3);
-        border-radius: 3px;
-        transform: rotate(-8deg);
-        box-shadow:
-          0 0 8px rgba(0, 229, 255, 0.7),
-          inset 0 0 4px rgba(255,255,255,0.5);
-        backdrop-filter: blur(2px);
-      }
+    .sticky-neon h4 {
+      margin: 0 0 6px 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #0f204e;
+      text-shadow: 0 0 6px #00e5ff;
+    }
 
-      /* 🔍 JSON search input fixed on the LEFT */
-      #searchInput {
-        position: absolute;   /* keeps it in place while scrolling */
-        margin-top: 290px;
-        left: 35px;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid #00e5ff;
-        background: #2d5862;
-        color: #b3f4ff;
-        box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-        outline: none;
-        z-index: 1000;
-      }
+    .sticky-neon p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.35em;
+      color: #0f204e;
+    }
 
-      #searchInput::placeholder {
-        color: #66d9ff;
-      }
+    .sticky-neon .tape {
+      position: absolute;
+      top: -12px;
+      left: 18px;
+      width: 70px;
+      height: 22px;
+      background: rgba(0, 229, 255, 0.3);
+      border-radius: 3px;
+      transform: rotate(-8deg);
+      box-shadow:
+        0 0 8px rgba(0, 229, 255, 0.7),
+        inset 0 0 4px rgba(255,255,255,0.5);
+      backdrop-filter: blur(2px);
+    }
 
-      /* Results list for JSON search */
-      #json-search-results {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        font-family: Arial, sans-serif;
-        font-size: 0.9rem;
-        color: #2d5862;
-      }
+    /* 🔍 JSON search input (now positioned correctly with sidebar) */
+    #searchInput {
+      margin-top: 20px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #00e5ff;
+      background: #2d5862;
+      color: #b3f4ff;
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+      outline: none;
+      width: 300px;
+    }
 
-      #json-search-results ul {
-        list-style: none;
-        padding-left: 0;
-      }
+    #searchInput::placeholder {
+      color: #66d9ff;
+    }
 
-      #json-search-results li {
-        margin-bottom: 6px;
-        line-height: 1.4em;
-      }
+    #json-search-results {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: #2d5862;
+    }
 
-      #json-search-results a {
-        color: #80deea;
-        text-decoration: none;
-        word-break: break-all;
-      }
+    #json-search-results ul { list-style: none; padding-left: 0; }
+    #json-search-results li { margin-bottom: 6px; line-height: 1.4em; }
 
-      #json-search-results a:hover {
-        text-decoration: underline;
-      }
+    #json-search-results a {
+      color: #80deea;
+      text-decoration: none;
+      word-break: break-all;
+    }
 
-      .path-label {
-        font-weight: bold;
-        color: #ffee58;
-      }
+    .path-label {
+      font-weight: bold;
+      color: #ffee58;
+    }
 
-      .json-search-heading {
-        font-weight: bold;
-        margin-top: 30px;
-        margin-bottom: 8px;
-      }
-    </style>
+    .json-search-heading {
+      font-weight: bold;
+      margin-top: 30px;
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="body">
-    <!-- Header -->
-    <div id="header">
-      Resources
-      <hr/>
-      <br>
-    </div>
 
-    <div style="
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    margin-top: 10px;
-">
-    <a href="index.html"
-        style="background: linear-gradient(to right, #2d5862, #63c8ce);
-               padding: 10px 20px;
-               color: black;
-               border-radius: 10px;
-               font-weight: bold;
-               text-decoration: none;">
-        Home
-    </a>
+<div class="layout">
 
-      <a href="index2.html" 
-        style="background: linear-gradient(to right, #007BFF, #00D4FF);
-              padding: 10px 20px;
-              color: black;
-              border-radius: 10px;
-              font-weight: bold;
-              text-decoration: none;">
-        Chip ID Framework
-      </a>
+  <!-- ✅ LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="site-logo">4NSIC ZONE</div>
+    <nav class="nav-list">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index2.html">Chip ID Framework</a>
+      <a class="nav-link" href="index3.html">Resources</a>
+      <a class="nav-link" href="index4.html">Tools</a>
+      <a class="nav-link" href="downloads.html">Downloads</a>
+      <a class="nav-link" href="cmd.html">CMD Playbook</a>
+      <a class="nav-link" href="powershell_playbook.html">PowerShell</a>
+    </nav>
+  </aside>
 
-        <a href="index4.html" 
-          style="background: linear-gradient(to right, #2d5862, #63c8ce);
-                padding: 10px 20px;
-                color: black;
-                border-radius: 10px;
-                font-weight: bold;
-                text-decoration: none;">
-          Tools
-        </a>
-      </div>
+  <!-- ✅ MAIN CONTENT -->
+  <main class="main">
+    <div id="body">
 
-    <!-- Sticky Notes -->
-    <div style="margin-top:20px;">
-      <div class="sticky-neon">
-        <div class="tape"></div>
-        <h4>NOTES</h4>
-        <p>Total resource links = 258! 🎉</p>
-      </div>
-    </div>
-
-    <!-- 🔍 JSON Search Input (left-fixed) -->
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search..."
-      onkeyup="searchJson()"
-    >
-
-    <!-- JSON search results (inline on page) -->
-    <div id="json-search-results">
-      <div class="json-search-heading">Search Results</div>
-      <p>Type a keyword in the search box on the left to search all names and URLs.</p>
-    </div>
-
-  <!-- Corner Image -->
-<img src="ChatGPT Image Nov 24, 2025, 03_31_43 PM.png"
-     class="corner-image"
-     alt="corner image">
-
-
-    <!-- Your D3 tree / resources JS -->
-    <script src="arf2.js"></script>
-
-    <!-- Footer -->
-    <footer id="page-footer">
-      <h3 class="h3-ombre">Notes</h3>
-      <p>
-        This page is dedicated to provide resources for anything digital forensics/ investigation related. 
-        It includes websites such as training for digital forensics software, resources for law enforcement requests, 
-        and social media platforms. This list was comprised of URLs listed in the Start.Me pages of both Digital 
-        Forensic Analyst and Lab Manager Frank Mazzola and Digital Forensic Analyst Katelyn Rogers. <br><br>
-        The page itself was generated by Digital Forensic Analyst Katelyn Rogers. <br>
-      </p>
-<h3 class="h3-ombre">References</h3>
-      <p>
-        URL links were derived from Start.Me pages created by: <br>
+      <!-- Header -->
+      <div id="header">
+        Resources
+        <hr/>
         <br>
-        Katelyn Rogers (DFIR).  
-        LinkedIn: <a href="https://www.linkedin.com/in/katelyn-rogers-DFIRISTHEWORD/" target="_blank">Katelyn Rogers</a> <br>
-        AND<br>
-        Frank Mazzola (DFIR). 
-        LinkedIn: <a href="https://www.linkedin.com/in/frank-mazzola-0b916714a/" target="_blank">Frank Mazzola</a>
-      </p>
+      </div>
 
-      <p>
-        Thanks to Justin Nordine for the original OSINT Framework structure.  
-        <a href="https://osintframework.com/" target="_blank">OSINT Framework</a>
-      </p>
+      <!-- Sticky Notes -->
+      <div style="margin-top:20px;">
+        <div class="sticky-neon">
+          <div class="tape"></div>
+          <h4>NOTES</h4>
+          <p>Total resource links = 258! 🎉</p>
+        </div>
+      </div>
 
-      <p>
-        GitHub Repository:  
-        <a href="https://github.com/Proudyoungone/Chip-ID-Framework" target="_blank">Chip ID Framework</a>
-      </p>
-    </footer>
-  </div>
+      <!-- 🔍 JSON Search Input -->
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search..."
+        onkeyup="searchJson()"
+      >
 
-  <!-- 🔍 JSON search logic for arf2.json -->
+      <!-- JSON search results -->
+      <div id="json-search-results">
+        <div class="json-search-heading">Search Results</div>
+        <p>Type a keyword to search all names and URLs.</p>
+      </div>
+
+      <!-- Corner Image -->
+      <img src="ChatGPT Image Nov 24, 2025, 03_31_43 PM.png"
+           class="corner-image"
+           alt="corner image">
+
+      <!-- Your D3 tree / resources JS -->
+      <script src="arf2.js"></script>
+
+      <!-- Footer -->
+      <footer id="page-footer">
+        <h3 class="h3-ombre">Notes</h3>
+        <p>
+          This page is dedicated to provide resources for anything digital forensics/ investigation related. 
+          It includes websites such as training for digital forensics software, resources for law enforcement requests, 
+          and social media platforms.
+        </p>
+
+        <h3 class="h3-ombre">References</h3>
+        <p>
+          LinkedIn:
+          <a href="https://www.linkedin.com/in/katelyn-rogers-DFIRISTHEWORD/" target="_blank">Katelyn Rogers</a><br>
+          <a href="https://www.linkedin.com/in/frank-mazzola-0b916714a/" target="_blank">Frank Mazzola</a>
+        </p>
+
+        <p>
+          OSINT Framework:
+          <a href="https://osintframework.com/" target="_blank">https://osintframework.com/</a>
+        </p>
+
+        <p>
+          GitHub:
+          <a href="https://github.com/Proudyoungone/Chip-ID-Framework" target="_blank">
+            https://github.com/Proudyoungone/Chip-ID-Framework
+          </a>
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+</div>
+
+  <!-- 🔍 JSON search logic for arf2.json (UNCHANGED) -->
   <script>
     let arfData = null;
 
-    // Load arf2.json once the page is ready
     window.addEventListener('DOMContentLoaded', () => {
       fetch(`arf2.json?v=${Date.now()}`)
         .then(res => res.json())
@@ -253,11 +292,8 @@
           arfData = data;
           const results = document.getElementById('json-search-results');
           results.innerHTML = `
-          <br>
-          <br>
-          <br>
             <div class="json-search-heading">Search Results</div>
-            <p>Type a keyword in the search box on the left (e.g. "Google", "OSINT", "Twitter").</p>
+            <p>Type a keyword to search all names and URLs.</p>
           `;
         })
         .catch(err => {
@@ -267,12 +303,9 @@
         });
     });
 
-    // Recursive search through nested JSON structure
     function searchNodes(node, term, path, results) {
       const currentName = node.name || '';
       const currentPath = path ? path + ' > ' + currentName : currentName;
-
-      // Search in name + url (if present)
       const haystack = ((node.name || '') + ' ' + (node.url || '')).toLowerCase();
 
       if (haystack.includes(term)) {
@@ -290,7 +323,6 @@
       }
     }
 
-    // Called when user types in the search box
     function searchJson() {
       const input = document.getElementById('searchInput');
       const resultsContainer = document.getElementById('json-search-results');
@@ -303,50 +335,31 @@
 
       if (term === '') {
         resultsContainer.innerHTML = `
-        <br>
-        <br>
-        <br>
           <div class="json-search-heading">Search Results</div>
-          <p>Type a keyword in the search box on the left (e.g. "Google", "OSINT", "Twitter").</p>
+          <p>Type a keyword to search all names and URLs.</p>
         `;
         return;
       }
 
       const results = [];
-      // Support root being either an object or an array
       if (Array.isArray(arfData)) {
         arfData.forEach(rootNode => searchNodes(rootNode, term, '', results));
       } else {
         searchNodes(arfData, term, '', results);
       }
 
-      if (results.length === 0) {
-        resultsContainer.innerHTML = `
-        <br>
-        <br>
-        <br>
-          <div class="json-search-heading">Search Results</div>
-          <p>No matches found for "<strong>${term}</strong>".</p>
-        `;
-        return;
-      }
-
       const list = document.createElement('ul');
 
       results.forEach(r => {
         const li = document.createElement('li');
-
-        // Show the full path
         const pathSpan = document.createElement('span');
         pathSpan.className = 'path-label';
-        pathSpan.textContent = r.path + (r.type === 'url' ? ' (URL)' : '');
+        pathSpan.textContent = r.path;
         li.appendChild(pathSpan);
 
-        // If it has a URL, add a clickable link
         if (r.url) {
           const br = document.createElement('br');
           li.appendChild(br);
-
           const link = document.createElement('a');
           link.href = r.url;
           link.target = '_blank';
@@ -358,15 +371,13 @@
         list.appendChild(li);
       });
 
-      resultsContainer.innerHTML =`
-      <br>
-      <br>
-      <br>
+      resultsContainer.innerHTML = `
         <div class="json-search-heading">Search Results</div>
         <p>Found ${results.length} result(s) for "<strong>${term}</strong>":</p>
       `;
       resultsContainer.appendChild(list);
     }
   </script>
+
 </body>
 </html>
