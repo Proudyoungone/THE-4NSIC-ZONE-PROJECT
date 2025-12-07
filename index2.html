@@ -203,7 +203,12 @@
       </div>
 
       <div style="margin-top:20px;">
-        <input type="text" id="searchInput" placeholder="Search chips, makes, models…" onkeyup="searchJson()">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search chips, makes, models…"
+          onkeyup="searchJson()"
+        >
       </div>
 
       <div id="json-search-results">
@@ -218,17 +223,32 @@
 
 </div>
 
-<!-- ✅ JSON SEARCH SCRIPT (UNCHANGED) -->
+<!-- ✅ ✅ ✅ FULLY FIXED JSON SEARCH -->
 <script>
 let chipData = null;
 
+/* ✅ FORCE LOAD ONE FILE */
 window.addEventListener('DOMContentLoaded', () => {
   fetch('arf.json?v=' + Date.now())
-    .then(res => res.json())
-    .then(data => chipData = data);
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load arf.json");
+      return res.json();
+    })
+    .then(data => {
+      chipData = data;
+      console.log("✅ CHIP JSON LOADED");
+    })
+    .catch(err => {
+      console.error("❌ JSON LOAD ERROR:", err);
+      document.getElementById('json-search-results').innerHTML =
+        "<p style='color:red;'>Error loading arf.json</p>";
+    });
 });
 
+/* ✅ SAFE RECURSIVE SEARCH */
 function searchNodes(node, term, path, results) {
+  if (!node) return;
+
   const currentName = node.name || '';
   const currentPath = path ? path + ' > ' + currentName : currentName;
 
@@ -245,21 +265,53 @@ function searchNodes(node, term, path, results) {
     });
   }
 
-  if (node.children) {
-    node.children.forEach(child => searchNodes(child, term, currentPath, results));
+  if (Array.isArray(node.children)) {
+    node.children.forEach(child =>
+      searchNodes(child, term, currentPath, results)
+    );
   }
 }
 
+/* ✅ MAIN SEARCH */
 function searchJson() {
-  const term = searchInput.value.toLowerCase();
-  const resultsContainer = json-search-results;
-  if (!chipData || !term) return;
+  const input = document.getElementById('searchInput');
+  const resultsContainer = document.getElementById('json-search-results');
+  const term = input.value.trim().toLowerCase();
+
+  if (!chipData) {
+    resultsContainer.innerHTML = "<p>JSON not loaded yet...</p>";
+    return;
+  }
+
+  if (!term) {
+    resultsContainer.innerHTML = `
+      <div class="json-search-heading">Chip Search</div>
+      <p>Type a keyword above to search all names and URLs.</p>
+    `;
+    return;
+  }
 
   const results = [];
-  searchNodes(chipData, term, '', results);
+
+  if (Array.isArray(chipData)) {
+    chipData.forEach(root => searchNodes(root, term, '', results));
+  } else {
+    searchNodes(chipData, term, '', results);
+  }
+
+  if (results.length === 0) {
+    resultsContainer.innerHTML = `
+      <div class="json-search-heading">Chip Search</div>
+      <p>No matches found for "<strong>${term}</strong>".</p>
+    `;
+    return;
+  }
 
   resultsContainer.innerHTML = results.map(r =>
-    `<div><span class="path-label">${r.path}</span>${r.url ? `<br>${r.url}` : ''}</div>`
+    `<div style="margin-bottom:8px;">
+      <span class="path-label">${r.path}</span>
+      ${r.url ? `<br><a href="${r.url}" target="_blank">${r.url}</a>` : ''}
+    </div>`
   ).join('');
 }
 </script>
