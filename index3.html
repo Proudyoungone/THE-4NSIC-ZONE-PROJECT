@@ -141,22 +141,24 @@
       backdrop-filter: blur(2px);
     }
 
-    /* 🔍 JSON search input (now positioned correctly with sidebar) */
-      #searchInput {
-      position: absolute;
-      top: 120px;
-      left: 40px;
-      z-index: 5;
-      margin-top: 20px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #00e5ff;
-      background: #2d5862;
-      color: #b3f4ff;
-      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-      outline: none;
-      width: 300px;
-    }
+#body {
+  position: relative;
+}
+
+#searchInput {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #00e5ff;
+  background: #2d5862;
+  color: #b3f4ff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+  outline: none;
+  width: 300px;
+}
 
     #searchInput::placeholder {
       color: #66d9ff;
@@ -221,12 +223,6 @@
         <br>
       </div>
 
-      <input
-  type="text"
-  id="searchInput"
-  placeholder="Search..."
-  onkeyup="searchJson()"
->
 
       <!-- Sticky Notes -->
       <div style="margin-top:20px;">
