@@ -93,81 +93,116 @@
       }
     }
 
-    /* ======================= */
-    /* ✅ YOUR ORIGINAL STYLES */
-    /* ======================= */
+   #body {
+        padding: 40px;
+      }
 
-    .sticky-neon {
-      position: absolute;
-      margin-top: 250;
-      margin-left: 250px;
-      display: inline-block;
-      padding: 16px 18px;
-      background: #e3e362;
-      border-radius: 8px;
-      max-width: 260px;
-      transform: rotate(-3deg);
-      border: 1px solid #00e5ff;
-      box-shadow:
-        0 0 10px rgba(0, 229, 255, 0.7),
-        0 0 20px rgba(0, 229, 255, 0.5),
-        0 10px 20px rgba(0,0,0,0.4);
-      color: #1b363b;
-    }
+      /* Neon sticky note container */
+      .sticky-neon {
+        position: relative;
+        display: inline-block;
+        padding: 16px 18px;
+        background: #e3e362; /* sticky yellow */
+        border-radius: 8px;
+        max-width: 260px;
+        transform: rotate(-3deg);
+        border: 1px solid #00e5ff;
+        box-shadow:
+          0 0 10px rgba(0, 229, 255, 0.7),
+          0 0 20px rgba(0, 229, 255, 0.5),
+          0 10px 20px rgba(0,0,0,0.4);
+        color: rgba(0, 229, 255, 0.3)
+      }
 
-    .sticky-neon h4 {
-      margin: 0 0 6px 0;
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #1b363b;
-      text-shadow: 0 0 6px #00e5ff;
-    }
+      .sticky-neon h4 {
+        margin: 0 0 6px 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #0f204e;
+        text-shadow: 0 0 6px #00e5ff;
+      }
 
-    .sticky-neon p {
-      margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.35em;
-    }
+      .sticky-neon p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.35em;
+        color: #0f204e;
+      }
 
-    .sticky-neon .tape {
-      position: absolute;
-      top: -12px;
-      left: 18px;
-      width: 70px;
-      height: 22px;
-      background: rgba(0, 229, 255, 0.3);
-      border-radius: 3px;
-      transform: rotate(-8deg);
-      box-shadow:
-        0 0 8px rgba(0, 229, 255, 0.7),
-        inset 0 0 4px rgba(255,255,255,0.5);
-      backdrop-filter: blur(2px);
-    }
+      /* Neon blue tape corner */
+      .sticky-neon .tape {
+        position: absolute;
+        top: -12px;
+        left: 18px;
+        width: 70px;
+        height: 22px;
+        background: rgba(0, 229, 255, 0.3);
+        border-radius: 3px;
+        transform: rotate(-8deg);
+        box-shadow:
+          0 0 8px rgba(0, 229, 255, 0.7),
+          inset 0 0 4px rgba(255,255,255,0.5);
+        backdrop-filter: blur(2px);
+      }
 
-    #searchInput {
-      position: absolute;
-      margin-top: 175px;
-      margin-left: 200px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #00e5ff;
-      background: #0d1b3d;
-      color: #b3f4ff;
-      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-      outline: none;
-      width: 280px;
-    }
+      /* 🔍 JSON search input fixed on the LEFT */
+      #searchInput {
+        position: absolute;   /* keeps it in place while scrolling */
+        margin-top: 290px;
+        left: 35px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #00e5ff;
+        background: #2d5862;
+        color: #b3f4ff;
+        box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+        outline: none;
+        z-index: 1000;
+      }
 
-    #json-search-results {
-      margin-top: 20px;
-      font-size: .9rem;
-      color:#66d9ff;
-    }
+      #searchInput::placeholder {
+        color: #66d9ff;
+      }
 
-    .path-label {
-      font-weight: bold;
-      color: #ffee58;
-    }
+      /* Results list for JSON search */
+      #json-search-results {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 0.9rem;
+        color: #2d5862;
+      }
+
+      #json-search-results ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      #json-search-results li {
+        margin-bottom: 6px;
+        line-height: 1.4em;
+      }
+
+      #json-search-results a {
+        color: #80deea;
+        text-decoration: none;
+        word-break: break-all;
+      }
+
+      #json-search-results a:hover {
+        text-decoration: underline;
+      }
+
+      .path-label {
+        font-weight: bold;
+        color: #ffee58;
+      }
+
+      .json-search-heading {
+        font-weight: bold;
+        margin-top: 30px;
+        margin-bottom: 8px;
+      }
   </style>
 </head>
 
