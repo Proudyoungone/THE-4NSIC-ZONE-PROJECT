@@ -142,7 +142,11 @@
     }
 
     /* 🔍 JSON search input (now positioned correctly with sidebar) */
-    #searchInput {
+      #searchInput {
+      position: absolute;
+      top: 120px;
+      left: 40px;
+      z-index: 5;
       margin-top: 20px;
       padding: 10px 12px;
       border-radius: 10px;
@@ -217,6 +221,13 @@
         <br>
       </div>
 
+      <input
+  type="text"
+  id="searchInput"
+  placeholder="Search..."
+  onkeyup="searchJson()"
+>
+
       <!-- Sticky Notes -->
       <div style="margin-top:20px;">
         <div class="sticky-neon">
@@ -225,14 +236,6 @@
           <p>Total resource links = 258! 🎉</p>
         </div>
       </div>
-
-      <!-- 🔍 JSON Search Input -->
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search..."
-        onkeyup="searchJson()"
-      >
 
       <!-- JSON search results -->
       <div id="json-search-results">
