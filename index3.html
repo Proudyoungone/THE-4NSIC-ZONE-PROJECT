@@ -15,7 +15,10 @@
       padding: 0;
     }
 
+     /* ===================== */
     /* ✅ LAYOUT + SIDEBAR */
+    /* ===================== */
+
     .layout {
       display: flex;
       min-height: 100vh;
@@ -38,7 +41,7 @@
     .site-logo {
       font-size: 1.05rem;
       font-weight: bold;
-      letter-spacing: .15em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #f5f5f5;
       text-shadow: 0 0 8px #00e5ff;
@@ -80,7 +83,9 @@
     }
 
     @media (max-width: 900px) {
-      .layout { flex-direction: column; }
+      .layout {
+        flex-direction: column;
+      }
       .sidebar {
         width: 100%;
         height: auto;
@@ -88,26 +93,10 @@
       }
     }
 
-    /* ✅ CHIP ID MATCH SEARCH BAR */
-    #searchInput {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #00e5ff;
-      background: #0d1b3d;
-      color: #b3f4ff;
-      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-      outline: none;
-      width: 280px;
-      display: block;
-    }
+    /* ======================= */
+    /* ✅ YOUR ORIGINAL STYLES */
+    /* ======================= */
 
-    #searchInput::placeholder {
-      color: #66d9ff;
-    }
-
-    /* ✅ STICKY NOTE */
     .sticky-neon {
       position: relative;
       display: inline-block;
@@ -121,15 +110,21 @@
         0 0 10px rgba(0, 229, 255, 0.7),
         0 0 20px rgba(0, 229, 255, 0.5),
         0 10px 20px rgba(0,0,0,0.4);
-      color: #0f204e;
+      color: #1b363b;
     }
 
     .sticky-neon h4 {
       margin: 0 0 6px 0;
       font-size: 1.1rem;
       font-weight: bold;
-      color: #0f204e;
+      color: #1b363b;
       text-shadow: 0 0 6px #00e5ff;
+    }
+
+    .sticky-neon p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.35em;
     }
 
     .sticky-neon .tape {
@@ -145,6 +140,18 @@
         0 0 8px rgba(0, 229, 255, 0.7),
         inset 0 0 4px rgba(255,255,255,0.5);
       backdrop-filter: blur(2px);
+    }
+
+    #searchInput {
+      margin-top: 20px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #00e5ff;
+      background: #0d1b3d;
+      color: #b3f4ff;
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+      outline: none;
+      width: 280px;
     }
 
     #json-search-results {
@@ -164,7 +171,7 @@
 
 <div class="layout">
 
-  <!-- ✅ LEFT SIDEBAR (NO SEARCH BAR HERE!) -->
+  <!-- ✅ LEFT SIDEBAR -->
   <aside class="sidebar">
     <div class="site-logo">4NSIC ZONE</div>
     <nav class="nav-list">
@@ -172,10 +179,8 @@
       <a class="nav-link" href="index2.html">Chip ID Framework</a>
       <a class="nav-link" href="ecs.html">ECS Reporting</a>
       <a class="nav-link" href="index3.html">Resources</a>
-      <a class="nav-link" href="index4.html">Tools</a>
-      <a class="nav-link" href="downloads.html">Downloads</a>
+      <a class="nav-link" href="downloads.html">Tools</a>
       <a class="nav-link" href="cmd.html">CMD Playbook</a>
-      <a class="nav-link" href="powershell_playbook.html">PowerShell</a>
     </nav>
   </aside>
 
@@ -189,28 +194,29 @@
         <hr/>
       </div>
 
-      <!-- ✅ SEARCH BAR (EXACT CHIP ID POSITION) -->
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search Resource URLs…"
-        onkeyup="searchJson()"
-      >
 
-      <!-- ✅ STICKY NOTE (BELOW SEARCH) -->
-      <div class="sticky-neon">
-        <div class="tape"></div>
-        <h4>NOTES</h4>
-        <p>Total resource links = 258! 🎉</p>
+      <div style="margin-top:20px;">
+        <div class="sticky-neon">
+          <div class="tape"></div>
+          <h4>NOTES</h4>
+          <p>Total resource links = 258! 🎉</p>
+        </div>
       </div>
 
-      <!-- ✅ SEARCH RESULTS -->
+      <div style="margin-top:20px;">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Type a keyword to search all names and URLs."
+          onkeyup="searchJson()"
+        >
+      </div>
+
       <div id="json-search-results">
-        <div class="json-search-heading">Search Results</div>
-        <p>Type a keyword to search all names and URLs.</p>
+        <div class="json-search-heading">Chip Search</div>
+        <p>Type a keyword above to search all names and URLs.</p>
       </div>
 
-      <!-- ✅ D3 TREE -->
       <script src="arf2.js"></script>
 
     </div>
