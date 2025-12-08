@@ -942,7 +942,6 @@ async function loadDfirGithubFeed() {
   }
 }
 
-<script>
 /* ================================ */
 /* ✅ 4NSIC REAL SITE CONTENT SEARCH */
 /* ================================ */
@@ -962,9 +961,13 @@ async function fetchAndIndexPages() {
   for (const page of SITE_PAGES) {
     try {
       const res = await fetch(page.url);
+      if (!res.ok) {
+        console.warn("Fetch failed for", page.url, res.status);
+        continue;
+      }
+
       const html = await res.text();
 
-      // Strip HTML tags and compress whitespace
       const text = html
         .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
         .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '')
@@ -979,12 +982,16 @@ async function fetchAndIndexPages() {
       });
 
     } catch (err) {
-      console.warn("Search index failed for:", page.url);
+      console.warn("Search index failed for:", page.url, err);
     }
   }
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
+  // load GitHub feed
+  loadDfirGithubFeed();
+
+  // build search index
   await fetchAndIndexPages();
 
   const input = document.getElementById("aiSearchInput");
@@ -1026,6 +1033,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 </body>
 </html>
+
 
 
 
