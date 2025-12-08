@@ -23,7 +23,6 @@ body {
   padding: 25px;
 }
 
-/* ==== SEARCH BAR ==== */
 .search-wrap {
   display: flex;
   justify-content: center;
@@ -44,12 +43,10 @@ body {
   box-shadow: 0 0 12px rgba(0,229,255,0.3);
 }
 
-/* ===== TAB BAR ===== */
 .tab-bar {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 15px;
   margin-bottom: 20px;
 }
 
@@ -99,28 +96,7 @@ body {
   padding: 12px;
   font-family: monospace;
   white-space: pre-wrap;
-  position: relative;
-  overflow-x: auto;
-}
-
-.copy-btn {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: linear-gradient(135deg,#00e5ff,#00ffaa);
-  border: none;
-  border-radius: 8px;
-  padding: 5px 10px;
-  font-size: 0.8rem;
-  font-weight: bold;
   cursor: pointer;
-}
-
-mark {
-  background: #00e5ff;
-  color: black;
-  border-radius: 4px;
-  padding: 2px 4px;
 }
 </style>
 </head>
@@ -130,305 +106,92 @@ mark {
 <div class="header">DFIR Command Playbook</div>
 
 <div class="search-wrap">
-  <input type="text" id="searchBox" placeholder="Search all commands (ex: netstat, usb, sha256)" onkeyup="searchCommands()">
+  <input type="text" id="searchBox" placeholder="Search all commands" onkeyup="searchCommands()">
 </div>
 
-<div id="cmd" class="panel active">
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="openTab('dfir', this)">DFIR Live Triage</button>
+  <button class="tab-btn" onclick="openTab('ultimate', this)">Ultimate CMD</button>
+  <button class="tab-btn" onclick="openTab('powershell', this)">Ultimate PowerShell</button>
+  <button class="tab-btn" onclick="openTab('examples', this)">Investigation Examples</button>
+</div>
 
-  <!-- ===== SYSTEM IDENTIFICATION ===== -->
+<!-- ================= DFIR PANEL ================= -->
+<div id="dfir" class="panel active">
   <div class="cmd-card">
-    <div class="cmd-title">System Identification & Time</div>
-    <div class="cmd-box" onclick="copyText(this)">
-hostname
+    <div class="cmd-title">System Identification</div>
+    <div class="cmd-box" onclick="copyText(this)">hostname
 whoami
-ver
-systeminfo
-time /t
-date /t
-tzutil /g
-    </div>
+systeminfo</div>
+  </div>
+</div>
+
+<!-- ================= CMD PANEL ================= -->
+<div id="ultimate" class="panel">
+  <div class="cmd-card">
+    <div class="cmd-title">File & Directory</div>
+    <div class="cmd-box" onclick="copyText(this)">dir
+tree
+copy
+robocopy
+del</div>
+  </div>
+</div>
+
+<!-- ================= POWERSHELL PANEL ================= -->
+<div id="powershell" class="panel">
+  <div class="cmd-card">
+    <div class="cmd-title">PowerShell Basics</div>
+    <div class="cmd-box" onclick="copyText(this)">Get-ComputerInfo
+Get-Process
+Get-Service</div>
+  </div>
+</div>
+
+<!-- ================= EXAMPLES PANEL ================= -->
+<div id="examples" class="panel">
+
+  <div class="cmd-card">
+    <div class="cmd-title">CMD – Malware Detection</div>
+    <div class="cmd-box" onclick="copyText(this)">tasklist /v
+netstat -ano</div>
   </div>
 
-  <!-- ===== USER ACCOUNTS ===== -->
   <div class="cmd-card">
-    <div class="cmd-title">Users & Logons</div>
-    <div class="cmd-box" onclick="copyText(this)">
-net user
-net user username
-net localgroup administrators
-quser
-qwinsta
-    </div>
+    <div class="cmd-title">PowerShell – Persistence</div>
+    <div class="cmd-box" onclick="copyText(this)">Get-ScheduledTask</div>
   </div>
 
-  <!-- ===== PROCESS & MEMORY ===== -->
   <div class="cmd-card">
-    <div class="cmd-title">Processes & Memory</div>
-    <div class="cmd-box" onclick="copyText(this)">
-tasklist
-tasklist /v
-tasklist /svc
-wmic process list full
-wmic process get caption,commandline,processid
-    </div>
+    <div class="cmd-title">Linux – Network</div>
+    <div class="cmd-box" onclick="copyText(this)">ss -tulnp</div>
   </div>
 
-  <!-- ===== SERVICES & PERSISTENCE ===== -->
   <div class="cmd-card">
-    <div class="cmd-title">Services & Persistence</div>
-    <div class="cmd-box" onclick="copyText(this)">
-sc query
-sc query type= service
-sc queryex
-wmic service list full
-    </div>
-  </div>
-
-  <!-- ===== STARTUP LOCATIONS ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Startup & Autoruns</div>
-    <div class="cmd-box" onclick="copyText(this)">
-reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run
-reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
-dir "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
-dir "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
-    </div>
-  </div>
-
-  <!-- ===== NETWORK FORENSICS ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Network Forensics</div>
-    <div class="cmd-box" onclick="copyText(this)">
-ipconfig /all
-arp -a
-route print
-netstat -ano
-netstat -abno
-nbtstat -n
-nbtstat -a IP
-    </div>
-  </div>
-
-  <!-- ===== FIREWALL & SHARES ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Firewall, Shares & Lateral Movement</div>
-    <div class="cmd-box" onclick="copyText(this)">
-netsh advfirewall show allprofiles
-netsh advfirewall firewall show rule name=all
-net use
-net share
-    </div>
-  </div>
-
-  <!-- ===== FILE SYSTEM FORENSICS ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">File System Forensics</div>
-    <div class="cmd-box" onclick="copyText(this)">
-dir /a /s C:\ > files.txt
-tree C:\ /f /a
-attrib
-fsutil fsinfo drives
-fsutil dirty query C:
-    </div>
-  </div>
-
-  <!-- ===== EVENT LOG TRIAGE ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Event Log Triage</div>
-    <div class="cmd-box" onclick="copyText(this)">
-doskey /history
-wevtutil qe Security /f:text /c:50
-wevtutil qe System /f:text /c:50
-    </div>
-  </div>
-
-  <!-- ===== USB FORENSICS ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">USB & External Devices</div>
-    <div class="cmd-box" onclick="copyText(this)">
-reg query HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR
-reg query HKLM\SYSTEM\MountedDevices
-    </div>
-  </div>
-
-  <!-- ===== MALWARE & TASKING ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Malware Triage & Scheduled Tasks</div>
-    <div class="cmd-box" onclick="copyText(this)">
-assoc
-ftype
-schtasks
-schtasks /query /fo LIST /v
-    </div>
-  </div>
-
-  <!-- ===== PREFETCH ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Prefetch (Execution Evidence)</div>
-    <div class="cmd-box" onclick="copyText(this)">
-dir C:\Windows\Prefetch
-    </div>
-  </div>
-
-  <!-- ===== SHADOW COPIES ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Shadow Copies & Backups</div>
-    <div class="cmd-box" onclick="copyText(this)">
-vssadmin list shadows
-vssadmin list volumes
-    </div>
-  </div>
-
-  <!-- ===== DISK & PARTITIONS ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Disk & Partitions</div>
-    <div class="cmd-box" onclick="copyText(this)">
-diskpart
-list disk
-list volume
-detail volume
-    </div>
-  </div>
-
-  <!-- ===== FILE HASHING ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">File Hashing</div>
-    <div class="cmd-box" onclick="copyText(this)">
-certutil -hashfile evidence.img MD5
-certutil -hashfile evidence.img SHA256
-    </div>
-  </div>
-
-  <!-- ===== BASE64 ABUSE ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Base64 Encoding & Staging Abuse</div>
-    <div class="cmd-box" onclick="copyText(this)">
-certutil -decode input.txt output.exe
-certutil -encode file.exe encoded.txt
-    </div>
-  </div>
-
-  <!-- ===== REGISTRY HUNTING ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Deep Registry Hunting</div>
-    <div class="cmd-box" onclick="copyText(this)">
-reg query HKLM /s
-reg query HKCU /s
-reg query HKLM\Software\Microsoft\Windows\CurrentVersion
-    </div>
-  </div>
-
-  <!-- ===== SCRIPTING ABUSE ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Script & Ransomware Indicators</div>
-    <div class="cmd-box" onclick="copyText(this)">
-assoc | find ".js"
-assoc | find ".vbs"
-assoc | find ".ps1"
-    </div>
-  </div>
-
-  <!-- ===== TIME SYNC ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Time Synchronization</div>
-    <div class="cmd-box" onclick="copyText(this)">
-w32tm /query /status
-    </div>
-  </div>
-
-  <!-- ===== LOG EXPORT ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">EVTX Log Export</div>
-    <div class="cmd-box" onclick="copyText(this)">
-wevtutil epl Security security.evtx
-wevtutil epl System system.evtx
-    </div>
-  </div>
-
-  <!-- ===== DRIVERS ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Drivers & Rootkits</div>
-    <div class="cmd-box" onclick="copyText(this)">
-driverquery
-driverquery /v
-driverquery /si
-    </div>
-  </div>
-
-  <!-- ===== ENVIRONMENT ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Environment Variables & Staging</div>
-    <div class="cmd-box" onclick="copyText(this)">
-set
-echo %TEMP%
-echo %APPDATA%
-    </div>
-  </div>
-
-  <!-- ===== IOC SEARCH ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">IOC & Keyword Searching</div>
-    <div class="cmd-box" onclick="copyText(this)">
-where file.exe
-findstr /i "password" *.txt
-findstr /s /i "token" C:\*
-    </div>
-  </div>
-
-  <!-- ===== CONTAINMENT ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">Live Containment</div>
-    <div class="cmd-box" onclick="copyText(this)">
-taskkill /PID 1234 /F
-taskkill /IM malware.exe /F
-    </div>
-  </div>
-
-  <!-- ===== SYSTEM INTEGRITY ===== -->
-  <div class="cmd-card">
-    <div class="cmd-title">System Integrity</div>
-    <div class="cmd-box" onclick="copyText(this)">
-sfc /scannow
-chkdsk C: /f
-    </div>
+    <div class="cmd-title">Python – Hashing</div>
+    <div class="cmd-box" onclick="copyText(this)">import hashlib
+print(hashlib.sha256(open("e.img","rb").read()).hexdigest())</div>
   </div>
 
 </div>
-
 
 <script>
-function openTab(tabId) {
+function openTab(tabId, btn) {
   document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   document.getElementById(tabId).classList.add("active");
-  event.target.classList.add("active");
+  btn.classList.add("active");
+}
+
+function copyText(el) {
+  navigator.clipboard.writeText(el.innerText);
 }
 
 function searchCommands() {
   const input = document.getElementById("searchBox").value.toLowerCase();
-  const cards = document.querySelectorAll(".cmd-card");
-
-  cards.forEach(card => {
-    const text = card.innerText.toLowerCase();
-    const box = card.querySelector(".cmd-box");
-
-    if (text.includes(input)) {
-      card.style.display = "block";
-      highlight(box, input);
-    } else {
-      card.style.display = "none";
-    }
+  document.querySelectorAll(".cmd-card").forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(input) ? "block" : "none";
   });
-}
-
-function highlight(element, keyword) {
-  const text = element.innerText;
-  if (!keyword) {
-    element.innerHTML = text;
-    return;
-  }
-  const regex = new RegExp(`(${keyword})`, "gi");
-  element.innerHTML = text.replace(regex, "<mark>$1</mark>");
 }
 </script>
 
