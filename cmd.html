@@ -140,61 +140,268 @@ mark {
   <button class="tab-btn" onclick="openTab('mac')">macOS</button>
 </div>
 
-<!-- ================= CMD ================= -->
 <div id="cmd" class="panel active">
+
+  <!-- ===== SYSTEM IDENTIFICATION ===== -->
   <div class="cmd-card">
-    <div class="cmd-title">System Info</div>
-    <div class="cmd-box">hostname
+    <div class="cmd-title">System Identification & Time</div>
+    <div class="cmd-box" onclick="copyText(this)">
+hostname
 whoami
-systeminfo</div>
+ver
+systeminfo
+time /t
+date /t
+tzutil /g
+    </div>
   </div>
+
+  <!-- ===== USER ACCOUNTS ===== -->
   <div class="cmd-card">
-    <div class="cmd-title">Network Connections</div>
-    <div class="cmd-box">ipconfig /all
+    <div class="cmd-title">Users & Logons</div>
+    <div class="cmd-box" onclick="copyText(this)">
+net user
+net user username
+net localgroup administrators
+quser
+qwinsta
+    </div>
+  </div>
+
+  <!-- ===== PROCESS & MEMORY ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Processes & Memory</div>
+    <div class="cmd-box" onclick="copyText(this)">
+tasklist
+tasklist /v
+tasklist /svc
+wmic process list full
+wmic process get caption,commandline,processid
+    </div>
+  </div>
+
+  <!-- ===== SERVICES & PERSISTENCE ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Services & Persistence</div>
+    <div class="cmd-box" onclick="copyText(this)">
+sc query
+sc query type= service
+sc queryex
+wmic service list full
+    </div>
+  </div>
+
+  <!-- ===== STARTUP LOCATIONS ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Startup & Autoruns</div>
+    <div class="cmd-box" onclick="copyText(this)">
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+dir "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
+dir "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
+    </div>
+  </div>
+
+  <!-- ===== NETWORK FORENSICS ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Network Forensics</div>
+    <div class="cmd-box" onclick="copyText(this)">
+ipconfig /all
+arp -a
+route print
 netstat -ano
-arp -a</div>
+netstat -abno
+nbtstat -n
+nbtstat -a IP
+    </div>
   </div>
+
+  <!-- ===== FIREWALL & SHARES ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Firewall, Shares & Lateral Movement</div>
+    <div class="cmd-box" onclick="copyText(this)">
+netsh advfirewall show allprofiles
+netsh advfirewall firewall show rule name=all
+net use
+net share
+    </div>
+  </div>
+
+  <!-- ===== FILE SYSTEM FORENSICS ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">File System Forensics</div>
+    <div class="cmd-box" onclick="copyText(this)">
+dir /a /s C:\ > files.txt
+tree C:\ /f /a
+attrib
+fsutil fsinfo drives
+fsutil dirty query C:
+    </div>
+  </div>
+
+  <!-- ===== EVENT LOG TRIAGE ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Event Log Triage</div>
+    <div class="cmd-box" onclick="copyText(this)">
+doskey /history
+wevtutil qe Security /f:text /c:50
+wevtutil qe System /f:text /c:50
+    </div>
+  </div>
+
+  <!-- ===== USB FORENSICS ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">USB & External Devices</div>
+    <div class="cmd-box" onclick="copyText(this)">
+reg query HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR
+reg query HKLM\SYSTEM\MountedDevices
+    </div>
+  </div>
+
+  <!-- ===== MALWARE & TASKING ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Malware Triage & Scheduled Tasks</div>
+    <div class="cmd-box" onclick="copyText(this)">
+assoc
+ftype
+schtasks
+schtasks /query /fo LIST /v
+    </div>
+  </div>
+
+  <!-- ===== PREFETCH ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Prefetch (Execution Evidence)</div>
+    <div class="cmd-box" onclick="copyText(this)">
+dir C:\Windows\Prefetch
+    </div>
+  </div>
+
+  <!-- ===== SHADOW COPIES ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Shadow Copies & Backups</div>
+    <div class="cmd-box" onclick="copyText(this)">
+vssadmin list shadows
+vssadmin list volumes
+    </div>
+  </div>
+
+  <!-- ===== DISK & PARTITIONS ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Disk & Partitions</div>
+    <div class="cmd-box" onclick="copyText(this)">
+diskpart
+list disk
+list volume
+detail volume
+    </div>
+  </div>
+
+  <!-- ===== FILE HASHING ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">File Hashing</div>
+    <div class="cmd-box" onclick="copyText(this)">
+certutil -hashfile evidence.img MD5
+certutil -hashfile evidence.img SHA256
+    </div>
+  </div>
+
+  <!-- ===== BASE64 ABUSE ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Base64 Encoding & Staging Abuse</div>
+    <div class="cmd-box" onclick="copyText(this)">
+certutil -decode input.txt output.exe
+certutil -encode file.exe encoded.txt
+    </div>
+  </div>
+
+  <!-- ===== REGISTRY HUNTING ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Deep Registry Hunting</div>
+    <div class="cmd-box" onclick="copyText(this)">
+reg query HKLM /s
+reg query HKCU /s
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion
+    </div>
+  </div>
+
+  <!-- ===== SCRIPTING ABUSE ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Script & Ransomware Indicators</div>
+    <div class="cmd-box" onclick="copyText(this)">
+assoc | find ".js"
+assoc | find ".vbs"
+assoc | find ".ps1"
+    </div>
+  </div>
+
+  <!-- ===== TIME SYNC ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Time Synchronization</div>
+    <div class="cmd-box" onclick="copyText(this)">
+w32tm /query /status
+    </div>
+  </div>
+
+  <!-- ===== LOG EXPORT ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">EVTX Log Export</div>
+    <div class="cmd-box" onclick="copyText(this)">
+wevtutil epl Security security.evtx
+wevtutil epl System system.evtx
+    </div>
+  </div>
+
+  <!-- ===== DRIVERS ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Drivers & Rootkits</div>
+    <div class="cmd-box" onclick="copyText(this)">
+driverquery
+driverquery /v
+driverquery /si
+    </div>
+  </div>
+
+  <!-- ===== ENVIRONMENT ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Environment Variables & Staging</div>
+    <div class="cmd-box" onclick="copyText(this)">
+set
+echo %TEMP%
+echo %APPDATA%
+    </div>
+  </div>
+
+  <!-- ===== IOC SEARCH ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">IOC & Keyword Searching</div>
+    <div class="cmd-box" onclick="copyText(this)">
+where file.exe
+findstr /i "password" *.txt
+findstr /s /i "token" C:\*
+    </div>
+  </div>
+
+  <!-- ===== CONTAINMENT ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">Live Containment</div>
+    <div class="cmd-box" onclick="copyText(this)">
+taskkill /PID 1234 /F
+taskkill /IM malware.exe /F
+    </div>
+  </div>
+
+  <!-- ===== SYSTEM INTEGRITY ===== -->
+  <div class="cmd-card">
+    <div class="cmd-title">System Integrity</div>
+    <div class="cmd-box" onclick="copyText(this)">
+sfc /scannow
+chkdsk C: /f
+    </div>
+  </div>
+
 </div>
 
-<!-- ================= PS ================= -->
-<div id="ps" class="panel">
-  <div class="cmd-card">
-    <div class="cmd-title">Running Processes</div>
-    <div class="cmd-box">Get-Process | Select Name,Id,Path</div>
-  </div>
-  <div class="cmd-card">
-    <div class="cmd-title">Active Connections</div>
-    <div class="cmd-box">Get-NetTCPConnection</div>
-  </div>
-</div>
-
-<!-- ================= LINUX ================= -->
-<div id="linux" class="panel">
-  <div class="cmd-card">
-    <div class="cmd-title">Processes</div>
-    <div class="cmd-box">ps aux
-top</div>
-  </div>
-  <div class="cmd-card">
-    <div class="cmd-title">Network</div>
-    <div class="cmd-box">ss -tulpn
-ip a</div>
-  </div>
-</div>
-
-<!-- ================= MAC ================= -->
-<div id="mac" class="panel">
-  <div class="cmd-card">
-    <div class="cmd-title">System Info</div>
-    <div class="cmd-box">sw_vers
-system_profiler SPSoftwareDataType</div>
-  </div>
-  <div class="cmd-card">
-    <div class="cmd-title">Persistence</div>
-    <div class="cmd-box">ls ~/Library/LaunchAgents
-ls /Library/LaunchDaemons</div>
-  </div>
-</div>
 
 <script>
 function openTab(tabId) {
