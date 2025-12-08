@@ -1,62 +1,295 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>DFIR Reports</title>
+  <meta charset="UTF-8" />
+  <title>4nsic Zone – DFIR Downloads</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  
+<style>
+/* ===== Drone Forensics Reporting Section (Dark Version) ===== */
 
-  <style>
-    body { margin: 0; background: #000; color: #e8f9ff; font-family: Arial, sans-serif; }
-    .layout { display: flex; min-height: 100vh; }
+body {
+  background-color: #000000;        /* full black page */
+  color: #e8f9ff;
+}
 
-    .sidebar {
-      width: 240px;
-      background: #020617;
-      padding: 18px;
-      border-right: 1px solid rgba(0,229,255,.3);
-    }
+/* Main section container */
+.report-section {
+  margin: 40px auto;
+  width: 85%;
+  max-width: 1100px;
+  color: #f0f0f0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-    .nav-link {
-      display: block;
-      margin-bottom: 10px;
-      color: #e5e7eb;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(31,41,55,.9);
-    }
+/* Header stays neon */
+.report-header {
+  font-size: 2.4rem;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  text-shadow: 0 0 8px #00e5ff;
+  margin-bottom: 20px;
+  text-align: left;
+}
 
-    .main { flex: 1; padding: 40px; max-width: 1200px; margin: auto; }
+/* Description text */
+.report-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  color: #d8d8d8;
+}
 
-    .report-header {
-      font-size: 2.4rem;
-      text-shadow: 0 0 8px #00e5ff;
-    }
+/* ===== GRAY CARDS ===== */
+.report-card {
+  background: #1a1a1a;                 /* dark gray card */
+  border-left: 4px solid #00e5ff;      /* neon accent */
+  padding: 18px 20px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.15); 
+}
 
-    @media (max-width: 850px){
-      .layout { flex-direction: column; }
-      .sidebar { width: 100%; }
-    }
-  </style>
-</head>
+.report-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-shadow: 0 0 6px #00e5ff;
+}
+
+.report-card p,
+.report-card ul {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #cccccc;
+}
+
+.report-card ul {
+  padding-left: 20px;
+  margin-top: 4px;
+}
+
+.report-card li {
+  margin-bottom: 4px;
+}
+
+/* Code blocks on gray cards */
+.code-block {
+  background: #0d0d0d;                /* deep black for contrast */
+  padding: 12px;
+  color: #00e5ff;
+  border-radius: 6px;
+  font-family: "Courier New", monospace;
+  font-size: 0.92rem;
+  overflow-x: auto;
+  margin-top: 6px;
+  border: 1px solid #00e5ff44;
+}
+
+  /* ✅ GLOBAL LAYOUT WRAPPER */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ✅ LEFT SIDEBAR */
+.sidebar {
+  flex: 0 0 240px;
+  width: 240px;
+  background: #020617;
+  padding: 18px 14px;
+  border-right: 1px solid rgba(148,163,184,.3);
+  box-shadow: 4px 0 18px rgba(0,0,0,.6);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* ✅ SITE LOGO */
+.site-logo {
+  font-size: 1.05rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  text-shadow: 0 0 8px #00e5ff;
+  margin-bottom: 18px;
+}
+
+/* ✅ NAV LIST */
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ✅ NAV LINKS */
+.nav-link {
+  color: #e5e7eb;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(31,41,55,.9);
+  background: #020617;
+  font-size: .85rem;
+  transition: .2s;
+}
+
+.nav-link:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 12px rgba(0,229,255,.4);
+  transform: translateY(-1px);
+}
+
+/* ✅ PAGE CONTENT COLUMN */
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ✅ MOBILE STACKING */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+</style>
 
 <body>
+  <div class="layout">
 
-<div class="layout">
-
-  <!-- ✅ SIDEBAR -->
+  <!-- ✅ LEFT SIDEBAR -->
   <aside class="sidebar">
-    <h3>4NSIC ZONE</h3>
-    <a class="nav-link" href="index.html">Home</a>
-    <a class="nav-link" href="index2.html">Chip ID</a>
-    <a class="nav-link" href="index3.html">Resources</a>
-    <a class="nav-link" href="downloads.html">Downloads</a>
-    <a class="nav-link" href="cmd.html">CMD</a>
-    <a class="nav-link" href="powershell_playbook.html">PowerShell</a>
+    <div class="site-logo">4NSIC ZONE</div>
+    <nav class="nav-list">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index2.html">Chip ID Framework</a>
+      <a class="nav-link" href="ecs.html">ECS Reporting</a>
+      <a class="nav-link" href="index3.html">Resources</a>
+      <a class="nav-link" href="index4.html">Tools</a>
+      <a class="nav-link" href="downloads.html">Downloads</a>
+      <a class="nav-link" href="cmd.html">CMD Playbook</a>
+      <a class="nav-link" href="powershell_playbook.html">PowerShell</a>
+    </nav>
   </aside>
 
-  <!-- ✅ MAIN -->
-  <main class="main">
+<section id="drone-reporting" class="report-section">
+  <h2 class="report-header">Drone Forensics Reporting (ECS)</h2>
 
-    <section class="report-section">
-      <h2 class="report-header">Drone Forensics Reporting (ECS)</h2>
-      <!-- ✅ KEEP ALL YOUR EXISTING REPORT CARDS HERE -->
+  <p class="report-description">
+    This section documents how Elastic Common Schema (ECS) is used to normalize and analyze
+    drone telemetry, media, and controller activity for DFIR investigations.
+  </p>
+
+  <div class="report-card">
+    <h3>➤ Purpose</h3>
+    <p>
+      ECS provides a standardized field structure for drone data, allowing flight logs, GPS,
+      media EXIF, network traffic, and operator activity to be correlated into a single
+      forensic timeline.
+    </p>
+  </div>
+
+  <div class="report-card">
+    <h3>➤ Data Sources Included</h3>
+    <ul>
+      <li>Flight logs (TXT / CSV / DAT)</li>
+      <li>GPS &amp; GNSS telemetry</li>
+      <li>Remote ID / RF telemetry</li>
+      <li>Photos &amp; videos (EXIF metadata)</li>
+      <li>Controller / mobile app logs</li>
+      <li>Cloud sync / account activity</li>
+    </ul>
+  </div>
+
+  <div class="report-card">
+    <h3>➤ Key ECS Fields Used</h3>
+    <p>Core ECS + custom <code>drone.*</code> namespace:</p>
+    <pre class="code-block">
+@timestamp
+event.action
+event.category
+device.model
+device.serial_number
+user.name
+geo.location.lat
+geo.location.lon
+drone.flight.altitude_msl_m
+drone.flight.ground_speed_mps
+drone.battery.charge_percent
+drone.controller.sticks.pitch
+    </pre>
+  </div>
+
+  <div class="report-card">
+    <h3>➤ Reporting Focus</h3>
+    <ul>
+      <li>Flight path reconstruction</li>
+      <li>Operator attribution and controller linkage</li>
+      <li>Crash / anomaly analysis (failsafes, geofencing, errors)</li>
+      <li>Correlation with other DFIR evidence (endpoints, network, cloud)</li>
+    </ul>
+  </div>
+
+  <!-- 🔽 NEW: Examples card 🔽 -->
+  <div class="report-card">
+    <h3>➤ Examples</h3>
+    <p>Sample ECS-normalized events for drone investigations:</p>
+
+    <pre class="code-block">
+Example 1 – Takeoff Event
+@timestamp: 2025-01-01T12:00:05Z
+event.action: takeoff
+event.category: ["flight"]
+device.model: "DJI Mavic 3"
+user.name: "pilot_account_1"
+geo.location.lat: 36.1214
+geo.location.lon: -115.1738
+drone.flight.phase: "takeoff"
+drone.battery.charge_percent: 96
+    </pre>
+
+    <pre class="code-block">
+Example 2 – Photo Captured Mid-Flight
+@timestamp: 2025-01-01T12:08:32Z
+event.action: media_capture
+event.category: ["media", "flight"]
+file.path: "/DCIM/100MEDIA/DJI_0005.JPG"
+geo.location.lat: 36.1220
+geo.location.lon: -115.1750
+drone.flight.altitude_msl_m: 1512.3
+drone.media.type: "photo"
+drone.media.camera.model: "Hasselblad L1D-20c"
+    </pre>
+
+    <pre class="code-block">
+Example 3 – Anomaly / Crash Detected
+@timestamp: 2025-01-01T12:12:47Z
+event.action: crash_detected
+event.category: ["error", "flight"]
+event.outcome: "failure"
+geo.location.lat: 36.1231
+geo.location.lon: -115.1764
+drone.flight.phase: "crashed"
+drone.anomaly.crash_detected: true
+drone.anomaly.last_error_code: "0x0102"
+drone.anomaly.last_error_description: "Obstacle impact - front sensor"
+    </pre>
+  </div>
+</section>
+
+  </div>
+</body>
