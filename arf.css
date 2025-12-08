@@ -17,8 +17,8 @@ body {
     top: 47px;      /* distance from top */
     left: 10px;    /* distance from left */
     right: 10px;   /* distance from right */
-    width: 150px;   /* size of the image */
-    height: 180px;  /* maintain aspect ratio */
+    width: 130px;   /* size of the image */
+    height: 160px;  /* maintain aspect ratio */
     z-index: 1000; /* ensure it stays on top */
 }
 
