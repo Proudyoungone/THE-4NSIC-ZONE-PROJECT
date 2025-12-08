@@ -478,75 +478,6 @@
     width: 100% !important;
   }
 
-}
-
-    /* ===== AI SITE SEARCH ===== */
-
-.ai-search-box {
-  max-width: 700px;
-  margin: 40px 0;
-  padding: 25px;
-  background: #0b1220;
-  border-radius: 16px;
-  box-shadow: 0 0 18px rgba(0, 229, 255, 0.25);
-  border: 1px solid rgba(0,229,255,0.35);
-}
-
-.ai-search-title {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin-bottom: 14px;
-  color: #f5f5f5;
-  text-shadow: 0 0 8px #00e5ff;
-  letter-spacing: 0.08em;
-}
-
-#aiSearchInput {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 12px;
-  font-size: 1rem;
-  border: none;
-  outline: none;
-  background: #020617;
-  color: #e8f9ff;
-  box-shadow: inset 0 0 10px rgba(0,229,255,0.35);
-}
-
-#aiResults {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.ai-result {
-  padding: 12px 14px;
-  background: #020617;
-  border-radius: 12px;
-  border-left: 4px solid #00e5ff;
-  box-shadow: 0 0 8px rgba(0,229,255,0.2);
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.ai-result:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 14px rgba(0,229,255,0.6);
-}
-
-.ai-result-title {
-  font-weight: bold;
-  color: #ffffff;
-}
-
-.ai-result-desc {
-  font-size: 0.9rem;
-  color: #cccccc;
-  margin-top: 4px;
-}
-
-
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -587,14 +518,6 @@
       <hr />
     </div>
     <br>
-
-    <!-- ✅ AI SEARCH ENGINE START -->
-<div class="ai-search-box">
-  <h2 class="ai-search-title">4NSIC AI Site Search</h2>
-  <input type="text" id="aiSearchInput" placeholder="Search the entire site..." />
-  <div id="aiResults"></div>
-</div>
-<!-- ✅ AI SEARCH ENGINE END -->
 
   <section class="hero-row">
 
@@ -941,98 +864,12 @@ async function loadDfirGithubFeed() {
     container.innerHTML = "<p>Error loading GitHub feed.</p>";
   }
 }
-
-/* ================================ */
-/* ✅ 4NSIC REAL SITE CONTENT SEARCH */
-/* ================================ */
-
-const SITE_PAGES = [
-  { title: "Home", url: "index.html" },
-  { title: "Chip ID Framework", url: "index2.html" },
-  { title: "ECS Reporting", url: "ecs.html" },
-  { title: "Resources", url: "index3.html" },
-  { title: "Tools", url: "tools.html" },
-  { title: "CMD Playbook", url: "cmd.html" }
-];
-
-let SEARCH_INDEX = [];
-
-async function fetchAndIndexPages() {
-  for (const page of SITE_PAGES) {
-    try {
-      const res = await fetch(page.url);
-      if (!res.ok) {
-        console.warn("Fetch failed for", page.url, res.status);
-        continue;
-      }
-
-      const html = await res.text();
-
-      const text = html
-        .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
-        .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '')
-        .replace(/<[^>]*>/g, ' ')
-        .replace(/\s+/g, ' ')
-        .toLowerCase();
-
-      SEARCH_INDEX.push({
-        title: page.title,
-        url: page.url,
-        text
-      });
-
-    } catch (err) {
-      console.warn("Search index failed for:", page.url, err);
-    }
-  }
-}
-
-window.addEventListener("DOMContentLoaded", async () => {
-  // load GitHub feed
-  loadDfirGithubFeed();
-
-  // build search index
-  await fetchAndIndexPages();
-
-  const input = document.getElementById("aiSearchInput");
-  const resultsBox = document.getElementById("aiResults");
-
-  if (!input || !resultsBox) return;
-
-  input.addEventListener("input", () => {
-    const query = input.value.trim().toLowerCase();
-    resultsBox.innerHTML = "";
-
-    if (query.length < 3) return;
-
-    const results = SEARCH_INDEX.filter(page =>
-      page.text.includes(query)
-    );
-
-    results.forEach(page => {
-      const div = document.createElement("div");
-      div.className = "ai-result";
-      div.onclick = () => window.location.href = page.url;
-
-      div.innerHTML = `
-        <div class="ai-result-title">${page.title}</div>
-        <div class="ai-result-desc">Click to open matching content</div>
-      `;
-
-      resultsBox.appendChild(div);
-    });
-
-    if (results.length === 0) {
-      resultsBox.innerHTML = `<div class="ai-result">No results found.</div>`;
-    }
-  });
-
-});
 </script>
 
 
 </body>
 </html>
+
 
 
 
