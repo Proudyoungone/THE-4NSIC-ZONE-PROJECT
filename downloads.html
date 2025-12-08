@@ -2,36 +2,156 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tool Links</title>
+  <title>4nsic Zone – DFIR Downloads</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 
+  <!-- Reuse your main CSS for consistent styling -->
   <link rel="stylesheet" href="arf2.css" />
 
   <style>
-    body { margin: 0; background: #8b8a8a; color: white; font-family: Arial; }
-    .layout { display: flex; min-height: 100vh; }
-
-    .sidebar {
-      width: 240px;
-      background: #020617;
-      padding: 18px;
-      border-right: 1px solid rgba(0,229,255,.3);
+    body {
+      background: #8b8a8a;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
     }
 
-    .nav-list { display: flex; flex-direction: column; gap: 10px; }
+    /* ✅ LAYOUT + SIDEBAR */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .sidebar {
+      flex: 0 0 240px;
+      width: 240px;
+      background: #020617;
+      padding: 18px 14px;
+      border-right: 1px solid rgba(148,163,184,.3);
+      box-shadow: 4px 0 18px rgba(0,0,0,.6);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .site-logo {
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+      text-shadow: 0 0 8px #00e5ff;
+      margin-bottom: 18px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     .nav-link {
       color: #e5e7eb;
       text-decoration: none;
       padding: 8px 12px;
       border-radius: 999px;
+      border: 1px solid rgba(31,41,55,.9);
       background: #020617;
-      border: 1px solid rgba(31,41,55,0.9);
+      font-size: .85rem;
+      transition: .2s;
     }
 
-    .main { flex: 1; padding: 40px; }
+    .nav-link:hover {
+      border-color: #00e5ff;
+      box-shadow: 0 0 12px rgba(0,229,255,.4);
+      transform: translateY(-1px);
+    }
 
-    @media (max-width: 850px){
-      .layout { flex-direction: column; }
-      .sidebar { width: 100%; }
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    #body {
+      padding: 40px;
+      position: relative;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* ✅ Your original styles BELOW (unchanged) */
+    #header {
+      font-size: 2.4rem;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+      text-shadow: 0 0 8px #00e5ff;
+    }
+
+    #subtitle {
+      font-size: 1rem;
+      margin-top: 4px;
+      color: #d9f5ff;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #00d4ff;
+      margin: 10px 0 20px 0;
+    }
+
+    .nav-row { display: flex; justify-content: flex-end; gap: 15px; margin-top: 10px; margin-bottom: 30px; }
+
+    .nav-btn, .nav-btn2 {
+      padding: 10px 20px;
+      color: black;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+    }
+
+    .nav-btn { background: linear-gradient(to right, #007BFF, #00D4FF); }
+    .nav-btn2 { background: linear-gradient(to right, #2d5862, #63c8ce); }
+
+    .page-intro { max-width: 800px; margin-bottom: 30px; }
+
+    .dl-search-wrap { margin: 10px 0 25px 0; max-width: 420px; }
+
+    #toolSearchInput {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 229, 255, 0.6);
+      background: rgba(0, 0, 0, 0.35);
+      color: #f5f5f5;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .dl-card {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 14px;
+      padding: 16px 18px;
+      border: 1px solid rgba(0, 229, 255, 0.35);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.85rem;
+      color: #e0f4ff;
+      border-top: 1px solid rgba(0, 229, 255, 0.4);
+      padding-top: 15px;
     }
   </style>
 </head>
@@ -40,28 +160,1361 @@
 
 <div class="layout">
 
-  <!-- ✅ SIDEBAR -->
+  <!-- ✅ LEFT SIDEBAR (ADDED ONLY) -->
   <aside class="sidebar">
     <div class="site-logo">4NSIC ZONE</div>
     <nav class="nav-list">
       <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="index2.html">Chip ID</a>
+      <a class="nav-link" href="index2.html">Chip ID Framework</a>
       <a class="nav-link" href="ecs.html">ECS Reporting</a>
       <a class="nav-link" href="index3.html">Resources</a>
+      <a class="nav-link" href="index4.html">Tools</a>
       <a class="nav-link" href="downloads.html">Downloads</a>
-      <a class="nav-link" href="cmd.html">CMD</a>
-      <a class="nav-link" href="powershell_playbook.html">PowerShell</a>
-      <a class="nav-link" href="Report.html">Reports</a>
+      <a class="nav-link" href="cmd.html">CMD Playbook</a>
     </nav>
   </aside>
 
-  <!-- ✅ MAIN -->
-  <main class="main">
-
+     <!-- Header -->
     <div id="header">
-      4NSIC ZONE
+      4nsic Zone
       <div id="subtitle">Digital Forensics Tool Downloads</div>
       <hr />
     </div>
 
-    <!-- ✅ KEEP YOUR EXISTING DOWNLOAD GRID SECTIONS BELOW THIS -->
+    <!-- Intro -->
+    <section class="page-intro">
+      <p>
+        This page pulls together a broad set of DFIR tools so you can jump straight to
+        the official download or project page. Always verify hashes, signatures, licenses,
+        and legal requirements before using any tool in an investigation.
+      </p>
+    </section>
+
+    <!-- Downloads search bar -->
+    <div class="dl-search-wrap">
+      <label class="dl-search-label" for="toolSearchInput">
+        Search DFIR tools
+      </label>
+      <input
+        id="toolSearchInput"
+        type="text"
+        placeholder="Try: mobile, Wireshark, EXIF, timeline, imaging…"
+      />
+      <p class="dl-search-hint">
+        This filters all tool cards on this page by name, description, and tags.
+      </p>
+    </div>
+
+    <!-- ============================== -->
+    <!-- TRIAGE & IMAGING               -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Triage &amp; Imaging</h2>
+    <p class="dl-section-subtitle">Disk imaging, quick triage, and evidence acquisition.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>FTK Imager</h3>
+        <div class="dl-tagline">Disk imaging &amp; preview</div>
+        <p>
+          Lightweight imaging and preview tool for acquiring forensic images, mounting them,
+          and verifying hash values.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free</div>
+        <a class="dl-btn" href="https://www.exterro.com/ftk-imager" target="_blank" rel="noopener">
+          Download FTK Imager →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Magnet ACQUIRE</h3>
+        <div class="dl-tagline">Evidence acquisition</div>
+        <p>
+          Tool for acquiring images from computers and some mobile devices, often used as an
+          entry point for Magnet’s analysis stack.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free (registration required)</div>
+        <a class="dl-btn" href="https://www.magnetforensics.com/resources/magnet-acquire/" target="_blank" rel="noopener">
+          Magnet ACQUIRE →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Guymager</h3>
+        <div class="dl-tagline">Open-source imaging (Linux)</div>
+        <p>
+          Fast, open-source forensic imager for Linux with support for multiple image formats
+          and verification.
+        </p>
+        <div class="dl-meta">Platform: Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://guymager.sourceforge.io/" target="_blank" rel="noopener">
+          Guymager Project →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- MEMORY FORENSICS               -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Memory Forensics</h2>
+    <p class="dl-section-subtitle">RAM acquisition and deep analysis of live system artifacts.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Volatility 3</h3>
+        <div class="dl-tagline">Memory forensics framework</div>
+        <p>
+          Analyze memory dumps from Windows, Linux, and macOS to recover processes, drivers,
+          network connections, and potential malware.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform (Python) • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/volatilityfoundation/volatility3" target="_blank" rel="noopener">
+          Volatility 3 on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>OSForensics RAM Imager</h3>
+        <div class="dl-tagline">RAM acquisition</div>
+        <p>
+          Capture physical memory from Windows systems for later analysis using Volatility
+          and other frameworks.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free tool</div>
+        <a class="dl-btn" href="https://www.osforensics.com/tools/memory-imager.html" target="_blank" rel="noopener">
+          OSF Memory Imager →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- MOBILE & DEVICE FORENSICS      -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Mobile &amp; Device Forensics</h2>
+    <p class="dl-section-subtitle">iOS, Android, and unified logs / backup analysis.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>iLEAPP</h3>
+        <div class="dl-tagline">iOS Logs, Events, And Plist Parser</div>
+        <p>
+          Parses iOS/iPadOS extractions and backups, surfacing logs, plists, notifications,
+          and other artifacts into HTML/CSV reports.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform (Python) • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/abrignoni/iLEAPP" target="_blank" rel="noopener">
+          iLEAPP on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>ALEAPP</h3>
+        <div class="dl-tagline">Android Logs, Events, And Protobuf Parser</div>
+        <p>
+          Companion to iLEAPP for Android devices, parsing logs, protobufs, and app data
+          from extractions and backups.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform (Python) • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/abrignoni/ALEAPP" target="_blank" rel="noopener">
+          ALEAPP on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>UFADE</h3>
+        <div class="dl-tagline">iOS unified logs &amp; backups</div>
+        <p>
+          Uses pymobiledevice3 under the hood to create advanced iOS logical backups and
+          extract unified logs for further analysis.
+        </p>
+        <div class="dl-meta">Platform: Windows, macOS, Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/prosch88/UFADE" target="_blank" rel="noopener">
+          UFADE on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>ALEX</h3>
+        <div class="dl-tagline">Android Logical Extractor</div>
+        <p>
+          ADB-based Android extraction utility supporting sdcard pulls, backups, logging,
+          and optional on-the-fly artifacts like screenshots.
+        </p>
+        <div class="dl-meta">Platform: Windows, macOS, Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/prosch88/ALEX" target="_blank" rel="noopener">
+          ALEX on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Arsenic Triage Tool</h3>
+        <div class="dl-tagline">Consent-based iOS triage</div>
+        <p>
+          Mobile triage tool focusing on quick, consent-based iOS investigations with
+          targeted artifact analysis for on-scene use.
+        </p>
+        <div class="dl-meta">Platform: Windows, Apple Silicon • License: Free</div>
+        <a class="dl-btn" href="https://northloopconsulting.com/products" target="_blank" rel="noopener">
+          Arsenic Triage Tool →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- FORENSIC SUITES & PLATFORMS    -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Forensic Suites &amp; Platforms</h2>
+    <p class="dl-section-subtitle">Full-featured forensic environments and toolkits.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Autopsy</h3>
+        <div class="dl-tagline">Digital forensics platform</div>
+        <p>
+          Full GUI-based platform built on The Sleuth Kit for file system, artifacts,
+          timeline, and media analysis.
+        </p>
+        <div class="dl-meta">Platform: Windows, Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://www.autopsy.com/download/" target="_blank" rel="noopener">
+          Download Autopsy →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Sleuth Kit</h3>
+        <div class="dl-tagline">File system analysis toolkit</div>
+        <p>
+          Command-line tools for detailed file system analysis, image parsing, and low-level
+          artifact work.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://www.sleuthkit.org/sleuthkit/download.php" target="_blank" rel="noopener">
+          Download Sleuth Kit →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Kali Linux</h3>
+        <div class="dl-tagline">Security &amp; forensics distro</div>
+        <p>
+          Linux distribution packed with security, DFIR, and network analysis tools. Available
+          as ISO, VM image, and WSL.
+        </p>
+        <div class="dl-meta">Platform: Linux, VM, WSL • License: Free</div>
+        <a class="dl-btn" href="https://www.kali.org/get-kali/" target="_blank" rel="noopener">
+          Get Kali Linux →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>SANS SIFT Workstation</h3>
+        <div class="dl-tagline">Incident response &amp; forensics VM</div>
+        <p>
+          Pre-built Linux workstation with a large collection of DFIR tools, tailored for
+          incident response workflows.
+        </p>
+        <div class="dl-meta">Platform: VM (Ubuntu-based) • License: Free</div>
+        <a class="dl-btn" href="https://www.sans.org/tools/sift-workstation/" target="_blank" rel="noopener">
+          SIFT Workstation →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- WINDOWS ARTIFACT TOOLS         -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Windows Artifact &amp; Triage Tools</h2>
+    <p class="dl-section-subtitle">Registry, file system, and artifact parsers.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Eric Zimmerman Tools</h3>
+        <div class="dl-tagline">Windows artifact parsing toolkit</div>
+        <p>
+          Collection of tools (MFTECmd, AmCacheParser, LECmd, ShellBags Explorer, etc.) for
+          deep Windows artifact analysis.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free for DFIR use</div>
+        <a class="dl-btn" href="https://ericzimmerman.github.io/#!index.md" target="_blank" rel="noopener">
+          Download EZ Tools →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>KAPE</h3>
+        <div class="dl-tagline">Windows artifact triage &amp; collection</div>
+        <p>
+          Rapid collection and parsing framework that uses modular targets and parsers to triage
+          Windows systems quickly.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free (EULA)</div>
+        <a class="dl-btn" href="https://www.kroll.com/en/services/cyber-risk/incident-response-litigation-support/kroll-artifact-parser-extractor-kape" target="_blank" rel="noopener">
+          Get KAPE →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>RegRipper</h3>
+        <div class="dl-tagline">Registry hive parser</div>
+        <p>
+          Classic Windows registry analysis tool that parses hives using plugins focused on
+          forensic-relevant keys and values.
+        </p>
+        <div class="dl-meta">Platform: Windows, Perl • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/keydet89/RegRipper3.0" target="_blank" rel="noopener">
+          RegRipper on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Arsenal Image Mounter</h3>
+        <div class="dl-tagline">Forensic image mounting</div>
+        <p>
+          Mount forensic images as local disks, with options to expose virtual disk structures
+          to tools and the OS.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free / commercial</div>
+        <a class="dl-btn" href="https://arsenalrecon.com/apps/image-mounter/" target="_blank" rel="noopener">
+          Arsenal Image Mounter →
+        </a>
+      </div>
+    </div>
+
+       <!-- ============================== -->
+    <!-- NETWORK FORENSICS, PCAP & PORT -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Network Forensics, PCAP &amp; Port Utilities</h2>
+    <p class="dl-section-subtitle">
+      Packet capture, protocol analysis, network monitoring, and quick port lookups.
+    </p>
+
+    <div class="download-grid">
+      <!-- Wireshark -->
+      <div class="dl-card">
+        <h3>Wireshark</h3>
+        <div class="dl-tagline">Network protocol analyzer</div>
+        <p>
+          Widely used network analysis tool for inspecting live traffic and PCAP files,
+          supporting hundreds of protocols.
+        </p>
+        <div class="dl-meta">Platform: Windows, macOS, Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://www.wireshark.org/download.html" target="_blank" rel="noopener">
+          Download Wireshark →
+        </a>
+      </div>
+
+      <!-- NetworkMiner -->
+      <div class="dl-card">
+        <h3>NetworkMiner</h3>
+        <div class="dl-tagline">Network artifact reconstruction</div>
+        <p>
+          Parses PCAPs to extract files, credentials, sessions, and host information from
+          captured network traffic.
+        </p>
+        <div class="dl-meta">Platform: Windows (Mono on Linux) • License: Free / Pro</div>
+        <a class="dl-btn" href="https://www.netresec.com/?page=NetworkMiner" target="_blank" rel="noopener">
+          NetworkMiner →
+        </a>
+      </div>
+
+      <!-- Zeek -->
+      <div class="dl-card">
+        <h3>Zeek</h3>
+        <div class="dl-tagline">Network security monitoring</div>
+        <p>
+          Network security engine that converts traffic into rich logs, excellent for
+          incident response and hunt operations.
+        </p>
+        <div class="dl-meta">Platform: Linux/Unix • License: Open-source</div>
+        <a class="dl-btn" href="https://zeek.org/get-zeek/" target="_blank" rel="noopener">
+          Get Zeek →
+        </a>
+      </div>
+
+      <!-- SpeedGuide Ports -->
+      <div class="dl-card">
+        <h3>SpeedGuide Port Lookup</h3>
+        <div class="dl-tagline">Common port reference</div>
+        <p>
+          Database of common TCP/UDP ports and their associated services, useful when analyzing
+          firewall logs and network captures.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://www.speedguide.net/ports.php" target="_blank" rel="noopener">
+          SpeedGuide Ports →
+        </a>
+      </div>
+
+      <!-- TCPDump -->
+      <div class="dl-card">
+        <h3>TCPDump</h3>
+        <div class="dl-tagline">CLI packet capture tool</div>
+        <p>
+          Classic command-line packet analyzer used extensively on Linux/Unix systems
+          for live capture and quick review.
+        </p>
+        <div class="dl-meta">Platform: Unix-like • License: Open-source</div>
+        <a class="dl-btn" href="https://www.tcpdump.org/" target="_blank" rel="noopener">
+          TCPDump →
+        </a>
+      </div>
+
+      <!-- TShark -->
+      <div class="dl-card">
+        <h3>TShark</h3>
+        <div class="dl-tagline">Wireshark’s CLI interface</div>
+        <p>
+          Command-line counterpart to Wireshark for scripting, automation, and headless
+          packet capture and analysis.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://www.wireshark.org/docs/man-pages/tshark.html" target="_blank" rel="noopener">
+          TShark Docs →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- BROWSER & CLOUD FORENSICS      -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Browser &amp; Cloud Forensics</h2>
+    <p class="dl-section-subtitle">Web history, cloud app, and SaaS artifact analysis.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Hindsight</h3>
+        <div class="dl-tagline">Chrome browser forensics</div>
+        <p>
+          Parses Chrome/Chromium history and artifacts to reconstruct user activity,
+          including URLs, downloads, and session data.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform (Python) • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/obsidianforensics/hindsight" target="_blank" rel="noopener">
+          Hindsight on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Browser History Viewer / NirSoft Tools</h3>
+        <div class="dl-tagline">Multi-browser history viewers</div>
+        <p>
+          Tools that read browser history, cache, and cookies from multiple browsers to
+          support timeline reconstruction.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Freeware</div>
+        <a class="dl-btn" href="https://www.nirsoft.net/" target="_blank" rel="noopener">
+          NirSoft Browser Tools →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- REVERSE ENGINEERING & MALWARE  -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Reverse Engineering &amp; Malware DFIR</h2>
+    <p class="dl-section-subtitle">Static and dynamic analysis helpers.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Ghidra</h3>
+        <div class="dl-tagline">Software reverse engineering suite</div>
+        <p>
+          Feature-rich framework for reverse engineering binaries with a powerful decompiler
+          and scripting support.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform (Java) • License: Open-source</div>
+        <a class="dl-btn" href="https://ghidra-sre.org/" target="_blank" rel="noopener">
+          Download Ghidra →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>CAPA</h3>
+        <div class="dl-tagline">Malware capability detector</div>
+        <p>
+          Analyzes binaries to detect capabilities (e.g., keylogging, C2, persistence)
+          using rules, rather than signatures.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/mandiant/capa" target="_blank" rel="noopener">
+          CAPA on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>FLOSS</h3>
+        <div class="dl-tagline">Obfuscated string extraction</div>
+        <p>
+          Extracts and deobfuscates strings from malware, helping you quickly see C2 URLs,
+          commands, and configuration.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/mandiant/flare-floss" target="_blank" rel="noopener">
+          FLOSS on GitHub →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- PASSWORD & HASH TOOLS          -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Password &amp; Hash Tools</h2>
+    <p class="dl-section-subtitle">Cracking, auditing, and hash analysis.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Hashcat</h3>
+        <div class="dl-tagline">GPU-accelerated password cracker</div>
+        <p>
+          High-performance password recovery tool supporting many hash types and attack
+          modes, widely used in auditing.
+        </p>
+        <div class="dl-meta">Platform: Windows, Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://hashcat.net/hashcat/" target="_blank" rel="noopener">
+          Download Hashcat →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>John the Ripper</h3>
+        <div class="dl-tagline">Password cracking toolkit</div>
+        <p>
+          Classic password auditing tool that supports a wide range of hash formats and
+          cracking strategies.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source / Pro</div>
+        <a class="dl-btn" href="https://www.openwall.com/john/" target="_blank" rel="noopener">
+          John the Ripper →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- INCIDENT RESPONSE PLATFORMS    -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Incident Response &amp; Endpoint Platforms</h2>
+    <p class="dl-section-subtitle">Endpoint triage, hunting, and fleet visibility.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Velociraptor</h3>
+        <div class="dl-tagline">Endpoint visibility &amp; DFIR</div>
+        <p>
+          Open-source platform for collecting artifacts at scale, hunting, and performing
+          remote DFIR operations.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://www.velocidex.com/velociraptor/" target="_blank" rel="noopener">
+          Velociraptor →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>OSQuery</h3>
+        <div class="dl-tagline">Endpoint SQL-based visibility</div>
+        <p>
+          Turns endpoints into SQL-queryable data sources, useful for rapid IR questions
+          across many systems.
+        </p>
+        <div class="dl-meta">Platform: Windows, macOS, Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://osquery.io/downloads/official" target="_blank" rel="noopener">
+          OSQuery →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Sysinternals Suite</h3>
+        <div class="dl-tagline">Windows internals toolkit</div>
+        <p>
+          Comprehensive set of Windows utilities (ProcMon, ProcExp, Autoruns, etc.) essential
+          for IR and troubleshooting.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free</div>
+        <a class="dl-btn" href="https://learn.microsoft.com/sysinternals/downloads/sysinternals-suite" target="_blank" rel="noopener">
+          Sysinternals Suite →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- LINUX DFIR & TIMELINE TOOLS    -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Linux DFIR &amp; Timeline Tools</h2>
+    <p class="dl-section-subtitle">Logs, timelines, and post-mortem analysis.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Plaso (log2timeline)</h3>
+        <div class="dl-tagline">Automated super timeline creation</div>
+        <p>
+          Creates super timelines from many log sources and artifacts, forming the backbone
+          of time-based investigations.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/log2timeline/plaso" target="_blank" rel="noopener">
+          Plaso on GitHub →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Timesketch</h3>
+        <div class="dl-tagline">Collaborative timeline analysis</div>
+        <p>
+          Web-based tool used to explore and annotate forensic timelines, often paired with
+          Plaso-generated data.
+        </p>
+        <div class="dl-meta">Platform: Web/Server • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/google/timesketch" target="_blank" rel="noopener">
+          Timesketch on GitHub →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- 3D, PHOTO & PHOTOGRAPHY TOOLS  -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">3D, Photo &amp; Photography Tools</h2>
+    <p class="dl-section-subtitle">Photogrammetry, point clouds, cleanup, and camera training helpers.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>3DF Zephyr Photogrammetry Suite</h3>
+        <div class="dl-tagline">3D reconstruction from photos</div>
+        <p>
+          Photogrammetry software for turning photos into 3D models, useful for scene reconstruction
+          and documentation.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://www.3dflow.net/3df-zephyr-photogrammetry-software/" target="_blank" rel="noopener">
+          3DF Zephyr →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>CloudCompare</h3>
+        <div class="dl-tagline">Point cloud &amp; 3D mesh tool</div>
+        <p>
+          Open-source 3D point cloud and mesh processing tool, useful for analyzing scans and
+          model comparison.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://www.danielgm.net/cc/" target="_blank" rel="noopener">
+          CloudCompare →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Cleanup.pictures</h3>
+        <div class="dl-tagline">Object &amp; artifact removal</div>
+        <p>
+          Web-based tool for removing unwanted objects from images. Helpful for report graphics
+          and presentation-ready visuals.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://cleanup.pictures/" target="_blank" rel="noopener">
+          Cleanup Pictures →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>CameraFRASE</h3>
+        <div class="dl-tagline">Camera forensics utility</div>
+        <p>
+          Tooling from CameraForensics to assist with camera-related investigation workflows.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://cameraforensics.com/toolbox/camerafrase/" target="_blank" rel="noopener">
+          CameraFRASE →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>CameraSim DSLR Simulator</h3>
+        <div class="dl-tagline">Camera behavior simulator</div>
+        <p>
+          DSLR behavior simulator that helps visualize how camera settings affect images—a useful
+          teaching aid when explaining photo evidence.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://camerasim.com/apps/dslr-simulator/" target="_blank" rel="noopener">
+          CameraSim →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Cutout Pro Background Remover</h3>
+        <div class="dl-tagline">AI background removal</div>
+        <p>
+          AI-based background remover that can quickly isolate subjects for presentations, timelines,
+          or training material.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://www.cutout.pro/remove-background" target="_blank" rel="noopener">
+          Cutout Pro →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- DATA, ENCODING & FILE UTILITIES-->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Data, Encoding &amp; File Utilities</h2>
+    <p class="dl-section-subtitle">Encoding, metadata, and database helpers.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>ASCII Converter</h3>
+        <div class="dl-tagline">Character ↔ code conversions</div>
+        <p>
+          Quick conversion between characters and ASCII codes when examining data fragments or
+          low-level artifacts.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://www.branah.com/ascii-converter" target="_blank" rel="noopener">
+          ASCII Converter →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Dcode Forensic Decoding Suite</h3>
+        <div class="dl-tagline">Date, time &amp; data decoders</div>
+        <p>
+          A long-standing decoding suite for converting hex, timestamps, binary data, and other
+          encodings common in DFIR.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://www.digital-detective.net/dcode/" target="_blank" rel="noopener">
+          Dcode Suite →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>SQLite Database Browser</h3>
+        <div class="dl-tagline">SQL database viewer/editor</div>
+        <p>
+          GUI viewer and editor for SQLite databases, which underlie many application and
+          mobile artifacts.
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://sqlitebrowser.org/" target="_blank" rel="noopener">
+          DB Browser for SQLite →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>EXIFTool</h3>
+        <div class="dl-tagline">Metadata extraction utility</div>
+        <p>
+          Powerful command-line utility for reading and writing metadata in a wide range of
+          file formats (images, docs, etc.).
+        </p>
+        <div class="dl-meta">Platform: Cross-platform • License: Open-source</div>
+        <a class="dl-btn" href="https://exiftool.org/" target="_blank" rel="noopener">
+          EXIFTool →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>LinangData EXIF Reader</h3>
+        <div class="dl-tagline">Browser-based EXIF viewer</div>
+        <p>
+          Web EXIF viewer for quickly inspecting metadata without installing local tools—
+          handy for quick triage.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://linangdata.com/exif-reader/" target="_blank" rel="noopener">
+          LinangData EXIF Reader →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>PDFEscape Online PDF Editor</h3>
+        <div class="dl-tagline">PDF editing &amp; annotation</div>
+        <p>
+          Online editor for redacting, annotating, and modifying PDFs when preparing case
+          reports or exhibits.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://www.pdfescape.com" target="_blank" rel="noopener">
+          PDFEscape →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- DESIGN, REPORTING & VISUALS    -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Design, Reporting &amp; Visuals</h2>
+    <p class="dl-section-subtitle">Presentations, dashboards, and report-ready visuals.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Canva Templates Library</h3>
+        <div class="dl-tagline">Templates for slides &amp; documents</div>
+        <p>
+          Large library of templates for reports, presentations, and visual explainers
+          around your DFIR findings.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://www.canva.com/templates/?msockid=3715299d7161631629463c8870b762c6" target="_blank" rel="noopener">
+          Canva Templates →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Flourish</h3>
+        <div class="dl-tagline">Interactive data visualization</div>
+        <p>
+          Tool for building interactive charts, maps, and visualizations that can help
+          communicate forensic timelines and relationships.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://flourish.studio/" target="_blank" rel="noopener">
+          Flourish Studio →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- EMAIL & HEADER ANALYSIS        -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Email &amp; Header Analysis</h2>
+    <p class="dl-section-subtitle">Email tracing, headers, and deliverability checks.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>MXToolbox Email Header Analyzer</h3>
+        <div class="dl-tagline">Header parsing &amp; routing</div>
+        <p>
+          Parses email headers to show routing details, delays, and potential issues,
+          useful in phishing and fraud investigations.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://mxtoolbox.com/EmailHeaders.aspx" target="_blank" rel="noopener">
+          MXToolbox Header Analyzer →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Verifalia Email Validator</h3>
+        <div class="dl-tagline">Email validity checks</div>
+        <p>
+          Validates whether email addresses are syntactically valid and deliverable—
+          helpful for victim/suspect contact data.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://verifalia.com/validate-email" target="_blank" rel="noopener">
+          Verifalia →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- BROWSER, CAPTURE & SCRAPING    -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Browser, Capture &amp; Scraping Tools</h2>
+    <p class="dl-section-subtitle">Screenshots, web capture, scraping, and media grabbers.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>CopyFish OCR</h3>
+        <div class="dl-tagline">On-screen OCR in the browser</div>
+        <p>
+          Browser extension that performs OCR on selected screen areas, useful for grabbing
+          text from images and web apps.
+        </p>
+        <div class="dl-meta">Platform: Chrome extension • License: Free</div>
+        <a class="dl-btn" href="https://chrome.google.com/webstore/detail/copyfish-%F0%9F%90%9F-free-ocr-soft/eenjdnjldapjajjofmldgmkjaienebbj?hl=en" target="_blank" rel="noopener">
+          CopyFish OCR →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>DumpItBlue+</h3>
+        <div class="dl-tagline">Screenshot &amp; capture helper</div>
+        <p>
+          Screenshot tool focused on capturing web content for documentation and evidence.
+        </p>
+        <div class="dl-meta">Platform: Chrome extension • License: Free</div>
+        <a class="dl-btn" href="https://chrome.google.com/webstore/detail/dumpitblue%2B/igmgknoioooacbcpcfgjigbaajpelbfe?hl=en" target="_blank" rel="noopener">
+          DumpItBlue+ →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Nimbus Screenshot</h3>
+        <div class="dl-tagline">Browser screenshots &amp; recording</div>
+        <p>
+          Capture entire pages, regions, or videos from the browser for later reference
+          or inclusion in case files.
+        </p>
+        <div class="dl-meta">Platform: Browser extension • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://chrome.google.com/webstore/detail/nimbus-screenshot-screen/bpconcjcammlapcogcnnelfmaeghhagj?hl=en" target="_blank" rel="noopener">
+          Nimbus Screenshot →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Greenshot</h3>
+        <div class="dl-tagline">Desktop screenshot tool</div>
+        <p>
+          Lightweight screenshot utility for Windows that supports annotations and quick
+          exports.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free/Open-source</div>
+        <a class="dl-btn" href="https://getgreenshot.org/" target="_blank" rel="noopener">
+          Greenshot →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>HTTrack Website Copier</h3>
+        <div class="dl-tagline">Website mirroring</div>
+        <p>
+          Downloads sites for offline browsing and preservation; useful when you need a
+          local copy of web content.
+        </p>
+        <div class="dl-meta">Platform: Windows, Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://www.httrack.com/" target="_blank" rel="noopener">
+          HTTrack →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>OBS Studio</h3>
+        <div class="dl-tagline">Screen &amp; video recording</div>
+        <p>
+          Open-source screen recording and streaming tool often used to capture volatile
+          or interactive evidence.
+        </p>
+        <div class="dl-meta">Platform: Windows, macOS, Linux • License: Open-source</div>
+        <a class="dl-btn" href="https://obsproject.com/" target="_blank" rel="noopener">
+          OBS Studio →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Online Video Downloader</h3>
+        <div class="dl-tagline">Web video capture</div>
+        <p>
+          Online service that converts and downloads videos from popular platforms for
+          evidence preservation (use legally).
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://odownloader.com/en/youtube-to-mp4" target="_blank" rel="noopener">
+          Online Video Downloader →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Web to PDF Converter</h3>
+        <div class="dl-tagline">Page capture to PDF</div>
+        <p>
+          Converts full web pages into PDFs for archiving and including in case documentation.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://www.web2pdfconvert.com/" target="_blank" rel="noopener">
+          Web2PDF Converter →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Windows Screen Recorder Pro</h3>
+        <div class="dl-tagline">Windows 10 screen recorder</div>
+        <p>
+          Microsoft Store-based screen recorder for capturing on-screen actions and volatile
+          states on Windows systems.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free/Store</div>
+        <a class="dl-btn" href="https://www.microsoft.com/en-us/p/screen-recorder-pro-for-win10/9n27gq6mls5s?activetab=pivot:overviewtab" target="_blank" rel="noopener">
+          Screen Recorder Pro →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- DEVICE SPECS & IMEI LOOKUPS    -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Device Specs &amp; IMEI Lookups</h2>
+    <p class="dl-section-subtitle">Handset identification, specs, and IMEI-based lookups.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>GSM Arena Device Database</h3>
+        <div class="dl-tagline">Phone specs &amp; models</div>
+        <p>
+          Comprehensive database of mobile device specifications, generations, and variants.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://m.gsmarena.com/" target="_blank" rel="noopener">
+          GSM Arena →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>IMEI Check</h3>
+        <div class="dl-tagline">IMEI lookups</div>
+        <p>
+          Online IMEI checker useful for validating device identifiers during mobile
+          investigations.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://imeicheck.com/imei-check" target="_blank" rel="noopener">
+          IMEI Check →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>IMEI.info</h3>
+        <div class="dl-tagline">Device information from IMEI</div>
+        <p>
+          IMEI-based device lookup service for retrieving manufacturer, model, and sometimes
+          basic status information.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://www.imei.info/" target="_blank" rel="noopener">
+          IMEI.info →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>PhoneScoop</h3>
+        <div class="dl-tagline">Phone model lookups</div>
+        <p>
+          Phone directory and spec database that can assist in identifying handset capabilities
+          and release timelines.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://www.phonescoop.com/" target="_blank" rel="noopener">
+          PhoneScoop →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- IR / DFIR TOOL COLLECTIONS     -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Additional IR / DFIR Tool Collections</h2>
+    <p class="dl-section-subtitle">Suites, collections, and curated tool lists.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>Breakpoint Forensics Tools</h3>
+        <div class="dl-tagline">Windows &amp; DFIR utilities</div>
+        <p>
+          Collection of DFIR tools and utilities for artifact parsing and investigation tasks.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://breakpointforensics.com/tools/" target="_blank" rel="noopener">
+          Breakpoint Tools →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>CyberTriage</h3>
+        <div class="dl-tagline">IR triage &amp; investigation platform</div>
+        <p>
+          Incident response and triage platform for quickly assessing compromised systems.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Commercial / Eval</div>
+        <a class="dl-btn" href="https://www.cybertriage.com/download-eval/" target="_blank" rel="noopener">
+          CyberTriage Eval →
+        </a>
+        <br><br>
+        <a class="dl-btn" href="https://www.cybertriage.com/" target="_blank" rel="noopener">
+          CyberTriage Product Page →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Technitium MAC Address Changer</h3>
+        <div class="dl-tagline">Network adapter MAC tool</div>
+        <p>
+          Utility for viewing and changing MAC addresses on Windows adapters—useful in lab
+          or testing environments.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free</div>
+        <a class="dl-btn" href="https://technitium.com/tmac/" target="_blank" rel="noopener">
+          Technitium MAC Changer →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>FireEye Redline</h3>
+        <div class="dl-tagline">Endpoint triage &amp; analysis</div>
+        <p>
+          Classic endpoint triage tool that collects system information, memory data, and
+          indicators for analysis.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free</div>
+        <a class="dl-btn" href="https://www.fireeye.com/services/freeware/redline-download-confirmation.html" target="_blank" rel="noopener">
+          Redline Download →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>INV Network Free DFIR Tools</h3>
+        <div class="dl-tagline">Free forensic utilities</div>
+        <p>
+          Hub of free forensic tools and resources maintained by INV Network.
+        </p>
+        <div class="dl-meta">Platform: Various • License: Free</div>
+        <a class="dl-btn" href="https://inv-network.org/free-forensic-tools" target="_blank" rel="noopener">
+          INV DFIR Tools →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Arsenal Recon Downloads</h3>
+        <div class="dl-tagline">Forensic tools &amp; utilities</div>
+        <p>
+          Download center for Arsenal Recon utilities, including powerful imaging and
+          mounting tools.
+        </p>
+        <div class="dl-meta">Platform: Windows • License: Free/Commercial</div>
+        <a class="dl-btn" href="https://arsenalrecon.com/downloads/" target="_blank" rel="noopener">
+          Arsenal Recon Downloads →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Kali Linux Tools List</h3>
+        <div class="dl-tagline">Catalog of Kali tools</div>
+        <p>
+          Online index of all tools included with Kali Linux, organized by category and function.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://www.kali.org/tools/all-tools/" target="_blank" rel="noopener">
+          Kali Tools List →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Monolith Forensics Free Tools</h3>
+        <div class="dl-tagline">Curated tool collection</div>
+        <p>
+          Collection of free forensic utilities and scripts curated by Monolith Forensics.
+        </p>
+        <div class="dl-meta">Platform: Various • License: Free</div>
+        <a class="dl-btn" href="https://monolithforensics.com/free-tools" target="_blank" rel="noopener">
+          Monolith Free Tools →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- PASSWORD & HASH RESOURCES      -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Password &amp; Hash Resources</h2>
+    <p class="dl-section-subtitle">Online hash lookup and cracking references.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>CrackStation Hash Lookup</h3>
+        <div class="dl-tagline">Online hash cracking database</div>
+        <p>
+          Online service for looking up common hashed passwords via a large precomputed table—
+          useful during password investigations.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://crackstation.net/" target="_blank" rel="noopener">
+          CrackStation →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- TIME, DATE & MISC UTILITIES    -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Time, Date &amp; Misc Utilities</h2>
+    <p class="dl-section-subtitle">Time zones, math helpers, and general utilities.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>SavvyTime UTC Converter</h3>
+        <div class="dl-tagline">Time zone conversions</div>
+        <p>
+          Convert timestamps across time zones, particularly helpful when correlating logs
+          from different regions.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://savvytime.com/converter/utc" target="_blank" rel="noopener">
+          SavvyTime Converter →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>World Clock Time Zone Converter</h3>
+        <div class="dl-tagline">Multi-time-zone comparison</div>
+        <p>
+          Compare multiple time zones at once, simplifying cross-region case timelines.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://www.timeanddate.com/worldclock/converter.html?iso=20220120T090000&p1=4358" target="_blank" rel="noopener">
+          TimeAndDate Converter →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>WhatTimeIsIt</h3>
+        <div class="dl-tagline">Simple reference clock</div>
+        <p>
+          Minimal clock site for quickly confirming current time without OS clutter.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://whattimeisit.com" target="_blank" rel="noopener">
+          WhatTimeIsIt.com →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Speed Distance Time Calculator</h3>
+        <div class="dl-tagline">Motion math helper</div>
+        <p>
+          Calculator for solving speed, distance, and time problems—occasionally useful for
+          reconstructions and vehicle cases.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php" target="_blank" rel="noopener">
+          Speed/Distance/Time Calculator →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>Blockchain Explorer</h3>
+        <div class="dl-tagline">Cryptocurrency transaction viewer</div>
+        <p>
+          High-level blockchain explorer for reviewing cryptocurrency addresses and
+          transactions in crypto-related cases.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://Blockchain.com/explorer" target="_blank" rel="noopener">
+          Blockchain Explorer →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>TextEm</h3>
+        <div class="dl-tagline">Web-based SMS sender</div>
+        <p>
+          Web interface for sending SMS via carriers—occasionally referenced in investigations
+          or testing scenarios.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="http://www.textem.net/" target="_blank" rel="noopener">
+          TextEm →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>AlternativeTo</h3>
+        <div class="dl-tagline">Software alternative directory</div>
+        <p>
+          Directory for finding alternative software when specific tools are not allowed,
+          licensed, or available in your environment.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://alternativeto.net/" target="_blank" rel="noopener">
+          AlternativeTo →
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <h3>TinyWow</h3>
+        <div class="dl-tagline">Online utility toolbox</div>
+        <p>
+          Collection of small web utilities for file conversion, PDF manipulation, and more.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://tinywow.com/" target="_blank" rel="noopener">
+          TinyWow →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- SPECIALIZED INVESTIGATION TOOLS-->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Specialized Investigation Tools</h2>
+    <p class="dl-section-subtitle">Niche tools for specific investigative domains.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>OneHUB PornBios Database</h3>
+        <div class="dl-tagline">Adult content actor database</div>
+        <p>
+          Reference database used in niche investigations involving adult content. Use only
+          in accordance with local laws and organizational policy.
+        </p>
+        <div class="dl-meta">Platform: Web • License: Free</div>
+        <a class="dl-btn" href="https://onehublive.pornbios.com/" target="_blank" rel="noopener">
+          OneHUB PornBios →
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- MISC / UTILITY TOOLS           -->
+    <!-- ============================== -->
+    <h2 class="dl-section-title">Utility &amp; Misc Tools</h2>
+    <p class="dl-section-subtitle">Data wrangling, decoding, and helper utilities.</p>
+
+    <div class="download-grid">
+      <div class="dl-card">
+        <h3>CyberChef</h3>
+        <div class="dl-tagline">Data transformation “Swiss Army knife”</div>
+        <p>
+          Web and local tool for encoding/decoding, parsing, and analyzing data used in
+          DFIR, malware analysis, and OSINT.
+        </p>
+        <div class="dl-meta">Platform: Web, local build • License: Open-source</div>
+        <a class="dl-btn" href="https://github.com/gchq/CyberChef" target="_blank" rel="noopener">
+          CyberChef on GitHub →
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        Built as part of the <strong>4nsic Zone</strong> project. Connect on LinkedIn:
+        <a href="https://www.linkedin.com/in/katelyn-rogers-DFIRISTHEWORD/" target="_blank">
+          Katelyn Rogers
+        </a>
+      </p>
+      <p>
+        Always verify tool hashes/signatures and follow your organization’s policies and local laws.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Search logic -->
+  <script>
+    function normalizeText(text) {
+      return (text || "").toLowerCase();
+    }
+
+    function filterDownloadCards() {
+      const input = document.getElementById("toolSearchInput");
+      if (!input) return;
+
+      const query = normalizeText(input.value);
+      const cards = document.querySelectorAll(".dl-card");
+
+      cards.forEach(card => {
+        const text = normalizeText(card.innerText || card.textContent);
+        if (!query || text.includes(query)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const input = document.getElementById("toolSearchInput");
+      if (!input) return;
+      input.addEventListener("input", filterDownloadCards);
+    });
+  </script>
+</body>
+</html>
