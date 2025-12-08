@@ -766,27 +766,195 @@ Expand-Archive staged.zip C:\Extracted     # Unpack archive
 <!-- ================= EXAMPLES PANEL ================= -->
 <div id="examples" class="panel">
 
-  <div class="cmd-card">
-    <div class="cmd-title">CMD – Malware Detection</div>
-    <div class="cmd-box" onclick="copyText(this)">tasklist /v
-netstat -ano</div>
-  </div>
+  <!-- ================= REAL-WORLD DFIR INVESTIGATION EXAMPLES ================= -->
 
-  <div class="cmd-card">
-    <div class="cmd-title">PowerShell – Persistence</div>
-    <div class="cmd-box" onclick="copyText(this)">Get-ScheduledTask</div>
-  </div>
+<!-- ========== RANSOMWARE ATTACK RESPONSE ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Ransomware Incident – Active Encryption Detected</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Identify active ransomware, encryption scope, and recovery options
 
-  <div class="cmd-card">
-    <div class="cmd-title">Linux – Network</div>
-    <div class="cmd-box" onclick="copyText(this)">ss -tulnp</div>
-  </div>
+:: Running malware process
+tasklist /v
+wmic process list full
 
-  <div class="cmd-card">
-    <div class="cmd-title">Python – Hashing</div>
-    <div class="cmd-box" onclick="copyText(this)">import hashlib
-print(hashlib.sha256(open("e.img","rb").read()).hexdigest())</div>
-  </div>
+:: Network beaconing to attacker
+netstat -abno
+
+:: Encrypted file discovery
+dir C:\ /s | findstr ".locked .crypt .encrypted"
+
+:: Shadow copy recovery check
+vssadmin list shadows
+
+# PowerShell – ransomware indicators
+Get-Process | Where {$_.Company -eq $null}
+Get-ChildItem C:\ -Recurse -Include *.locked, *.crypt
+Get-WinEvent -LogName Security | Select -First 50
+    </div>
+</div>
+
+<!-- ========== INSIDER DATA EXFILTRATION ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Insider Threat – Employee Exfiltrating Files</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Prove mass file access + USB usage + cloud upload
+
+:: USB device history
+reg query HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR
+
+:: Recently accessed files
+dir C:\Users\ /s /ta
+
+:: Network transfers
+netstat -ano
+
+# PowerShell – mass data movement
+Get-ChildItem C:\Users -Recurse | Sort LastWriteTime -Descending | Select -First 50
+Get-NetTCPConnection | Where {$_.State -eq "Established"}
+Get-LocalUser
+    </div>
+</div>
+
+<!-- ========== PHISHING + PERSISTENCE ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Phishing Attack – Malware Gained Persistence</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Detect startup persistence after a phishing email
+
+:: Startup registry
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+
+:: Scheduled tasks
+schtasks /query /fo LIST /v
+
+:: Startup folders
+dir "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
+
+# PowerShell persistence hunting
+Get-ScheduledTask
+Get-WmiObject Win32_StartupCommand
+Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run
+    </div>
+</div>
+
+<!-- ========== COMMAND & CONTROL (C2) BEACONING ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Command & Control (C2) Beacon Detection</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Identify malware beacon traffic
+
+netstat -ano
+netstat -abno
+arp -a
+route print
+
+# PowerShell network hunting
+Get-NetTCPConnection | Where {$_.State -eq "Established"}
+Resolve-DnsName suspicious-domain.com
+Get-DnsClientCache
+    </div>
+</div>
+
+<!-- ========== UNAUTHORIZED ADMIN ACCESS ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Unauthorized Domain Admin Access</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Prove privilege escalation + lateral movement
+
+net localgroup administrators
+query user
+qwinsta
+
+:: Security event review
+wevtutil qe Security /f:text /c:50
+
+# PowerShell privilege review
+Get-LocalGroupMember Administrators
+whoami /priv
+Get-WinEvent -FilterHashtable @{ID=4672}
+    </div>
+</div>
+
+<!-- ========== USB DATA THEFT ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">USB Data Theft Investigation</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Confirm external storage usage and copied files
+
+reg query HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR
+reg query HKLM\SYSTEM\MountedDevices
+dir E:\
+
+# PowerShell USB analysis
+Get-PnpDevice | Where {$_.Class -eq "USB"}
+Get-ChildItem E:\
+    </div>
+</div>
+
+<!-- ========== LIVE MALWARE TRIAGE ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Live Malware Triage on an Infected Host</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Identify malware without shutting down evidence
+
+tasklist
+tasklist /svc
+wmic process list full
+driverquery
+
+# PowerShell malware triage
+Get-Process
+Get-CimInstance Win32_Process | Select Name,CommandLine
+Get-MpThreat
+    </div>
+</div>
+
+<!-- ========== LOG TAMPERING / COVER-UP ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Log Deletion & Anti-Forensics Detection</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Detect event log wiping or tampering
+
+wevtutil el
+wevtutil qe Security /f:text /c:20
+
+# PowerShell log tampering review
+Get-WinEvent -LogName Security -MaxEvents 50
+Get-WinEvent -FilterHashtable @{ID=1102}
+    </div>
+</div>
+
+<!-- ========== CLOUD TOKEN THEFT (LOCAL ARTIFACTS) ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Cloud Token Theft (Azure / O365)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Detect stolen cloud auth tokens
+
+set | findstr AZURE
+set | findstr O365
+
+# PowerShell token hunting
+Get-ChildItem Env: | findstr AZURE
+Get-ChildItem Env: | findstr GRAPH
+    </div>
+</div>
+
+<!-- ========== EVIDENCE VERIFICATION ========== -->
+<div class="cmd-card">
+  <div class="cmd-title">Evidence Integrity & Court Validation</div>
+  <div class="cmd-box" onclick="copyText(this)">
+:: GOAL: Prove evidence was not altered
+
+certutil -hashfile evidence.img MD5
+certutil -hashfile evidence.img SHA256
+
+# PowerShell integrity validation
+Get-FileHash evidence.img
+Compare-Object (Get-FileHash image1).Hash (Get-FileHash image2).Hash
+    </div>
+</div>
 
 </div>
 
