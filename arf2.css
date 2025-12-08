@@ -15,7 +15,7 @@ body {
     position: absolute;
     top: 50px;      /* distance from top */
     left: 10px;
-    width: 100px;   /* size of the image */
+    width: 130px;   /* size of the image */
     height: auto;   /* maintain aspect ratio for <img> */
     border-radius: 10px;
     z-index: 1000;  /* ensure it stays on top */
@@ -96,4 +96,5 @@ h3 {
   background: #0d1b3d;
   color: #b3f4ff;
 }
+
 
