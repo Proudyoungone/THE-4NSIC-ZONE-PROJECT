@@ -475,6 +475,158 @@ chkdsk C: /f                         :: File system health check
   </div>
 </div>
 
+  <!-- ================= DFIR SAFETY & USAGE GUIDE ================= -->
+
+<div class="cmd-card">
+  <div class="cmd-title">Before You Run Any Commands</div>
+  <div class="cmd-box">
+✅ Confirm you are on the correct machine (evidence host vs investigation host)
+✅ Verify the current working directory with:
+    cd
+✅ If handling evidence files, switch to a dedicated working folder:
+    cd C:\DFIR\Working\
+✅ Always document:
+    - Date & Time
+    - Machine Name
+    - Logged-in User
+    - Case Number
+✅ If possible, work from a forensic copy — NOT the original evidence
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">How to Safely Start CMD & PowerShell</div>
+  <div class="cmd-box">
+✅ SAFE WAY TO OPEN CMD:
+- Press: Windows + R
+- Type: cmd
+- Press: Ctrl + Shift + Enter (Run as Admin)
+
+✅ SAFE WAY TO OPEN POWERSHELL:
+- Press: Windows + X
+- Click: Windows PowerShell (Admin)
+
+✅ VERIFY PRIVILEGES:
+CMD:
+    whoami
+PowerShell:
+    whoami
+    Get-ExecutionPolicy
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Directory Awareness – Most Common Mistake</div>
+  <div class="cmd-box">
+❌ DO NOT randomly run commands without checking your directory
+✅ Always confirm location first:
+    cd
+
+✅ Common Safe Locations:
+    C:\DFIR\
+    C:\Temp\
+    D:\Evidence\
+
+❌ DO NOT work directly inside:
+    C:\Windows\
+    C:\System32\
+    Root drives during live IR
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">What You SHOULD Do During an Investigation</div>
+  <div class="cmd-box">
+✅ Work from copies of files whenever possible
+✅ Hash files before AND after transfer
+✅ Export logs instead of modifying them
+✅ Use read-only commands first
+✅ Save outputs to text files:
+    netstat -ano > netstat.txt
+✅ Label files using timestamps
+✅ Take screenshots of:
+    - Active connections
+    - Running processes
+    - Disk layout
+✅ Keep a written chain of custody
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">What You Should NEVER Do</div>
+  <div class="cmd-box">
+❌ DO NOT run cleanup tools during triage
+❌ DO NOT reboot a suspect system unless approved
+❌ DO NOT delete malware until evidence is preserved
+❌ DO NOT overwrite log files
+❌ DO NOT run Internet “fix” commands on live evidence
+❌ DO NOT trust timestamps without validation
+❌ DO NOT assume PowerShell scripts are safe without reviewing them
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">CMD vs PowerShell – When to Use Each</div>
+  <div class="cmd-box">
+✅ USE CMD WHEN:
+• Doing fast live triage
+• Running legacy forensic tools
+• Performing quick integrity checks
+• Running low-level Windows utilities
+
+✅ USE POWERSHELL WHEN:
+• Automating multi-step investigations
+• Hunting IOCs at scale
+• Extracting structured data
+• Investigating enterprise activity
+• Performing remote investigations
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Live Triage vs Forensic Analysis</div>
+  <div class="cmd-box">
+✅ LIVE TRIAGE:
+• System is powered on
+• Snapshot of active threats
+• Network connections
+• Running processes
+• User sessions
+
+✅ FORENSIC ANALYSIS:
+• Disk image examination
+• Timeline building
+• Registry deep dive
+• Malware reverse engineering
+• Artifact correlation
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Legal & Courtroom Considerations</div>
+  <div class="cmd-box">
+✅ Always hash evidence before analysis
+✅ Never analyze original device media directly
+✅ Do not mix multiple cases in the same working directory
+✅ Keep detailed investigation notes
+✅ Label all exports clearly:
+    hostname_caseID_type_timestamp.ext
+✅ Assume everything you do may be reviewed in court
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Golden Rule of DFIR</div>
+  <div class="cmd-box">
+✅ PRESERVE FIRST
+✅ ANALYZE SECOND
+✅ REMEDIATE LAST
+
+Once evidence is altered — it can NEVER be unaltered.
+  </div>
+</div>
+
+
 </div>
 <!-- ================= CMD PANEL ================= -->
 <div id="ultimate" class="panel">
@@ -638,6 +790,158 @@ type file:stream   :: Read ADS hidden data
   </div>
 </div>
 
+  <!-- ================= DFIR SAFETY & USAGE GUIDE ================= -->
+
+<div class="cmd-card">
+  <div class="cmd-title">Before You Run Any Commands</div>
+  <div class="cmd-box">
+✅ Confirm you are on the correct machine (evidence host vs investigation host)
+✅ Verify the current working directory with:
+    cd
+✅ If handling evidence files, switch to a dedicated working folder:
+    cd C:\DFIR\Working\
+✅ Always document:
+    - Date & Time
+    - Machine Name
+    - Logged-in User
+    - Case Number
+✅ If possible, work from a forensic copy — NOT the original evidence
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">How to Safely Start CMD & PowerShell</div>
+  <div class="cmd-box">
+✅ SAFE WAY TO OPEN CMD:
+- Press: Windows + R
+- Type: cmd
+- Press: Ctrl + Shift + Enter (Run as Admin)
+
+✅ SAFE WAY TO OPEN POWERSHELL:
+- Press: Windows + X
+- Click: Windows PowerShell (Admin)
+
+✅ VERIFY PRIVILEGES:
+CMD:
+    whoami
+PowerShell:
+    whoami
+    Get-ExecutionPolicy
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Directory Awareness – Most Common Mistake</div>
+  <div class="cmd-box">
+❌ DO NOT randomly run commands without checking your directory
+✅ Always confirm location first:
+    cd
+
+✅ Common Safe Locations:
+    C:\DFIR\
+    C:\Temp\
+    D:\Evidence\
+
+❌ DO NOT work directly inside:
+    C:\Windows\
+    C:\System32\
+    Root drives during live IR
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">What You SHOULD Do During an Investigation</div>
+  <div class="cmd-box">
+✅ Work from copies of files whenever possible
+✅ Hash files before AND after transfer
+✅ Export logs instead of modifying them
+✅ Use read-only commands first
+✅ Save outputs to text files:
+    netstat -ano > netstat.txt
+✅ Label files using timestamps
+✅ Take screenshots of:
+    - Active connections
+    - Running processes
+    - Disk layout
+✅ Keep a written chain of custody
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">What You Should NEVER Do</div>
+  <div class="cmd-box">
+❌ DO NOT run cleanup tools during triage
+❌ DO NOT reboot a suspect system unless approved
+❌ DO NOT delete malware until evidence is preserved
+❌ DO NOT overwrite log files
+❌ DO NOT run Internet “fix” commands on live evidence
+❌ DO NOT trust timestamps without validation
+❌ DO NOT assume PowerShell scripts are safe without reviewing them
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">CMD vs PowerShell – When to Use Each</div>
+  <div class="cmd-box">
+✅ USE CMD WHEN:
+• Doing fast live triage
+• Running legacy forensic tools
+• Performing quick integrity checks
+• Running low-level Windows utilities
+
+✅ USE POWERSHELL WHEN:
+• Automating multi-step investigations
+• Hunting IOCs at scale
+• Extracting structured data
+• Investigating enterprise activity
+• Performing remote investigations
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Live Triage vs Forensic Analysis</div>
+  <div class="cmd-box">
+✅ LIVE TRIAGE:
+• System is powered on
+• Snapshot of active threats
+• Network connections
+• Running processes
+• User sessions
+
+✅ FORENSIC ANALYSIS:
+• Disk image examination
+• Timeline building
+• Registry deep dive
+• Malware reverse engineering
+• Artifact correlation
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Legal & Courtroom Considerations</div>
+  <div class="cmd-box">
+✅ Always hash evidence before analysis
+✅ Never analyze original device media directly
+✅ Do not mix multiple cases in the same working directory
+✅ Keep detailed investigation notes
+✅ Label all exports clearly:
+    hostname_caseID_type_timestamp.ext
+✅ Assume everything you do may be reviewed in court
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Golden Rule of DFIR</div>
+  <div class="cmd-box">
+✅ PRESERVE FIRST
+✅ ANALYZE SECOND
+✅ REMEDIATE LAST
+
+Once evidence is altered — it can NEVER be unaltered.
+  </div>
+</div>
+
+
 </div>
 <!-- ================= POWERSHELL PANEL ================= -->
 <div id="powershell" class="panel">
@@ -761,6 +1065,158 @@ Expand-Archive staged.zip C:\Extracted     # Unpack archive
 [Convert]::ToBase64String([IO.File]::ReadAllBytes("file.exe")) # Encode malware
   </div>
 </div>
+
+  <!-- ================= DFIR SAFETY & USAGE GUIDE ================= -->
+
+<div class="cmd-card">
+  <div class="cmd-title">Before You Run Any Commands</div>
+  <div class="cmd-box">
+✅ Confirm you are on the correct machine (evidence host vs investigation host)
+✅ Verify the current working directory with:
+    cd
+✅ If handling evidence files, switch to a dedicated working folder:
+    cd C:\DFIR\Working\
+✅ Always document:
+    - Date & Time
+    - Machine Name
+    - Logged-in User
+    - Case Number
+✅ If possible, work from a forensic copy — NOT the original evidence
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">How to Safely Start CMD & PowerShell</div>
+  <div class="cmd-box">
+✅ SAFE WAY TO OPEN CMD:
+- Press: Windows + R
+- Type: cmd
+- Press: Ctrl + Shift + Enter (Run as Admin)
+
+✅ SAFE WAY TO OPEN POWERSHELL:
+- Press: Windows + X
+- Click: Windows PowerShell (Admin)
+
+✅ VERIFY PRIVILEGES:
+CMD:
+    whoami
+PowerShell:
+    whoami
+    Get-ExecutionPolicy
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Directory Awareness – Most Common Mistake</div>
+  <div class="cmd-box">
+❌ DO NOT randomly run commands without checking your directory
+✅ Always confirm location first:
+    cd
+
+✅ Common Safe Locations:
+    C:\DFIR\
+    C:\Temp\
+    D:\Evidence\
+
+❌ DO NOT work directly inside:
+    C:\Windows\
+    C:\System32\
+    Root drives during live IR
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">What You SHOULD Do During an Investigation</div>
+  <div class="cmd-box">
+✅ Work from copies of files whenever possible
+✅ Hash files before AND after transfer
+✅ Export logs instead of modifying them
+✅ Use read-only commands first
+✅ Save outputs to text files:
+    netstat -ano > netstat.txt
+✅ Label files using timestamps
+✅ Take screenshots of:
+    - Active connections
+    - Running processes
+    - Disk layout
+✅ Keep a written chain of custody
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">What You Should NEVER Do</div>
+  <div class="cmd-box">
+❌ DO NOT run cleanup tools during triage
+❌ DO NOT reboot a suspect system unless approved
+❌ DO NOT delete malware until evidence is preserved
+❌ DO NOT overwrite log files
+❌ DO NOT run Internet “fix” commands on live evidence
+❌ DO NOT trust timestamps without validation
+❌ DO NOT assume PowerShell scripts are safe without reviewing them
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">CMD vs PowerShell – When to Use Each</div>
+  <div class="cmd-box">
+✅ USE CMD WHEN:
+• Doing fast live triage
+• Running legacy forensic tools
+• Performing quick integrity checks
+• Running low-level Windows utilities
+
+✅ USE POWERSHELL WHEN:
+• Automating multi-step investigations
+• Hunting IOCs at scale
+• Extracting structured data
+• Investigating enterprise activity
+• Performing remote investigations
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Live Triage vs Forensic Analysis</div>
+  <div class="cmd-box">
+✅ LIVE TRIAGE:
+• System is powered on
+• Snapshot of active threats
+• Network connections
+• Running processes
+• User sessions
+
+✅ FORENSIC ANALYSIS:
+• Disk image examination
+• Timeline building
+• Registry deep dive
+• Malware reverse engineering
+• Artifact correlation
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Legal & Courtroom Considerations</div>
+  <div class="cmd-box">
+✅ Always hash evidence before analysis
+✅ Never analyze original device media directly
+✅ Do not mix multiple cases in the same working directory
+✅ Keep detailed investigation notes
+✅ Label all exports clearly:
+    hostname_caseID_type_timestamp.ext
+✅ Assume everything you do may be reviewed in court
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Golden Rule of DFIR</div>
+  <div class="cmd-box">
+✅ PRESERVE FIRST
+✅ ANALYZE SECOND
+✅ REMEDIATE LAST
+
+Once evidence is altered — it can NEVER be unaltered.
+  </div>
+</div>
+
 
 </div>
 <!-- ================= EXAMPLES PANEL ================= -->
@@ -956,6 +1412,158 @@ Compare-Object (Get-FileHash image1).Hash (Get-FileHash image2).Hash
     </div>
 </div>
 
+  <!-- ================= DFIR SAFETY & USAGE GUIDE ================= -->
+
+<div class="cmd-card">
+  <div class="cmd-title">Before You Run Any Commands</div>
+  <div class="cmd-box">
+✅ Confirm you are on the correct machine (evidence host vs investigation host)
+✅ Verify the current working directory with:
+    cd
+✅ If handling evidence files, switch to a dedicated working folder:
+    cd C:\DFIR\Working\
+✅ Always document:
+    - Date & Time
+    - Machine Name
+    - Logged-in User
+    - Case Number
+✅ If possible, work from a forensic copy — NOT the original evidence
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">How to Safely Start CMD & PowerShell</div>
+  <div class="cmd-box">
+✅ SAFE WAY TO OPEN CMD:
+- Press: Windows + R
+- Type: cmd
+- Press: Ctrl + Shift + Enter (Run as Admin)
+
+✅ SAFE WAY TO OPEN POWERSHELL:
+- Press: Windows + X
+- Click: Windows PowerShell (Admin)
+
+✅ VERIFY PRIVILEGES:
+CMD:
+    whoami
+PowerShell:
+    whoami
+    Get-ExecutionPolicy
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Directory Awareness – Most Common Mistake</div>
+  <div class="cmd-box">
+❌ DO NOT randomly run commands without checking your directory
+✅ Always confirm location first:
+    cd
+
+✅ Common Safe Locations:
+    C:\DFIR\
+    C:\Temp\
+    D:\Evidence\
+
+❌ DO NOT work directly inside:
+    C:\Windows\
+    C:\System32\
+    Root drives during live IR
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">What You SHOULD Do During an Investigation</div>
+  <div class="cmd-box">
+✅ Work from copies of files whenever possible
+✅ Hash files before AND after transfer
+✅ Export logs instead of modifying them
+✅ Use read-only commands first
+✅ Save outputs to text files:
+    netstat -ano > netstat.txt
+✅ Label files using timestamps
+✅ Take screenshots of:
+    - Active connections
+    - Running processes
+    - Disk layout
+✅ Keep a written chain of custody
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">What You Should NEVER Do</div>
+  <div class="cmd-box">
+❌ DO NOT run cleanup tools during triage
+❌ DO NOT reboot a suspect system unless approved
+❌ DO NOT delete malware until evidence is preserved
+❌ DO NOT overwrite log files
+❌ DO NOT run Internet “fix” commands on live evidence
+❌ DO NOT trust timestamps without validation
+❌ DO NOT assume PowerShell scripts are safe without reviewing them
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">CMD vs PowerShell – When to Use Each</div>
+  <div class="cmd-box">
+✅ USE CMD WHEN:
+• Doing fast live triage
+• Running legacy forensic tools
+• Performing quick integrity checks
+• Running low-level Windows utilities
+
+✅ USE POWERSHELL WHEN:
+• Automating multi-step investigations
+• Hunting IOCs at scale
+• Extracting structured data
+• Investigating enterprise activity
+• Performing remote investigations
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Live Triage vs Forensic Analysis</div>
+  <div class="cmd-box">
+✅ LIVE TRIAGE:
+• System is powered on
+• Snapshot of active threats
+• Network connections
+• Running processes
+• User sessions
+
+✅ FORENSIC ANALYSIS:
+• Disk image examination
+• Timeline building
+• Registry deep dive
+• Malware reverse engineering
+• Artifact correlation
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Legal & Courtroom Considerations</div>
+  <div class="cmd-box">
+✅ Always hash evidence before analysis
+✅ Never analyze original device media directly
+✅ Do not mix multiple cases in the same working directory
+✅ Keep detailed investigation notes
+✅ Label all exports clearly:
+    hostname_caseID_type_timestamp.ext
+✅ Assume everything you do may be reviewed in court
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Golden Rule of DFIR</div>
+  <div class="cmd-box">
+✅ PRESERVE FIRST
+✅ ANALYZE SECOND
+✅ REMEDIATE LAST
+
+Once evidence is altered — it can NEVER be unaltered.
+  </div>
+</div>
+
+  
 </div>
 
 <script>
