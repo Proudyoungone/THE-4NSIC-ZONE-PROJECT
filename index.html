@@ -942,62 +942,80 @@ async function loadDfirGithubFeed() {
   }
 }
 
+<script>
 /* ================================ */
-/* ✅ 4NSIC AI SITE SEARCH ENGINE */
+/* ✅ 4NSIC REAL SITE CONTENT SEARCH */
 /* ================================ */
 
-const aiPages = [
-  { title: "Home", description: "4NSIC Zone main landing page", url: "index.html", keywords: ["home","4nsic","forensics","dfir"] },
-  { title: "Chip ID Framework", description: "Flash chip identification and forensic chip analysis", url: "index2.html", keywords: ["chip","flash","ic","forensic","memory"] },
-  { title: "ECS Reporting", description: "Elastic Common Schema reporting for drone and DFIR investigations", url: "ecs.html", keywords: ["ecs","drone","reporting","forensics","telemetry"] },
-  { title: "Resources", description: "Digital forensics tools, OSINT resources, and investigation links", url: "index3.html", keywords: ["osint","resources","tools","investigation"] },
-  { title: "Tools", description: "DFIR forensic tools and utilities", url: "tools.html", keywords: ["tools","dfir","forensics"] },
-  { title: "CMD Playbook", description: "Windows command-line forensic reference", url: "cmd.html", keywords: ["cmd","commands","windows","triage","forensics"] }
+const SITE_PAGES = [
+  { title: "Home", url: "index.html" },
+  { title: "Chip ID Framework", url: "index2.html" },
+  { title: "ECS Reporting", url: "ecs.html" },
+  { title: "Resources", url: "index3.html" },
+  { title: "Tools", url: "tools.html" },
+  { title: "CMD Playbook", url: "cmd.html" }
 ];
 
-window.addEventListener("DOMContentLoaded", () => {
+let SEARCH_INDEX = [];
 
-  loadDfirGithubFeed();
+async function fetchAndIndexPages() {
+  for (const page of SITE_PAGES) {
+    try {
+      const res = await fetch(page.url);
+      const html = await res.text();
+
+      // Strip HTML tags and compress whitespace
+      const text = html
+        .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
+        .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '')
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .toLowerCase();
+
+      SEARCH_INDEX.push({
+        title: page.title,
+        url: page.url,
+        text
+      });
+
+    } catch (err) {
+      console.warn("Search index failed for:", page.url);
+    }
+  }
+}
+
+window.addEventListener("DOMContentLoaded", async () => {
+  await fetchAndIndexPages();
 
   const input = document.getElementById("aiSearchInput");
   const resultsBox = document.getElementById("aiResults");
 
   if (!input || !resultsBox) return;
 
-  function scoreMatch(query, page) {
-    let score = 0;
-    const q = query.toLowerCase();
-    if (page.title.toLowerCase().includes(q)) score += 5;
-    if (page.description.toLowerCase().includes(q)) score += 3;
-    page.keywords.forEach(word => { if (word.includes(q)) score += 2; });
-    return score;
-  }
-
   input.addEventListener("input", () => {
     const query = input.value.trim().toLowerCase();
     resultsBox.innerHTML = "";
 
-    if (query.length < 2) return;
+    if (query.length < 3) return;
 
-    const ranked = aiPages
-      .map(page => ({ page, score: scoreMatch(query, page) }))
-      .filter(item => item.score > 0)
-      .sort((a, b) => b.score - a.score);
+    const results = SEARCH_INDEX.filter(page =>
+      page.text.includes(query)
+    );
 
-    ranked.forEach(item => {
+    results.forEach(page => {
       const div = document.createElement("div");
       div.className = "ai-result";
-      div.onclick = () => window.location.href = item.page.url;
+      div.onclick = () => window.location.href = page.url;
 
       div.innerHTML = `
-        <div class="ai-result-title">${item.page.title}</div>
-        <div class="ai-result-desc">${item.page.description}</div>
+        <div class="ai-result-title">${page.title}</div>
+        <div class="ai-result-desc">Click to open matching content</div>
       `;
 
       resultsBox.appendChild(div);
     });
 
-    if (ranked.length === 0) {
+    if (results.length === 0) {
       resultsBox.innerHTML = `<div class="ai-result">No results found.</div>`;
     }
   });
@@ -1008,6 +1026,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
