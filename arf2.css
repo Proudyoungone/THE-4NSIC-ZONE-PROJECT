@@ -13,7 +13,7 @@ body {
 
 .corner-image {
     position: absolute;
-    top: 75px;      /* distance from top */
+    top: 50px;      /* distance from top */
     left: 10px;
     width: 170px;   /* size of the image */
     height: auto;   /* maintain aspect ratio for <img> */
@@ -96,6 +96,7 @@ h3 {
   background: #0d1b3d;
   color: #b3f4ff;
 }
+
 
 
 
