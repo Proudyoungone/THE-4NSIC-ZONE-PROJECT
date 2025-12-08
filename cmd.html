@@ -196,6 +196,7 @@ body {
         height: auto;
         position: relative;
       }
+    }
       
 </style>
 </head>
@@ -473,6 +474,8 @@ sfc /scannow                         :: Repair system files
 chkdsk C: /f                         :: File system health check
   </div>
 </div>
+
+</div>
 <!-- ================= CMD PANEL ================= -->
 <div id="ultimate" class="panel">
 <div class="cmd-card">
@@ -635,7 +638,8 @@ type file:stream   :: Read ADS hidden data
   </div>
 </div>
 <!-- ================= POWERSHELL PANEL ================= -->
-<div class="cmd-card">
+<div id="powershell" class="panel">
+  <div class="cmd-card">
   <div class="cmd-title">System & Host Information (Annotated)</div>
   <div class="cmd-box" onclick="copyText(this)">
 Get-ComputerInfo                    # Full host profile
@@ -754,6 +758,8 @@ Compress-Archive C:\Evidence C:\staged.zip # Package evidence
 Expand-Archive staged.zip C:\Extracted     # Unpack archive
 [Convert]::ToBase64String([IO.File]::ReadAllBytes("file.exe")) # Encode malware
   </div>
+</div>
+
 </div>
 
 <!-- ================= EXAMPLES PANEL ================= -->
