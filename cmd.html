@@ -98,10 +98,127 @@ body {
   white-space: pre-wrap;
   cursor: pointer;
 }
+
+ /* ========== MAIN LAYOUT ========== */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    /* ========== SIDEBAR ========== */
+    .sidebar {
+      flex: 0 0 240px;
+      width: 240px;
+      background: #020617;
+      padding: 18px 14px;
+      border-right: 1px solid rgba(148,163,184,.3);
+      box-shadow: 4px 0 18px rgba(0,0,0,.6);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ========== SIDEBAR LOGO ========== */
+    .site-logo {
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+      text-shadow: 0 0 8px #00e5ff;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    /* ========== NAV LIST ========== */
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ========== NAV BUTTONS ========== */
+    .nav-link {
+      color: #e5e7eb;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      background: linear-gradient(to right, #2d5862, #020617);
+      font-size: 0.85rem;
+      font-weight: bold;
+      box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .nav-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.75);
+      opacity: 0.95;
+      border-color: #00e5ff;
+    }
+
+    /* ========== MAIN CONTENT AREA ========== */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 40px;
+    }
+
+    .page-header {
+      font-size: 2.4rem;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+      text-shadow: 0 0 8px #00e5ff;
+      margin-bottom: 20px;
+    }
+
+    .page-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      max-width: 900px;
+    }
+
+    /* ========== MOBILE LAYOUT ========== */
+    @media (max-width: 900px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
 </style>
 </head>
 
 <body>
+
+  <div class="layout">
+
+  <!-- ✅ LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="site-logo">4NSIC ZONE</div>
+
+    <nav class="nav-list">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index2.html">Chip ID Framework</a>
+      <a class="nav-link" href="ecs.html">ECS Reporting</a>
+      <a class="nav-link" href="index3.html">Resources</a>
+      <a class="nav-link" href="downloads.html">Downloads</a>
+      <a class="nav-link" href="cmd.html">CMD Playbook</a>
+    </nav>
+  </aside>
+
+  <!-- ✅ MAIN CONTENT -->
+  <main class="main">
 
 <div class="header">DFIR Command Playbook</div>
 
@@ -195,5 +312,8 @@ function searchCommands() {
 }
 </script>
 
+  </main>
+  </div>
+  
 </body>
 </html>
