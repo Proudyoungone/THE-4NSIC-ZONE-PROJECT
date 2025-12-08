@@ -236,33 +236,523 @@ body {
 
 <!-- ================= DFIR PANEL ================= -->
 <div id="dfir" class="panel active">
-  <div class="cmd-card">
-    <div class="cmd-title">System Identification</div>
-    <div class="cmd-box" onclick="copyText(this)">hostname
-whoami
-systeminfo</div>
+<!-- ================= DFIR TRIAGE (ANNOTATED) ================= -->
+
+<div class="cmd-card">
+  <div class="cmd-title">System Identification & Time</div>
+  <div class="cmd-box" onclick="copyText(this)">
+hostname              :: Shows system name for tracking the asset
+whoami                :: Shows current login context (detect hijacked sessions)
+ver                   :: Windows version info (patch level relevance)
+systeminfo            :: OS, uptime, hotfixes, system owner — IR baseline
+time /t               :: Current local time (timeline building)
+date /t               :: Current date (verify date tampering)
+tzutil /g             :: Show timezone (detect timestomping / offset abuse)
   </div>
 </div>
 
+<div class="cmd-card">
+  <div class="cmd-title">Users & Logons</div>
+  <div class="cmd-box" onclick="copyText(this)">
+net user              :: Enumerate local user accounts
+net localgroup administrators :: Show local admins (detect privilege escalation)
+quser                 :: List logged-on interactive users
+qwinsta               :: List RDP/console sessions
+query user            :: Session tracking for lateral movement
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Processes & Memory</div>
+  <div class="cmd-box" onclick="copyText(this)">
+tasklist              :: Running processes baseline
+tasklist /v           :: Verbose, detects suspicious window titles
+tasklist /svc         :: Shows which services each process hosts
+wmic process list full :: Detailed process metadata, execution paths
+wmic process get caption,commandline,processid :: Detects malware command lines
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Services & Persistence</div>
+  <div class="cmd-box" onclick="copyText(this)">
+sc query              :: All services
+sc query type= service :: Filter actual installed services
+sc query state= all   :: Running/stopped service visibility
+sc queryex            :: Shows service PID info
+wmic service list full :: Full metadata including paths = persistence detection
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Startup & Autoruns</div>
+  <div class="cmd-box" onclick="copyText(this)">
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run :: System-wide startup apps
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run :: Per-user startup apps
+dir "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup" :: Startup folder
+dir "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" :: User startup folder
+schtasks /query /fo LIST /v :: Scheduled task persistence review
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Network Forensics</div>
+  <div class="cmd-box" onclick="copyText(this)">
+ipconfig /all         :: Network adapters, DNS, DHCP — identify rogue configs
+arp -a                :: Local ARP cache — detect ARP poisoning
+route print           :: Routing table — detect pivoting tunnels
+netstat -ano          :: Open ports, connections, associated PIDs
+netstat -abno         :: Ports + executable name (malware C2 discovery)
+nbtstat -n            :: NetBIOS names (lateral movement detection)
+nbtstat -a IP         :: Enumerate remote host NetBIOS info
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Firewall, Shares & Lateral Movement</div>
+  <div class="cmd-box" onclick="copyText(this)">
+netsh advfirewall show allprofiles    :: Firewall profiles/allowed traffic
+netsh advfirewall firewall show rule name=all :: All firewall rules (detect holes)
+net use                               :: Mapped network drives (data staging)
+net share                             :: Shared folders (exfil paths)
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">File System Forensics</div>
+  <div class="cmd-box" onclick="copyText(this)">
+dir /a /s C:\ > files.txt    :: Full file listing (timeline & anomalies)
+tree C:\ /f /a               :: Tree view, identify weird folder structures
+attrib                        :: Shows hidden / system / read-only flags
+fsutil fsinfo drives          :: Drive enumeration (mounted volumes)
+fsutil dirty query C:         :: Check if disk is flagged for corruption
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Event Log Triage</div>
+  <div class="cmd-box" onclick="copyText(this)">
+wevtutil qe Security /f:text /c:50 :: Last 50 security events
+wevtutil qe System /f:text /c:50   :: Last 50 system events
+wevtutil el                        :: List all event logs
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">USB & External Device Forensics</div>
+  <div class="cmd-box" onclick="copyText(this)">
+reg query HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR :: USB storage history
+reg query HKLM\SYSTEM\MountedDevices                :: Volume GUID/device mapping
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Malware Triage & Scheduled Tasks</div>
+  <div class="cmd-box" onclick="copyText(this)">
+assoc                :: File extension bindings (detect hijacks)
+ftype                :: File type execution handlers
+schtasks             :: Basic scheduled task overview
+schtasks /query /fo LIST /v :: Deep scheduled task inspection
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Prefetch Execution Evidence</div>
+  <div class="cmd-box" onclick="copyText(this)">
+dir C:\Windows\Prefetch :: Shows executed programs (excluding servers)
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Shadow Copies & Backups</div>
+  <div class="cmd-box" onclick="copyText(this)">
+vssadmin list shadows :: Shadow copies present (ransomware investigation)
+vssadmin list writers :: Writers status (backup health)
+vssadmin list volumes :: Volume snapshot mapping
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Disk & Partition Forensics</div>
+  <div class="cmd-box" onclick="copyText(this)">
+diskpart              :: Disk management (read-only in IR)
+list disk             :: Disk enumeration
+list volume           :: Volume listing
+detail volume         :: Detailed volume metadata
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Hashing & Evidence Integrity</div>
+  <div class="cmd-box" onclick="copyText(this)">
+certutil -hashfile evidence.img MD5    :: Calculate MD5 hash
+certutil -hashfile evidence.img SHA256 :: Calculate SHA256 hash
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Base64 Encoding / Decoding Abuse</div>
+  <div class="cmd-box" onclick="copyText(this)">
+certutil -decode input.txt output.exe :: Decode staged payloads
+certutil -encode file.exe encoded.txt :: Encode malware for transfer
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Deep Registry Hunting</div>
+  <div class="cmd-box" onclick="copyText(this)">
+reg query HKLM /s                      :: Full hive search
+reg query HKCU /s                      :: User hive search
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion :: Common persistence
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Script & Ransomware Indicators</div>
+  <div class="cmd-box" onclick="copyText(this)">
+assoc | find ".js"   :: Script execution hijacking
+assoc | find ".vbs"  :: VBScript hijacking
+assoc | find ".ps1"  :: PowerShell hijacking
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Time Sync & Timestomp Detection</div>
+  <div class="cmd-box" onclick="copyText(this)">
+w32tm /query /status :: NTP sync & clock accuracy (detect manipulation)
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Event Log Exporting</div>
+  <div class="cmd-box" onclick="copyText(this)">
+wevtutil epl Security security.evtx :: Export security log
+wevtutil epl System system.evtx     :: Export system log
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Drivers & Rootkits</div>
+  <div class="cmd-box" onclick="copyText(this)">
+driverquery            :: List drivers
+driverquery /v         :: Verbose
+driverquery /si        :: Signing info (detect unsigned drivers)
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Environment Variables & Staging</div>
+  <div class="cmd-box" onclick="copyText(this)">
+set                    :: List all environment variables
+echo %TEMP%            :: Malware staging directories
+echo %APPDATA%         :: User persistence directories
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">IOC & Keyword Searching</div>
+  <div class="cmd-box" onclick="copyText(this)">
+where file.exe                       :: Find suspicious binaries
+findstr /i "password" *.txt          :: Keyword search
+findstr /s /i "token" C:\*           :: Deep IOC hunting
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Live Containment</div>
+  <div class="cmd-box" onclick="copyText(this)">
+taskkill /PID 1234 /F                :: Kill malware by PID
+taskkill /IM malware.exe /F          :: Kill malware by name
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">System Integrity</div>
+  <div class="cmd-box" onclick="copyText(this)">
+sfc /scannow                         :: Repair system files
+chkdsk C: /f                         :: File system health check
+  </div>
+</div>
 <!-- ================= CMD PANEL ================= -->
 <div id="ultimate" class="panel">
-  <div class="cmd-card">
-    <div class="cmd-title">File & Directory</div>
-    <div class="cmd-box" onclick="copyText(this)">dir
-tree
-copy
-robocopy
-del</div>
+<div class="cmd-card">
+  <div class="cmd-title">File & Directory Management (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+dir                :: Lists files and folders
+cd                 :: Change directory
+pushd              :: Save + change directory context
+popd               :: Return to saved directory
+tree               :: Graphical folder tree
+mkdir              :: Create directory
+rmdir              :: Remove directory
+copy               :: Copy files
+xcopy              :: Legacy bulk file copy
+robocopy           :: Resilient forensic-safe copy
+move               :: Move files
+del                :: Delete files
+ren                :: Rename files
+attrib             :: View/change file attributes
+where              :: Locate file across paths
+fc                 :: Compare two files
+type               :: Display file contents
+more               :: Paginated file viewer
+assoc              :: View file associations
+ftype              :: View default program bindings
   </div>
 </div>
 
+<div class="cmd-card">
+  <div class="cmd-title">Disk, Storage & Volumes (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+diskpart           :: Low-level disk manager
+format             :: Format storage volume
+chkdsk             :: File system integrity check
+mountvol           :: Mount volume points
+fsutil             :: Advanced file system control
+defrag             :: Disk defragmentation
+label              :: Set volume label
+vol                :: Display volume info
+convert            :: Convert FAT to NTFS
+cleanmgr           :: Disk cleanup utility
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">System & Hardware (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+systeminfo         :: Full OS and patch info
+hostname           :: System name
+ver                :: Windows version
+driverquery        :: Loaded drivers
+dxdiag             :: DirectX + hardware report
+powercfg           :: Power settings & sleep states
+wmic cpu           :: CPU identification
+wmic bios          :: BIOS details
+wmic baseboard     :: Motherboard metadata
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Processes, Tasks & Services (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+tasklist           :: List running processes
+tasklist /v        :: Verbose process list
+taskkill           :: Kill process
+start              :: Launch new process
+shutdown           :: Shutdown / reboot system
+logoff             :: Log off user
+sc                 :: Service control manager
+sc query           :: List services
+query user         :: Logged-in sessions
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Networking (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+ipconfig           :: Network adapter config
+ping               :: Reachability test
+tracert            :: Route trace
+pathping           :: Packet loss trace
+nslookup           :: DNS resolution
+netstat            :: Active network connections
+arp                :: ARP cache
+route              :: Routing table
+nbtstat            :: NetBIOS discovery
+ftp                :: File Transfer Protocol
+telnet             :: Remote terminal
+curl               :: Web file transfer
+bitsadmin          :: Background file transfer
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Users, Groups & Policy (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+net user           :: Local user management
+net localgroup     :: Group management
+runas              :: Run with other credentials
+whoami             :: Current user context
+gpupdate           :: Refresh group policy
+auditpol           :: Audit policy control
+secedit            :: Security policy tool
+openfiles          :: Open network file handles
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Registry Management (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+reg query          :: Read registry
+reg add            :: Create registry key
+reg delete         :: Delete registry key
+reg export         :: Backup registry hive
+reg import         :: Restore registry hive
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Boot, Recovery & Backup (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+bcdedit            :: Boot configuration editor
+reagentc           :: Windows recovery environment
+wbadmin            :: Backup engine
+sfc                :: System file integrity check
+dism               :: Windows image repair
+cipher             :: NTFS encryption control
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Certificates, Crypto & Transfers (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+certutil           :: Hashing, encoding, cert ops
+cipher             :: Encrypt/decrypt files
+certmgr            :: Certificate store tool
+certreq            :: Certificate requests
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Event Logs, Tracing & Monitoring (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+wevtutil           :: Event log query/export
+eventcreate        :: Create custom event
+logman             :: Performance trace manager
+typeperf           :: CLI performance monitor
+perfmon            :: GUI performance monitor
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Permissions, Ownership & ADS (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+icacls             :: NTFS permissions
+takeown            :: Take file ownership
+cacls              :: Legacy ACL tool
+dir /r             :: Show alternate data streams
+type file:stream   :: Read ADS hidden data
+  </div>
+</div>
 <!-- ================= POWERSHELL PANEL ================= -->
-<div id="powershell" class="panel">
-  <div class="cmd-card">
-    <div class="cmd-title">PowerShell Basics</div>
-    <div class="cmd-box" onclick="copyText(this)">Get-ComputerInfo
-Get-Process
-Get-Service</div>
+<div class="cmd-card">
+  <div class="cmd-title">System & Host Information (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-ComputerInfo                    # Full host profile
+Get-CimInstance Win32_OperatingSystem # OS metadata
+Get-CimInstance Win32_ComputerSystem # Hardware + domain
+$PSVersionTable                    # PowerShell engine version
+Get-Date                           # Current system time
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Processes & Services (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-Process                        # List processes
+Get-Process | Sort CPU -Descending # Top CPU consumers
+Stop-Process -Id 1337 -Force       # Kill malicious process
+Get-Service                        # List services
+Restart-Service                    # Restart service
+Get-CimInstance Win32_Service      # Full service metadata
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Networking & Connections (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-NetIPConfiguration             # Network interfaces
+Get-NetTCPConnection               # Active TCP connections
+Resolve-DnsName google.com         # DNS lookup
+Test-NetConnection 8.8.8.8         # Network reachability
+Get-DnsClientCache                 # Cached DNS lookups
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Users, Privileges & Tokens (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-LocalUser                      # Local users
+Get-LocalGroupMember Administrators # Local admins
+whoami /priv                       # Token privileges
+whoami /groups                     # Group token data
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">File System & Permissions (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-ChildItem C:\ -Recurse         # Recursive file listing
+Copy-Item evidence.img D:\backup\ # Evidence copy
+Remove-Item malware.exe -Force    # Remove malware
+Get-Acl C:\Windows\System32       # File permissions
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">File Hashing & Integrity (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-FileHash malware.exe           # Default SHA256
+Get-FileHash malware.exe -Algorithm SHA1 # SHA1 hash
+Compare-Object (Get-FileHash file1).Hash (Get-FileHash file2).Hash # Hash comparison
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Event Logs & AMSI (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-WinEvent -LogName Security     # Security log
+Get-WinEvent -FilterHashtable @{ID=4624} # Successful logons
+Get-WinEvent -FilterHashtable @{ID=4625} # Failed logons
+Get-WinEvent -LogName "Microsoft-Windows-PowerShell/Operational" # Script blocks
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Persistence & Registry Abuse (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-ScheduledTask                  # Task persistence
+Get-WmiObject Win32_StartupCommand # Startup malware
+Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run # Registry autoruns
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Memory, Disk & Volumes (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-Disk                           # Physical disks
+Get-Volume                         # Mounted volumes
+Get-Partition                      # Partition layout
+Get-PhysicalDisk                   # Storage backend
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Defender, Firewall & Protection (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-MpComputerStatus               # Defender health
+Get-MpThreat                       # Detected malware
+Start-MpScan -ScanType FullScan   # Full malware scan
+Get-NetFirewallRule                # Firewall rules
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Active Directory & Enterprise (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Get-ADUser                         # Domain users
+Get-ADGroup                        # Domain groups
+Get-ADGroupMember Administrators   # Domain admins
+Get-ADComputer                     # Domain systems
+  </div>
+</div>
+
+<div class="cmd-card">
+  <div class="cmd-title">Compression, Base64 & Staging (Annotated)</div>
+  <div class="cmd-box" onclick="copyText(this)">
+Compress-Archive C:\Evidence C:\staged.zip # Package evidence
+Expand-Archive staged.zip C:\Extracted     # Unpack archive
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("file.exe")) # Encode malware
   </div>
 </div>
 
