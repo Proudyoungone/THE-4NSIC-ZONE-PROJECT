@@ -1,6 +1,6 @@
 var margin = [20, 120, 20, 140],
-    var width = window.innerWidth - 20;
-    var height = window.innerHeight - 120;
+    width = Math.max(window.innerWidth - 40, 320),
+    height = Math.max(window.innerHeight - 160, 480),
     i = 0,
     duration = 1250,
     root;
@@ -150,3 +150,4 @@ function toggle(d) {
   }
 
 }
+
