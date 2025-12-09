@@ -1,3 +1,4 @@
+/* Created by Justin Nordine, edited by Katelyn Rogers with the assistance of Chat GPT */
 var margin = [20, 120, 20, 140],
     width = 1280 - margin[1] - margin[3],
     height = 800 - margin[0] - margin[2],
