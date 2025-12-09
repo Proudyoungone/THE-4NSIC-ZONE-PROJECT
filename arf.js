@@ -1,24 +1,24 @@
-var margin = { top: 20, right: 40, bottom: 20, left: 40 };
+/* Created by Justin Nordine, edited by Katelyn Rogers with the assistance of Chat GPT */
 
-var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) - 20;
-var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 120;
-
-var i = 0;
-var duration = 1250;
-var root;
+var margin = [20, 120, 20, 140],
+    width = 1280 - margin[1] - margin[3],
+    height = 800 - margin[0] - margin[2],
+    i = 0,
+    duration = 1250,
+    root;
 
 var tree = d3.layout.tree()
-  .size([height, width]);
+    .size([height, width]);
 
 var diagonal = d3.svg.diagonal()
-  .projection(function(d) { return [d.y, d.x]; });
+    .projection(function(d) { return [d.y, d.x]; });
 
-var vis = d3.select("#body")
-  .append("svg")
-  .attr("width", "100%")
-  .attr("height", height)
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var vis = d3.select("#body").append("svg:svg")
+    .attr("width", width + margin[1] + margin[3])
+    .attr("height", height + margin[0] + margin[2])
+  .append("svg:g")
+    .attr("transform", "translate(" + margin[3] + "," + margin[0] + ")");
+
 
 d3.json("arf.json", function(json) {
   root = json;
@@ -155,6 +155,7 @@ function toggle(d) {
   }
 
 }
+
 
 
 
