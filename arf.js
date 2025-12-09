@@ -1,9 +1,25 @@
-var margin = [20, 120, 20, 140],
-    width = Math.max(window.innerWidth - 40, 320),
-    height = Math.max(window.innerHeight - 160, 480),
-    i = 0,
-    duration = 1250,
-    root;
+var margin = { top: 20, right: 40, bottom: 20, left: 40 };
+
+var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) - 20;
+var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 120;
+
+var i = 0;
+var duration = 1250;
+var root;
+
+var tree = d3.layout.tree()
+  .size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+  .projection(function(d) { return [d.y, d.x]; });
+
+var vis = d3.select("#body")
+  .append("svg")
+  .attr("width", "100%")
+  .attr("height", height)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 
 var tree = d3.layout.tree()
     .size([height, width]);
@@ -150,4 +166,5 @@ function toggle(d) {
   }
 
 }
+
 
