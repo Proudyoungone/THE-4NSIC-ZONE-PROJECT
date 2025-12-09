@@ -62,8 +62,10 @@ function update(source) {
   // Compute the new tree layout.
   var nodes = tree.nodes(root).reverse();
 
-  // Normalize for fixed-depth.
-  nodes.forEach(function(d) { d.y = d.depth * 180; });
+var isMobile = window.innerWidth < 900;
+nodes.forEach(function(d) {
+  d.y = d.depth * (isMobile ? 120 : 180);
+});
 
   // Update the nodes…
   var node = vis.selectAll("g.node")
@@ -166,5 +168,6 @@ function toggle(d) {
   }
 
 }
+
 
 
