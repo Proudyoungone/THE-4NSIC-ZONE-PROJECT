@@ -150,7 +150,3 @@ function toggle(d) {
   }
 
 }
-
-window.addEventListener("resize", function () {
-  location.reload();
-});
