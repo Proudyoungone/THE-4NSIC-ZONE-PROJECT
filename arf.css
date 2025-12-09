@@ -12,21 +12,15 @@ body {
 }
 
 .corner-image {
-  background-image: url("Chip-ID-Framework/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-
-  position: absolute;
-  top: 47px;
-  left: 10px;
-
-  width: 165px;
-  height: 165px;
-
-  z-index: 1000;
+    background-image: url("Chip-ID-Framework/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
+    position:absolute;
+    top: 47px;      /* distance from top */
+    left: 10px;    /* distance from left */
+    right: 10px;   /* distance from right */
+    width: 130px;   /* size of the image */
+    height: 150px;  /* maintain aspect ratio */
+    z-index: 1000; /* ensure it stays on top */
 }
-
 
 #header {
   font-size: 40px;
@@ -48,24 +42,17 @@ body {
   position: absolute;
   top: 54px;
   right: 10px;
-
+  width: 330px;
   font-size: 14px;
   color: #000;
-
-  border: 2px solid #000;
-  padding: 10px;
-
-  width: fit-content;
-  height: fit-content;
-
-  border-radius: 8px;
-  background-color: #8a8888;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
-
-  z-index: 1000;
-
+  border: 2px solid #000;   /* thickness + color of the frame */
+    padding: 10px;            /* space inside the frame */
+    width: fit-content; 
+    height: fit-content;      /* makes the box hug the content */
+    border-radius: 8px;       /* rounded corners (optional) */
+    background-color: #8a8888; /* optional soft background */
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
-
 
 .node {
   cursor: pointer;
@@ -90,7 +77,6 @@ path.link {
   stroke: #ccc;
   stroke-width: 1px;
 }
-
 
 #page-footer {
     margin-top: 80px;             /* space above footer */
@@ -119,4 +105,3 @@ h3 {
     border-radius: 6px;
     display: inline-block; /* keeps it neatly wrapped around text */
 }
-
