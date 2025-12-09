@@ -25,16 +25,8 @@ body {
   height: 165px;
 
   z-index: 1000;
-
-  /* ✅ HARD-LOCK AGAINST MOBILE RESIZING */
-  transform: none !important;
-  max-width: none !important;
-  min-width: 165px !important;
 }
 
-img, .corner-image {
-  -webkit-text-size-adjust: 100%;
-}
 
 #header {
   font-size: 40px;
@@ -72,15 +64,6 @@ img, .corner-image {
 
   z-index: 1000;
 
-  /* ✅ HARD LOCK AGAINST MOBILE SCALING / MOVEMENT */
-  transform: none !important;
-  margin: 0 !important;
-  left: auto !important;
-  bottom: auto !important;
-}
-
-.legend {
-  -webkit-text-size-adjust: 100%;
 }
 
 
@@ -107,6 +90,7 @@ path.link {
   stroke: #ccc;
   stroke-width: 1px;
 }
+
 
 #page-footer {
     margin-top: 80px;             /* space above footer */
