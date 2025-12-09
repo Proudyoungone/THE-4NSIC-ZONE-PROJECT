@@ -105,3 +105,80 @@ h3 {
     border-radius: 6px;
     display: inline-block; /* keeps it neatly wrapped around text */
 }
+
+/* ===============================
+✅ MOBILE RESPONSIVE PATCH
+=============================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  font-size: 16px; /* scales better on phones */
+}
+
+/* ✅ Header resizes on mobile */
+@media (max-width: 800px) {
+  #header {
+    font-size: 26px;
+    padding: 12px;
+  }
+}
+
+/* ✅ Corner image auto-scales */
+@media (max-width: 800px) {
+  .corner-image {
+    width: 90px;
+    height: 90px;
+    top: 10px;
+    left: 10px;
+  }
+}
+
+/* ✅ Legend becomes stacked instead of floating */
+@media (max-width: 900px) {
+  .legend {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 15px auto;
+    width: 95%;
+    font-size: 12px;
+  }
+}
+
+/* ✅ D3 node labels shrink on phones */
+@media (max-width: 800px) {
+  .node text {
+    font-size: 10px !important;
+  }
+}
+
+/* ✅ Footer spacing fix */
+@media (max-width: 800px) {
+  #page-footer {
+    margin-top: 40px;
+    padding: 14px;
+  }
+}
+
+/* ✅ Headings scale properly */
+@media (max-width: 800px) {
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+}
+
+/* ✅ Make any large containers full width */
+#body {
+  width: 100%;
+  max-width: 100%;
+}
+
