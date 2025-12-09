@@ -12,15 +12,26 @@ body {
 }
 
 .corner-image {
-    background-image: url("Chip-ID-Framework/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
-    position:absolute;
-    top: 47px;      /* distance from top */
-    left: 10px;    /* distance from left */
-    right: 10px;   /* distance from right */
-    width: 165px;   /* size of the image */
-    height: 165px;  /* maintain aspect ratio */
-    z-index: 1000; /* ensure it stays on top */
+  background-image: url("Chip-ID-Framework/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  position: absolute;
+  top: 47px;
+  left: 10px;
+
+  width: 165px;
+  height: 165px;
+
+  z-index: 1000;
+
+  /* ✅ HARD-LOCK AGAINST MOBILE RESIZING */
+  transform: none !important;
+  max-width: none !important;
+  min-width: 165px !important;
 }
+
 
 #header {
   font-size: 40px;
