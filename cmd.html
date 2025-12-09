@@ -389,30 +389,13 @@ certutil -hashfile evidence.img MD5    :: Calculate MD5 hash
 certutil -hashfile evidence.img SHA256 :: Calculate SHA256 hash
   </div>
 </div>
-
-<div class="cmd-card">
-  <div class="cmd-title">Base64 Encoding / Decoding Abuse</div>
-  <div class="cmd-box" onclick="copyText(this)">
-certutil -decode input.txt output.exe :: Decode staged payloads
-certutil -encode file.exe encoded.txt :: Encode malware for transfer
-  </div>
-</div>
-
+  
 <div class="cmd-card">
   <div class="cmd-title">Deep Registry Hunting</div>
   <div class="cmd-box" onclick="copyText(this)">
 reg query HKLM /s                      :: Full hive search
 reg query HKCU /s                      :: User hive search
 reg query HKLM\Software\Microsoft\Windows\CurrentVersion :: Common persistence
-  </div>
-</div>
-
-<div class="cmd-card">
-  <div class="cmd-title">Script & Ransomware Indicators</div>
-  <div class="cmd-box" onclick="copyText(this)">
-assoc | find ".js"   :: Script execution hijacking
-assoc | find ".vbs"  :: VBScript hijacking
-assoc | find ".ps1"  :: PowerShell hijacking
   </div>
 </div>
 
@@ -437,32 +420,6 @@ wevtutil epl System system.evtx     :: Export system log
 driverquery            :: List drivers
 driverquery /v         :: Verbose
 driverquery /si        :: Signing info (detect unsigned drivers)
-  </div>
-</div>
-
-<div class="cmd-card">
-  <div class="cmd-title">Environment Variables & Staging</div>
-  <div class="cmd-box" onclick="copyText(this)">
-set                    :: List all environment variables
-echo %TEMP%            :: Malware staging directories
-echo %APPDATA%         :: User persistence directories
-  </div>
-</div>
-
-<div class="cmd-card">
-  <div class="cmd-title">IOC & Keyword Searching</div>
-  <div class="cmd-box" onclick="copyText(this)">
-where file.exe                       :: Find suspicious binaries
-findstr /i "password" *.txt          :: Keyword search
-findstr /s /i "token" C:\*           :: Deep IOC hunting
-  </div>
-</div>
-
-<div class="cmd-card">
-  <div class="cmd-title">Live Containment</div>
-  <div class="cmd-box" onclick="copyText(this)">
-taskkill /PID 1234 /F                :: Kill malware by PID
-taskkill /IM malware.exe /F          :: Kill malware by name
   </div>
 </div>
 
