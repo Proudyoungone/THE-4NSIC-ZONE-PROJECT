@@ -19,7 +19,6 @@ var vis = d3.select("#body").append("svg:svg")
   .append("svg:g")
     .attr("transform", "translate(" + margin[3] + "," + margin[0] + ")");
 
-
 d3.json("arf.json", function(json) {
   root = json;
   root.x0 = height / 2;
@@ -48,6 +47,9 @@ function update(source) {
 
   // Compute the new tree layout.
   var nodes = tree.nodes(root).reverse();
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
 
   // Update the nodes…
   var node = vis.selectAll("g.node")
@@ -148,9 +150,7 @@ function toggle(d) {
     d.children = d._children;
     d._children = null;
   }
-
 }
-
 
 
 
