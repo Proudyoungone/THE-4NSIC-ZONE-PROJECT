@@ -1,6 +1,6 @@
 var margin = [20, 120, 20, 140],
-    width = 1280 - margin[1] - margin[3],
-    height = 800 - margin[0] - margin[2],
+    var width = window.innerWidth - 20;
+    var height = window.innerHeight - 120;
     i = 0,
     duration = 1250,
     root;
@@ -148,4 +148,9 @@ function toggle(d) {
     d.children = d._children;
     d._children = null;
   }
+
 }
+
+window.addEventListener("resize", function () {
+  location.reload();
+});
