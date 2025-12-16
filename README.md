@@ -26,6 +26,8 @@ I hope this is helpful. I’d love to hear any critiques or general feedback. I 
 
 I also want to give a huge shoutout to Justin Nordine who developed OSINT Framework for letting me use his structure and providing me with some guidance. You can find OSINT Framework at the following link: https://osintframework.com/
 
+*This website and it's contents were generated and/or edited by ChatGPT*
+
 
 ### For Update Notifications and to Provide Feedback
 I would love to hear from you! Follow me on LinkedIn: https://www.linkedin.com/in/katelyn-rogers-DFIRISTHEWORD/ 
